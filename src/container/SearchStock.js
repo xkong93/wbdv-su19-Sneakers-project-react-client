@@ -64,8 +64,10 @@ class SearchStock extends Component {
 
                         {
                             this.state.stocks.map(stock =>
+                                <div className="col-md-3">
                                 <div className='card-deck'>
                                     <StockComponent stock={stock}/>
+                                </div>
                                 </div>
                             )
                         }
