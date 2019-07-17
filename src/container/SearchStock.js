@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import fetchJsonp from 'fetch-jsonp';
+import StockComponent from "../component/StockComponent";
 
 class SearchStock extends Component {
     constructor(props) {
@@ -32,36 +33,45 @@ class SearchStock extends Component {
             keywords: event.target.value
         });
     }
+
     render() {
         return (
-            <div>
-                <h1>Search Stock</h1>
-                <div className='input-group'>
-                    <input className="form-control"
-                           value={this.state.keywords}
-                           onChange={this.keywordChange}
-                           placeholder="keyword"/>
-                    <div className="input-group-append">
-                        <button
-                            onClick={this.searchStock}
-                            className="btn btn-primary">
-                            Search
-                        </button>
+
+
+            <div className="container">
+                <div className="row">
+
+                    <h1>Search Stock</h1>
+                    <div className='input-group'>
+                        <input className="form-control"
+                               value={this.state.keywords}
+                               onChange={this.keywordChange}
+                               placeholder="keyword"/>
+                        <div className="input-group-append">
+                            <button
+                                onClick={this.searchStock}
+                                className="btn btn-primary">
+                                Search
+                            </button>
+                        </div>
                     </div>
                 </div>
-                <ul className="list-group">
-
-                    {
-                        this.state.stocks.map(stock => <li className="list-group-item" key={stock.id}>
-                            {stock.name}
-                            <img src={stock.media.thumbUrl} />
-
-                        </li>)
-                    }
 
 
-                </ul>
+                <div className="container">
+                    <div className="row">
+                        {/*/!*<div className='card-deck'>*!/  failed if put outside of map*/}
 
+                        {
+                            this.state.stocks.map(stock =>
+                                <div className='card-deck'>
+                                    <StockComponent stock={stock}/>
+                                </div>
+                            )
+                        }
+                        {/*</div>*/}
+                    </div>
+                </div>
             </div>
         );
     }
