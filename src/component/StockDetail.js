@@ -1,19 +1,17 @@
 import React, {Component} from 'react';
 
-const StockDetail = ({detail}) => (
+const StockDetail = ({detail}) => {
 
-    <div className="container">
-        <h1>{detail.title}</h1>
+    return (<div className="container">
+        <h1>{ detail.title}</h1>
 
-        {/*//这里不行*/}
-        {/*//api 例子*/}
-        {/*//https://stockx.com/api/products/air-jordan-5-retro-michigan-2019*/}
-        {/*<img src={detail.media.thumbUrl}/>*/}
+        {/*//unable render when detail is undefined at beginning*/}
+        {detail.media != undefined && <img src={detail.media.smallImageUrl}/>}
         <p>
             {detail.description}
         </p>
-    </div>
-)
+    </div>)
+}
 
 
 export default StockDetail;

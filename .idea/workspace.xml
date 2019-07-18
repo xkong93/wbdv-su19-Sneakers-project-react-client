@@ -4,20 +4,12 @@
     <list default="true" id="bc386477-ac3c-4bdd-b102-864d4fff9520" name="Default Changelist" comment="">
       <change afterPath="$PROJECT_DIR$/../Backup/3/.idea/3.iml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../hello-world/.idea/hello-world.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/component/StockDetail.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/container/StockDetailContainer.js" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../wbdv-su19-xuankong-angular-client-assignment7/src/app/services/LessonServiceClient.ts" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../wbdv-su19-xuankong-angular-client-assignment7/src/app/services/ModuleServiceClient.ts" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../wbdv-su19-xuankong-angular-client-assignment7/src/app/services/TopicServiceClient.ts" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../wbdv-su19-xuankong-angular-client-assignment7/src/app/services/WidgetServiceClient.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../myapp" beforeDir="false" afterPath="$PROJECT_DIR$/../myapp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/StockComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/StockComponent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/Main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/Main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/SearchStock.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/SearchStock.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/StockDetail.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/StockDetail.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -78,8 +70,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/container/SearchStock.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="82">
-              <caret line="43" column="40" lean-forward="true" selection-start-line="43" selection-start-column="40" selection-end-line="43" selection-end-column="40" />
+            <state relative-caret-position="40">
+              <caret line="49" column="58" lean-forward="true" selection-start-line="49" selection-start-column="58" selection-end-line="49" selection-end-column="58" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -90,8 +82,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/component/StockComponent.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="162">
-              <caret line="9" column="22" lean-forward="true" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
+            <state relative-caret-position="144">
+              <caret line="8" column="29" lean-forward="true" selection-start-line="8" selection-start-column="29" selection-end-line="8" selection-end-column="29" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -102,8 +94,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/container/StockDetailContainer.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="468">
-              <caret line="26" column="55" selection-start-line="26" selection-start-column="49" selection-end-line="26" selection-end-column="55" />
+            <state relative-caret-position="328">
+              <caret line="24" column="16" lean-forward="true" selection-start-line="24" selection-start-column="16" selection-end-line="24" selection-end-column="16" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -114,8 +106,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/component/StockDetail.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="7" column="14" lean-forward="true" selection-start-line="7" selection-start-column="14" selection-end-line="7" selection-end-column="14" />
+            <state relative-caret-position="252">
+              <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
             </state>
           </provider>
         </entry>
@@ -227,12 +219,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1563332929108</updated>
-      <workItem from="1563332930505" duration="21313000" />
+      <workItem from="1563332930505" duration="23130000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21313000" />
+    <option name="totallyTimeSpent" value="23130000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="456" y="32" width="1462" height="1057" extended-state="0" />
@@ -319,10 +311,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/component/StockComponent.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="8" column="29" lean-forward="true" selection-start-line="8" selection-start-column="29" selection-end-line="8" selection-end-column="29" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/container/SearchStock.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="82">
-          <caret line="43" column="40" lean-forward="true" selection-start-line="43" selection-start-column="40" selection-end-line="43" selection-end-column="40" />
+        <state relative-caret-position="40">
+          <caret line="49" column="58" lean-forward="true" selection-start-line="49" selection-start-column="58" selection-end-line="49" selection-end-column="58" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>
@@ -331,18 +333,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/container/StockDetailContainer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
-          <caret line="26" column="55" selection-start-line="26" selection-start-column="49" selection-end-line="26" selection-end-column="55" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/component/StockComponent.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="9" column="22" lean-forward="true" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
+        <state relative-caret-position="328">
+          <caret line="24" column="16" lean-forward="true" selection-start-line="24" selection-start-column="16" selection-end-line="24" selection-end-column="16" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>
@@ -351,8 +343,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/component/StockDetail.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="7" column="14" lean-forward="true" selection-start-line="7" selection-start-column="14" selection-end-line="7" selection-end-column="14" />
+        <state relative-caret-position="252">
+          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
         </state>
       </provider>
     </entry>
