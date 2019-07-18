@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import SearchStock from "./SearchStock";
+import SearchStockContainer from "./SearchStockContainer";
 import {BrowserRouter as Router, Route, Link} from "react-router-dom";
-import StockDetail from "../component/StockDetail";
+import StockDetailComponent from "../component/StockDetailComponent";
 import StockDetailContainer from "./StockDetailContainer";
 
 class Main extends Component {
@@ -13,7 +13,7 @@ class Main extends Component {
                 <div>
                     <Route
                         path='/search'
-                        component={SearchStock}
+                        component={SearchStockContainer}
                     />
                 </div>
 

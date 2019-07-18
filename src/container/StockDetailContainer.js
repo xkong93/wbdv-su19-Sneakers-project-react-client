@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import StockDetail from "../component/StockDetail";
+import StockDetailComponent from "../component/StockDetailComponent";
 
 class StockDetailContainer extends Component {
 
@@ -24,7 +24,7 @@ class StockDetailContainer extends Component {
     render() {
         return (
             <div>
-                <StockDetail  detail={this.state.detail}/>
+                <StockDetailComponent detail={this.state.detail}/>
             </div>
         );
     }

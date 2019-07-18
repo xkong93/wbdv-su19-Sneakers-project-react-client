@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import fetchJsonp from 'fetch-jsonp';
 import StockComponent from "../component/StockComponent";
 
-class SearchStock extends Component {
+class SearchStockContainer extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -77,4 +77,4 @@ class SearchStock extends Component {
     }
 }
 
-export default SearchStock;
+export default SearchStockContainer;
