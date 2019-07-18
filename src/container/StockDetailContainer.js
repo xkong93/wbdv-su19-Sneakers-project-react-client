@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
 import StockDetailComponent from "../component/StockDetailComponent";
+import StockService from "../services/StockService"
 
 class StockDetailContainer extends Component {
 
     constructor(props){
         super(props)
+        this.stockService = StockService.getInstance()
         this.state = {
             detail: {}
         }
@@ -12,10 +14,8 @@ class StockDetailContainer extends Component {
     }
 
     componentDidMount() {
-        var detail = {}
         const urlKey = this.props.match.params.urlKey
-        fetch(`https://cors-anywhere.herokuapp.com/https://stockx.com/api/products/${urlKey}`)
-            .then(response => response.json())
+        this.stockService.obtainDetailInfo(urlKey)
             .then(responseJSON => this.setState({
                 detail:responseJSON.Product
             }))

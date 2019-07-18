@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import SearchStockContainer from "./SearchStockContainer";
 import {BrowserRouter as Router, Route, Link} from "react-router-dom";
-import StockDetailComponent from "../component/StockDetailComponent";
 import StockDetailContainer from "./StockDetailContainer";
 
 class Main extends Component {
@@ -9,7 +8,12 @@ class Main extends Component {
         return (
 
             <Router>
-                <h1>main</h1>
+                <nav className="navbar navbar-light bg-light">
+                    <span className="navbar-brand mb-0 h1">SneakerStock</span>
+                    <form className="form-inline my-2 my-lg-0">
+                        <Link to = '/search' ><button className="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button></Link>
+                    </form>
+                </nav>
                 <div>
                     <Route
                         path='/search'
