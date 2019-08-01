@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import StockDetailComponent from "../component/StockDetailComponent";
 import StockService from "../services/StockService"
+import ProductReviewContainer from "./ProductReviewContainer";
 
 class StockDetailContainer extends Component {
 
