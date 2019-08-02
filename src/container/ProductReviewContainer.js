@@ -17,6 +17,7 @@ class ProductReviewContainer extends Component {
             .then(res => this.setState({
                 reviews: res
             }))
+        console.log(this.state.reviews)
     }
 
     render() {

@@ -1,5 +1,5 @@
 export default class ReviewService {
-    url = "http://localhost:8080/api";
+    url = "http://localhost:8080/api/";
 
     static myInstance = null;
 
@@ -12,7 +12,10 @@ export default class ReviewService {
     }
 
     getReviewsForProduct = (urlKey) =>
-        fetch(this.url + `/product/${urlKey}/review`)
-            .then(res => res.json());
+        fetch(this.url + `product/${urlKey}/review`)
+            .then(res => {
+                if (res.status == 200){
+                    return res.json();
+                }})
 
 }
