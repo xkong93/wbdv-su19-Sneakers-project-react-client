@@ -18,6 +18,5 @@ export default class StockService {
             .then(response => response.json())
 
     obtainDetailInfo = (urlKey) =>
-        fetch(`https://cors-anywhere.herokuapp.com/https://stockx.com/api/products/${urlKey}`)
-            .then(response => response.json())
+        fetch(`https://cors-anywhere.herokuapp.com/https://stockx.com/api/products/${urlKey}?includes=market&currency=USD`).then(response => response.json())
 }

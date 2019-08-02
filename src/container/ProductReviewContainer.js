@@ -12,7 +12,7 @@ class ProductReviewContainer extends Component {
         }
     }
     componentDidMount() {
-        const urlKey = this.props.match.params.urlKey
+        const urlKey = this.props.match.params.urlKey;
         this.reviewService.getReviewsForProduct(urlKey)
             .then(res => this.setState({
                 reviews: res
@@ -24,7 +24,7 @@ class ProductReviewContainer extends Component {
         return (
             <div>
                 {
-                    this.state.reviews.map(review => <ReviewComponent review={review}/>)
+                   this.state.reviews != null && this.state.reviews.map(review => <ReviewComponent review={review}/>)
                 }
             </div>
         );
