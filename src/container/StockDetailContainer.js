@@ -26,7 +26,7 @@ class StockDetailContainer extends Component {
 
     render() {
         return (
-            <Container maxWidth="md">
+            <Container maxWidth="lg">
                 <StockDetailComponent detail={this.state.detail}/>
             </Container>
         );

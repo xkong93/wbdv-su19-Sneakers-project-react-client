@@ -14,8 +14,18 @@ export default class ReviewService {
     getReviewsForProduct = (urlKey) =>
         fetch(this.url + `product/${urlKey}/review`)
             .then(res => {
-                if (res.status == 200){
+                if (res.status == 200) {
                     return res.json();
-                }})
+                }
+            })
+
+
+    getRatingForPorduct = (urlKey) =>
+        fetch(this.url + `product/${urlKey}/rating`)
+            .then(res => {
+                if (res.status == 200) {
+                    return res.json();
+                }
+            })
 
 }

@@ -7,10 +7,11 @@ import {withStyles} from '@material-ui/core/styles';
 
 const styles = {
     root: {
-        display:"flex",
-        justifyContent:"space-between"
+        display: "flex",
+        justifyContent: "space-between",
+        flexWrap:'wrap'
     },
-    div:{
+    div: {
         display: "flex",
         flexDirection: "column",
     }
@@ -19,12 +20,12 @@ const styles = {
 
 class ProductReviewContainer extends Component {
 
-
     constructor(props) {
         super(props);
         this.reviewService = reviewService.getInstance();
         this.state = {
             reviews: [],
+            rating: {}
             // reviewByUser: {}
         }
 
@@ -35,23 +36,26 @@ class ProductReviewContainer extends Component {
         const urlKey = this.props.match.params.urlKey;
         this.reviewService.getReviewsForProduct(urlKey)
             .then(res => this.setState({
-                reviews: res
+                reviews: res}))
+
+        this.reviewService.getRatingForPorduct(urlKey)
+            .then(res => this.setState({
+                rating: res
             }))
-        console.log(this.state.reviews)
     }
 
 
     render() {
         return (
-            <Container className={this.props.classes.root} maxWidth="md">
+            <Container className={this.props.classes.root} maxWidth="lg">
                 {
-                    <RatingComponent/>
+                    <RatingComponent rating={this.state.rating}/>
                 }
                 <div className={this.props.classes.div}>
-                {
-                    this.state.reviews != null && this.state.reviews.map(review => <ReviewComponent
-                        review={review}/>)
-                }
+                    {
+                        this.state.reviews != null && this.state.reviews.map(review => <ReviewComponent
+                            key={review.id} review={review}/>)
+                    }
                 </div>
             </Container>
         );

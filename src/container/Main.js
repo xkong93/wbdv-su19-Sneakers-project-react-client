@@ -3,11 +3,11 @@ import SearchStockContainer from "./SearchStockContainer";
 import {BrowserRouter as Router, Route, Link} from "react-router-dom";
 import StockDetailContainer from "./StockDetailContainer";
 import ProductReviewContainer from "./ProductReviewContainer";
-
+import Footer from "../Layouts/Footer"
 class Main extends Component {
     render() {
         return (
-
+            <div>
             <Router>
                 <nav className="navbar navbar-light bg-light">
                     <span className="navbar-brand mb-0 h1">SneakerStock</span>
@@ -38,6 +38,8 @@ class Main extends Component {
                 </div>
 
             </Router>
+                <Footer/>
+            </div>
         );
     }
 }

@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 
-const RatingComponent = ({review}) => {
+const RatingComponent = ({rating}) => {
 
     return (
         <div>
-            <h1>Rating Comp</h1>
+            <h1>Rating Compo</h1>
         </div>
         )
 }
