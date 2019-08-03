@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme => ({
             display: "flex",
             flexDirection: "row",
             justifyContent: "space-between",
-            fontSize: "15px"
+            fontSize: "15px",
         }
 
     },
@@ -28,7 +28,7 @@ const useStyles = makeStyles(theme => ({
         fontSize: "15px"
     },
     image: {
-        width: '60%',
+        width: '65%',
         alignSelf: 'center',
     },
     colorway: {

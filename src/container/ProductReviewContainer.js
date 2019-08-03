@@ -8,7 +8,7 @@ import {withStyles} from '@material-ui/core/styles';
 const styles = {
     root: {
         display: "flex",
-        justifyContent: "space-between",
+        justifyContent: "space-evenly",
         flexWrap:'wrap'
     },
     div: {
