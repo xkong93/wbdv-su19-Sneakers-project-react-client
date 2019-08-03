@@ -70,7 +70,7 @@ const RatingComponent = ({rating}) => {
 
     return (
         <div className={classes.root}>
-            <h1>RATINGS: {rating.averageOverall} </h1>
+            <h2>RATINGS: {rating.averageOverall} </h2>
 
             {rating.averageSize != undefined &&
             <div>

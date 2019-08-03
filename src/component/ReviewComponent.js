@@ -15,6 +15,8 @@ const useStyles = makeStyles(theme => ({
 const ReviewComponent = ({review}) => {
     const classes = useStyles()
     return (
+        <div>
+
         <Paper className={classes.root}>
         <div >
             {review != undefined && <p>{review.description} </p>}
@@ -23,6 +25,7 @@ const ReviewComponent = ({review}) => {
                 {}
             </div>
         </Paper>
+        </div>
     )
 }
 

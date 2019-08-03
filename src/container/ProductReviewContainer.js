@@ -14,7 +14,7 @@ const styles = {
     div: {
         display: "flex",
         flexDirection: "column",
-    }
+    },
 
 }
 
@@ -52,6 +52,7 @@ class ProductReviewContainer extends Component {
                     <RatingComponent rating={this.state.rating}/>
                 }
                 <div className={this.props.classes.div}>
+                    <h2 >REVIEWS</h2>
                     {
                         this.state.reviews != null && this.state.reviews.map(review => <ReviewComponent
                             key={review.id} review={review}/>)
