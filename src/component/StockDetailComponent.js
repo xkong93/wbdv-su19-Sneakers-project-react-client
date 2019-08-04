@@ -28,7 +28,7 @@ const useStyles = makeStyles(theme => ({
         fontSize: "15px"
     },
     image: {
-        width: '65%',
+        width: '60%',
         alignSelf: 'center',
     },
     colorway: {

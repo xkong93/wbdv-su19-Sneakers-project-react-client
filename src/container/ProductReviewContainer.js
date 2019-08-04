@@ -48,9 +48,11 @@ class ProductReviewContainer extends Component {
     render() {
         return (
             <Container className={this.props.classes.root} maxWidth="lg">
+                <div>
                 {
                     <RatingComponent rating={this.state.rating}/>
                 }
+                </div>
                 <div className={this.props.classes.div}>
                     <h2 >REVIEWS</h2>
                     {
