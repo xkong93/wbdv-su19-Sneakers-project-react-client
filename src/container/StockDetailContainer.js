@@ -1,10 +1,13 @@
 import React, {Component} from 'react';
 import StockDetailComponent from "../component/StockDetailComponent";
 import StockService from "../services/StockService"
-
+import Grid from '@material-ui/core/Grid'
+import Box from '@material-ui/core/Box'
+import Container from '@material-ui/core/Container'
 class StockDetailContainer extends Component {
 
-    constructor(props){
+
+    constructor(props) {
         super(props)
         this.stockService = StockService.getInstance()
         this.state = {
@@ -17,15 +20,15 @@ class StockDetailContainer extends Component {
         const urlKey = this.props.match.params.urlKey
         this.stockService.obtainDetailInfo(urlKey)
             .then(responseJSON => this.setState({
-                detail:responseJSON.Product
+                detail: responseJSON.Product
             }))
     }
 
     render() {
         return (
-            <div>
+            <Container maxWidth="lg">
                 <StockDetailComponent detail={this.state.detail}/>
-            </div>
+            </Container>
         );
     }
 }

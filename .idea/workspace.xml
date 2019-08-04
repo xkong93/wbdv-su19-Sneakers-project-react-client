@@ -2,13 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bc386477-ac3c-4bdd-b102-864d4fff9520" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/component/HomeNotUserComponent.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/component/NavigationComponent.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/container/HomeContainer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/Main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/Main.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Layouts/Footer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/component/RatingComponent.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/component/ReviewComponent.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/container/ProductReviewContainer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/services/ReviewService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/StockComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/StockComponent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/StockDetailComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/StockDetailComponent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/container/StockDetailContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/container/StockDetailContainer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/StockService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/StockService.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -73,7 +75,7 @@
       <workItem from="1564638216673" duration="724000" />
       <workItem from="1564711229253" duration="5459000" />
       <workItem from="1564720860750" duration="1559000" />
-      <workItem from="1564949692278" duration="2010000" />
+      <workItem from="1564949692278" duration="2526000" />
     </task>
     <servers />
   </component>

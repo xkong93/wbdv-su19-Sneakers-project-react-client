@@ -1,6 +1,6 @@
 export default class StockService {
     static myInstance = null;
-
+    corsUrl = 'https://wbdv-su19-project-cors-server.herokuapp.com/?q=';
     static getInstance() {
         if (StockService.myInstance == null) {
             StockService.myInstance =
@@ -9,15 +9,14 @@ export default class StockService {
         return this.myInstance;
     }
 
-
     //since this is an unofficial api, we need to use a proxy server to fetch json data
     // otherwise it will violate CORS policy and fail to fetch json data
     //read this article https://medium.com/netscape/hacking-it-out-when-cors-wont-let-you-be-great-35f6206cc646
     searchItem = (keyWords) =>
-        fetch(`https://cors-anywhere.herokuapp.com/https://stockx.com/api/browse?_search=${keyWords}&dataType=product`)
+        fetch(`https://wbdv-su19-project-cors-server.herokuapp.com/?q=https://stockx.com/api/browse?_search=${keyWords}&dataType=product`)
             .then(response => response.json())
 
     obtainDetailInfo = (urlKey) =>
-        fetch(`https://cors-anywhere.herokuapp.com/https://stockx.com/api/products/${urlKey}`)
+        fetch(`https://wbdv-su19-project-cors-server.herokuapp.com/?q=https://stockx.com/api/products/${urlKey}?includes=market&currency=USD`)
             .then(response => response.json())
 }
