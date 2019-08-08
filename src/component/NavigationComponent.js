@@ -35,6 +35,8 @@ export default function NavigationComponent() {
                         SearchStock
                     </Typography>
                     <Link to = '/home'  ><Button>Home</Button></Link>
+                    <Link to = '/login'  ><Button>Login</Button></Link>
+                    <Link to = '/signup'  ><Button>SignUp</Button></Link>
                     <Link to = '/search' ><Button className="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</Button></Link>
                 </Toolbar>
             </AppBar>

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-const Footer = ({review}) => {
+const Footer = () => {
 
     return (
         <footer className="page-footer font-small blue">
