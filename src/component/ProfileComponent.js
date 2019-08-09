@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 
 
 
-const ProfileComponent = () => {
+const ProfileComponent = ({user}) => {
     return (
         <div>
             <h1>profile</h1>

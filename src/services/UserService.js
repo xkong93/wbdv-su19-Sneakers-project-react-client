@@ -16,9 +16,10 @@ export default class UserService {
             method: "POST",
             body: JSON.stringify(user),
             headers: {
-                'content-type': 'application/json'
-            }})
-            .then(res => res)
-
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            credentials: 'include'//required
+        }).then(res => res)
 
 }
