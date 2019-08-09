@@ -15,5 +15,4 @@ const StockComponent = ({stock}) => (
     </div>
 )
 
-
 export default StockComponent;

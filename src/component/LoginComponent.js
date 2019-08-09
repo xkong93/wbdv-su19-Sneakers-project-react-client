@@ -38,7 +38,7 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-export default function SignIn({handleSubmit, handleUserName, handlePassword}) {
+export default function SignIn({isFailed,handleSubmit, handleUserName, handlePassword}) {
     const classes = useStyles();
     return (
         <Container component="main" maxWidth="xs">
@@ -50,6 +50,7 @@ export default function SignIn({handleSubmit, handleUserName, handlePassword}) {
                 <Typography component="h1" variant="h5">
                     Sign in
                 </Typography>
+                {isFailed && <div>The User ID or Password is incorrect. Please try again.</div>}
                 <form className={classes.form} >
                     <TextField
                         onChange={(event) => handleUserName(event)}
@@ -57,10 +58,10 @@ export default function SignIn({handleSubmit, handleUserName, handlePassword}) {
                         margin="normal"
                         required
                         fullWidth
-                        id="email"
-                        label="Email Address"
-                        name="email"
-                        autoComplete="email"
+                        id="username"
+                        label="Username "
+                        name="username"
+                        autoComplete="username"
                         autoFocus
                     />
                     <TextField

@@ -22,4 +22,6 @@ export default class UserService {
             credentials: 'include'//required
         }).then(res => res)
 
+
+    getUserProfile
 }

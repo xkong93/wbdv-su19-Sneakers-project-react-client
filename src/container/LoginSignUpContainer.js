@@ -12,6 +12,7 @@ class LoginSignUpContainer extends Component {
         this.userService = UserService.getInstance()
         this.state = {
             isLoggedIn: false,
+            isFailed: false,
             user: {
                 username: "",
                 password: ""
@@ -29,7 +30,9 @@ class LoginSignUpContainer extends Component {
                         isLoggedIn: true
                     })
                 } else {
-                    console.log("failed")
+                    this.setState({isFailed: true}, () => {
+                        setTimeout(() => this.setState({isFailed: false}), 3000)
+                    });
                 }
             })
 
@@ -60,7 +63,8 @@ class LoginSignUpContainer extends Component {
         if (this.state.isLoggedIn === true) {
             return (<Redirect to="/profile"/>);
         } else {
-            return (<LoginComponent handleSubmit={this.handleSubmit} handlePassword={this.handlePassword}
+            return (<LoginComponent isFailed={this.state.isFailed} handleSubmit={this.handleSubmit}
+                                    handlePassword={this.handlePassword}
                                     handleUserName={this.handleUserName}
             />);
         }
