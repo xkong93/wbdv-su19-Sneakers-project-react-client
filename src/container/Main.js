@@ -7,6 +7,7 @@ import NavigationComponent from "../component/NavigationComponent";
 import ProductReviewContainer from "./ProductReviewContainer";
 import LoginComponent from "../component/LoginComponent";
 import SignUpComponent from "../component/SignUpComponent";
+import NaviComponent from "../component/NaviComponent"
 import LoginSignUpContainer from "./LoginSignUpContainer";
 import ProfileContainer from "./ProfileContainer";
 
@@ -27,7 +28,12 @@ class Main extends Component {
                             component={LoginSignUpContainer}
                         />
                     </div>
-
+                    <div>
+                        <Route
+                            path='/signup'
+                            component={SignUpComponent}
+                        />
+                    </div>
                     <div>
                         <Route
                             path='/profile'

@@ -58,8 +58,6 @@ const marksQuality = [
         value: 0,
         label: 'POOR',
     },
-
-
     {
         value: 5,
         label: 'PERFECT',
