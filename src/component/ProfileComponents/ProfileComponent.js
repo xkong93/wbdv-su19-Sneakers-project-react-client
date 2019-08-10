@@ -117,7 +117,7 @@ export default function PersistentDrawerLeft({params}) {
                         <MenuIcon />
                     </IconButton>
                     <Typography variant="h6" noWrap>
-                        Persistent drawer
+                        {params.type}
                     </Typography>
                 </Toolbar>
             </AppBar>
