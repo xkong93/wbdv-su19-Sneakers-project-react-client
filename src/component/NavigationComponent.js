@@ -38,11 +38,11 @@ export default function NavigationComponent() {
                     <Typography variant="h6" className={classes.title}>
                         SneakerStock
                     </Typography>
-                    <Link to='/home'><Button  className={classes.button}>Home</Button></Link>
+                    <Link to='/'><Button  className={classes.button}>Home</Button></Link>
                     <Link to='/login'><Button>Login</Button></Link>
                     <Link to='/signup'><Button>Sign Up</Button></Link>
                     <Link to='/search'><Button >Search</Button></Link>
-                    <Link to='/profile'><Button >My Account</Button></Link>
+                    <Link to='/user/1'><Button >My Account</Button></Link>
                 </Toolbar>            </Container>
 
             </AppBar>

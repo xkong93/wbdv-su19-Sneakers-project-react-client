@@ -59,6 +59,7 @@ const StockDetailComponent = ({detail}) => {
                 <strong>DESCRIPTION: </strong> {detail.description ? (<p> {detail.description}</p>) :
                 (<p>No Description</p>)}
             </div>
+
         </div>
     )
 }

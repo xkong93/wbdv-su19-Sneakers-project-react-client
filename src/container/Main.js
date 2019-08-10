@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import SearchStockContainer from "./SearchStockContainer";
-import {BrowserRouter as Router, Route, Link} from "react-router-dom";
+import {BrowserRouter as Router, Switch,Route, Link} from "react-router-dom";
 import StockDetailContainer from "./StockDetailContainer";
 import HomeContainer from "./HomeContainer"
 import NavigationComponent from "../component/NavigationComponent";
@@ -9,8 +9,9 @@ import LoginComponent from "../component/LoginSignUpComponents/LoginComponent";
 import SignUpComponent from "../component/LoginSignUpComponents/SignUpComponent";
 import NaviComponent from "../component/NaviComponent"
 import LoginSignUpContainer from "./LoginSignUpContainer";
-import ProfileContainer from "./ProfileContainer";
-import PortfolioContainer from "./PortfolioContainer";
+import ProfileContainer from "./AccountContainer/ProfileContainer";
+import PortfolioContainer from "./AccountContainer/PortfolioContainer";
+import AccountContainer from "./AccountContainer/AccountContainer";
 
 class Main extends Component {
     render() {
@@ -18,54 +19,16 @@ class Main extends Component {
             <div>
                 <Router>
                     <NavigationComponent/>
-                    <div>
-                        <Route
-                            path='/home'
-                            component={HomeContainer}/>
-                    </div>
-                    <div>
-                        <Route
-                            path='/login'
-                            component={LoginSignUpContainer}
-                        />
-                    </div>
-                    <div>
-                        <Route
-                            path='/signup'
-                            component={SignUpComponent}
-                        />
-                    </div>
-                    <div>
-                        <Route
-                            path='/user/:uid/profile'
-                            component={ProfileContainer}
-                        />
-                    </div>
-                    <div>
-                        <Route
-                            path='/user/:uid/portfolio'
-                            component={PortfolioContainer}
-                        />
-                    </div>
-                    <div>
-                        <Route
-                            path='/search'
-                            component={SearchStockContainer}
-                        />
-                    </div>
-
-                    <div>
-                        <Route
-                            path='/detail/:urlKey'
-                            component={StockDetailContainer}
-                        />
-                    </div>
-                    <div>
-                        <Route
-                            path='/detail/:urlKey'
-                            component={ProductReviewContainer}
-                        />
-                    </div>
+                        <Switch>
+                        <Route exact path="/" component={HomeContainer}/>
+                        <Route path="/home" component={HomeContainer}/>
+                        <Route path="/login" component={LoginSignUpContainer}/>
+                        <Route path="/signup" component={SignUpComponent}/>
+                        <Route path="/search" component={SearchStockContainer}/>
+                        <Route path="/detail/:urlKey" component={StockDetailContainer}/>
+                        <Route path="/detail/:urlKey" component={ProductReviewContainer}/>
+                        <Route path="/user/:uid" component={AccountContainer}/>
+                        </Switch>
                 </Router>
             </div>
         );
