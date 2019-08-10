@@ -42,7 +42,7 @@ export default function NavigationComponent() {
                     <Link to='/login'><Button>Login</Button></Link>
                     <Link to='/signup'><Button>Sign Up</Button></Link>
                     <Link to='/search'><Button >Search</Button></Link>
-                    <Link to='/profile'><Button >My Account</Button></Link>
+                    <Link to='/user/:uid/profile/DashBoard'><Button >My Account</Button></Link>
                 </Toolbar>            </Container>
 
             </AppBar>
