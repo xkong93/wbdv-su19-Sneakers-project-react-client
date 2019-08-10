@@ -5,11 +5,12 @@ import StockDetailContainer from "./StockDetailContainer";
 import HomeContainer from "./HomeContainer"
 import NavigationComponent from "../component/NavigationComponent";
 import ProductReviewContainer from "./ProductReviewContainer";
-import LoginComponent from "../component/LoginComponent";
-import SignUpComponent from "../component/SignUpComponent";
+import LoginComponent from "../component/LoginSignUpComponents/LoginComponent";
+import SignUpComponent from "../component/LoginSignUpComponents/SignUpComponent";
 import NaviComponent from "../component/NaviComponent"
 import LoginSignUpContainer from "./LoginSignUpContainer";
 import ProfileContainer from "./ProfileContainer";
+import PortfolioContainer from "./PortfolioContainer";
 
 class Main extends Component {
     render() {
@@ -36,8 +37,14 @@ class Main extends Component {
                     </div>
                     <div>
                         <Route
-                            path='/profile'
+                            path='/user/:uid/profile'
                             component={ProfileContainer}
+                        />
+                    </div>
+                    <div>
+                        <Route
+                            path='/user/:uid/portfolio'
+                            component={PortfolioContainer}
                         />
                     </div>
                     <div>

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import reviewService from '../services/ReviewService'
-import ReviewComponent from "../component/ReviewComponent";
-import RatingComponent from "../component/RatingComponent"
+import ReviewComponent from "../component/ReviewComponents/ReviewComponent";
+import RatingComponent from "../component/ReviewComponents/RatingComponent"
 import Container from '@material-ui/core/Container'
 import {withStyles} from '@material-ui/core/styles';
 
@@ -50,14 +50,15 @@ class ProductReviewContainer extends Component {
             <Container className={this.props.classes.root} maxWidth="lg">
                 <div>
                 {
-                    <RatingComponent rating={this.state.rating}/>
+                    this.state.rating != null ? <RatingComponent rating={this.state.rating}/>
+                        : <h2>No Ratings</h2>
                 }
                 </div>
                 <div className={this.props.classes.div}>
-                    <h2 >REVIEWS</h2>
                     {
-                        this.state.reviews != null && this.state.reviews.map(review => <ReviewComponent
+                        this.state.reviews != null ? this.state.reviews.map(review => <ReviewComponent
                             key={review.id} review={review}/>)
+                            :<h2>No Raviews</h2>
                     }
                 </div>
             </Container>

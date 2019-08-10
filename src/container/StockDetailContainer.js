@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import StockDetailComponent from "../component/StockDetailComponent";
+import StockDetailComponent from "../component/ProductComponents/StockDetailComponent";
 import StockService from "../services/StockService"
 import Grid from '@material-ui/core/Grid'
 import Box from '@material-ui/core/Box'
@@ -17,6 +17,7 @@ class StockDetailContainer extends Component {
     }
 
     componentDidMount() {
+
         const urlKey = this.props.match.params.urlKey
         this.stockService.obtainDetailInfo(urlKey)
             .then(responseJSON => this.setState({

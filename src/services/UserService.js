@@ -1,6 +1,6 @@
 export default class UserService {
-    url = "http://localhost:8080/api/login";
-
+    url = "http://localhost:8080/api/";
+    urlHeroku = 'https://peaceful-savannah-55840.herokuapp.com/api'
     static myInstance = null;
 
 
@@ -12,7 +12,7 @@ export default class UserService {
     }
 
     login = (user) =>
-        fetch(this.url, {
+        fetch(this.urlHeroku + "login", {
             method: "POST",
             body: JSON.stringify(user),
             headers: {
@@ -22,6 +22,8 @@ export default class UserService {
             credentials: 'include'//required
         }).then(res => res)
 
-
-    getUserProfile
+    getPortfolioForUserByUserId = (uid) =>{
+        return fetch(this.urlHeroku +`user/${uid}/portfolio`)
+            .then(response => response.json())
+        }
 }

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import StockComponent from "../component/StockComponent";
+import StockComponent from "../component/ProductComponents/StockComponent";
 import StockService from "../services/StockService"
 
 class SearchStockContainer extends Component {

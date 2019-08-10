@@ -68,8 +68,7 @@ const RatingComponent = ({rating}) => {
 
     return (
         <div className={classes.root}>
-            <h2>RATINGS: {rating.averageOverall} </h2>
-
+             <h2>RATINGS: {rating.averageOverall} </h2>
             {rating.averageSize != undefined &&
             <div>
                 <Typography id="discrete-slider" gutterBottom>

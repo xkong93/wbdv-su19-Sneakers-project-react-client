@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import LoginComponent from '../component/LoginComponent'
-import SignupComponent from '../component/SignUpComponent'
-import ProfileComponent from '../component/ProfileComponent'
+import LoginComponent from '../component/LoginSignUpComponents/LoginComponent'
+import SignupComponent from '../component/LoginSignUpComponents/SignUpComponent'
+import ProfileComponent from '../component/ProfileComponents/ProfileComponent'
 import UserService from "../services/UserService"
 import {Redirect} from 'react-router';
 
