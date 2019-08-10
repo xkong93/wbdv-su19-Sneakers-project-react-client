@@ -17,18 +17,21 @@ class PortfolioContainer extends Component {
     }
 
     componentDidMount() {
-        var data = '';
         this.userService.getPortfolioForUserByUserId(1)
-            .then(response => this.setState({
-                portfolioItems: response.portfolioItems
-            }))
+            .then(response => {
+                this.setState({
+                    portfolioItems: response.portfolioItems,
+                    totalItem: response.totalItem,
+                    retailSum: response.retailSum,
+                    marketSum: response.marketSum,
+                    gainLossSum: response.gainLossSum
+                })
+            })
     }
-
     render() {
         return (
             <div>
-                <PortfolioComponent/>
-
+                <PortfolioComponent portfolio={this.state}/>
             </div>
         );
     }
