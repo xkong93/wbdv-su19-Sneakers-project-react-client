@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 const StockComponent = ({stock}) => (
 
     <div className="card h-100 mb-5 border-secondary" >
-        <Link key="product-detail" to={"/detail/" + stock.urlKey}>
+        <Link  to={"/detail/" + stock.urlKey}>
         <img className="card-img-top" src={stock.media.thumbUrl} />
         </Link>
 

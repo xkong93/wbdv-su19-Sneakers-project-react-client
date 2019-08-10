@@ -16,7 +16,7 @@ import AccountContainer from "./AccountContainer/AccountContainer";
 class Main extends Component {
     render() {
         return (
-            <div>
+            <div >
                 <Router>
                     <NavigationComponent/>
                         <Switch>

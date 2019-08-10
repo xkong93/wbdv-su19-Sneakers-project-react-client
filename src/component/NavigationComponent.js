@@ -32,7 +32,7 @@ export default function NavigationComponent() {
     return (
 
         <div className={classes.root}>
-            <AppBar position="static" color={"default"}>            <Container maxWidth="lg">
+            <AppBar position="static" color={"default"}>
 
             <Toolbar>
                     <Typography variant="h6" className={classes.title}>
@@ -43,8 +43,7 @@ export default function NavigationComponent() {
                     <Link to='/signup'><Button>Sign Up</Button></Link>
                     <Link to='/search'><Button >Search</Button></Link>
                     <Link to='/user/1'><Button >My Account</Button></Link>
-                </Toolbar>            </Container>
-
+            </Toolbar>
             </AppBar>
         </div>
     );

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import PortfolioComponent from '../../component/ProfileComponents/PortfolioComponent'
+import PortfolioComponent from '../../component/AccountComponents/PortfolioComponent'
 import UserService from "../../services/UserService"
 
 class PortfolioContainer extends Component {
