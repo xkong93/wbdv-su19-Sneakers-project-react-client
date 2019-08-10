@@ -11,6 +11,7 @@ import NaviComponent from "../component/NaviComponent"
 import LoginSignUpContainer from "./LoginSignUpContainer";
 import ProfileContainer from "./ProfileContainer";
 import PortfolioContainer from "./PortfolioContainer";
+import AddingComponent from "../component/ReviewComponents/AddingComponent";
 
 class Main extends Component {
     render() {
@@ -18,6 +19,12 @@ class Main extends Component {
             <div>
                 <Router>
                     <NavigationComponent/>
+                    <div>
+                        <Route
+                            path='/detail/addReview'
+                            component={AddingComponent}
+                        />
+                    </div>
                     <div>
                         <Route
                             path='/home'

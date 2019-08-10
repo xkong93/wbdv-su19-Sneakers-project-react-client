@@ -4,6 +4,8 @@ import ReviewComponent from "../component/ReviewComponents/ReviewComponent";
 import RatingComponent from "../component/ReviewComponents/RatingComponent"
 import Container from '@material-ui/core/Container'
 import {withStyles} from '@material-ui/core/styles';
+import Button from "@material-ui/core/Button";
+import {BrowserRouter as Router, Route, Link} from "react-router-dom";
 
 const styles = {
     root: {
@@ -47,6 +49,7 @@ class ProductReviewContainer extends Component {
 
     render() {
         return (
+            <div>
             <Container className={this.props.classes.root} maxWidth="lg">
                 <div>
                 {
@@ -62,6 +65,10 @@ class ProductReviewContainer extends Component {
                     }
                 </div>
             </Container>
+                {/*<a href="/detail/addReview"><Button fullWidth variant="outlined" color="inherit">*/}
+                {/*    Add Review*/}
+                {/*</Button></a>*/}
+            </div>
         );
     }
 }
