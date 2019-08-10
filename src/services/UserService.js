@@ -12,7 +12,7 @@ export default class UserService {
     }
 
     login = (user) =>
-        fetch(this.url + "login", {
+        fetch(this.urlHeroku + "login", {
             method: "POST",
             body: JSON.stringify(user),
             headers: {
