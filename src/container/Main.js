@@ -37,7 +37,7 @@ class Main extends Component {
                     </div>
                     <div>
                         <Route
-                            path='/user/:uid/profile'
+                            path='/user/:uid/profile/:type'
                             component={ProfileContainer}
                         />
                     </div>

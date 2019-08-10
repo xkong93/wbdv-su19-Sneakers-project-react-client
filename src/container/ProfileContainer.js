@@ -12,7 +12,6 @@ class ProfileContainer extends Component {
         const uid = this.props.match.params.uid;
         this.state = {}
 
-
     }
 
     componentDidMount() {
@@ -27,11 +26,7 @@ class ProfileContainer extends Component {
 
                 </div>
                 <div>
-                    <ProfileComponent/>
-                </div>
-
-                <div>
-                    <PortfolioContainer params={this.uid}/>
+                    <ProfileComponent params={this.props.match.params}/>
                 </div>
 
             </Container>
