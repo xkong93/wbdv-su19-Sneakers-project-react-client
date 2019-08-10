@@ -1,6 +1,6 @@
 export default class UserService {
     url = "http://localhost:8080/api/";
-    urlHeroku = 'https://peaceful-savannah-55840.herokuapp.com/api'
+    urlHeroku = 'https://peaceful-savannah-55840.herokuapp.com/api/'
     static myInstance = null;
 
 
@@ -12,7 +12,7 @@ export default class UserService {
     }
 
     login = (user) =>
-        fetch(this.urlHeroku + "login", {
+        fetch(this.url + "login", {
             method: "POST",
             body: JSON.stringify(user),
             headers: {
