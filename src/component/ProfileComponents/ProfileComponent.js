@@ -138,7 +138,7 @@ export default function PersistentDrawerLeft({params}) {
                 </div>
                 <Divider />
                 <List>
-                    {['Profile', 'Collection'].map((text, index) => (
+                    {['DashBoard', 'Collection'].map((text, index) => (
                         <Link color="inherit" href={`/user/:uid/profile/${text}`}><ListItem button key={text}>
                             <ListItemIcon>{index===0 && <AccountIcon/>}
                                 {index===1 && <BookIcon/>}
@@ -172,7 +172,7 @@ export default function PersistentDrawerLeft({params}) {
                 })}
             >
                 <div className={classes.drawerHeader} />
-                {params.type == 'Profile' && <DashBoardComponent/>}
+                {params.type == 'DashBoard' && <DashBoardComponent/>}
                 {params.type == 'Collection' && <PortfolioContainer/>}
                 {params.type =='Profile Edit' && <ProfileEditorComponent/>}
             </main>
