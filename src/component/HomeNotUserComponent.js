@@ -1,127 +1,151 @@
 import React from 'react';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import MobileStepper from '@material-ui/core/MobileStepper';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
+import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
-import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
-import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
-import SwipeableViews from 'react-swipeable-views';
-import { autoPlay } from 'react-swipeable-views-utils';
+import CameraIcon from '@material-ui/icons/PhotoCamera';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Grid from '@material-ui/core/Grid';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
+import Link from '@material-ui/core/Link';
 
-
-const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
-
-const tutorialSteps = [
-    {
-        label: 'San Francisco – Oakland Bay Bridge, United States',
-        imgPath:
-            'https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60',
-    },
-    {
-        label: 'Bird',
-        imgPath:
-            'https://images.unsplash.com/photo-1538032746644-0212e812a9e7?auto=format&fit=crop&w=400&h=250&q=60',
-    },
-    {
-        label: 'Bali, Indonesia',
-        imgPath:
-            'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=400&h=250&q=80',
-    },
-    {
-        label: 'NeONBRAND Digital Marketing, Las Vegas, United States',
-        imgPath:
-            'https://images.unsplash.com/photo-1518732714860-b62714ce0c59?auto=format&fit=crop&w=400&h=250&q=60',
-    },
-    {
-        label: 'Goč, Serbia',
-        imgPath:
-            'https://images.unsplash.com/photo-1512341689857-198e7e2f3ca8?auto=format&fit=crop&w=400&h=250&q=60',
-    },
-];
-
+function MadeWithLove() {
+  return (
+    <Typography variant="body2" color="textSecondary" align="center">
+      {'Built with love by the '}
+      <Link color="inherit" href="https://material-ui.com/">
+        Material-UI
+      </Link>
+      {' team.'}
+    </Typography>
+  );
+}
 const useStyles = makeStyles(theme => ({
-    root: {
-        maxWidth: '100%',
-        flexGrow: 1,
-    },
-    header: {
-        display: 'flex',
-        alignItems: 'center',
-        height: 50,
-        paddingLeft: theme.spacing(4),
-        backgroundColor: theme.palette.background.default,
-    },
-    img: {
-        height: '38em',
-        display: 'block',
-        maxWidth: '100%',
-        overflow: 'hidden',
-        width: '100%',
-    },
+  icon: {
+    marginRight: theme.spacing(2),
+  },
+  heroContent: {
+    backgroundColor: theme.palette.background.paper,
+    padding: theme.spacing(8, 0, 6),
+  },
+  heroButtons: {
+    marginTop: theme.spacing(4),
+  },
+  cardGrid: {
+    paddingTop: theme.spacing(8),
+    paddingBottom: theme.spacing(8),
+  },
+  card: {
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  cardMedia: {
+    paddingTop: '56.25%', // 16:9
+  },
+  cardContent: {
+    flexGrow: 1,
+  },
+  footer: {
+    backgroundColor: theme.palette.background.paper,
+    padding: theme.spacing(6),
+  },
 }));
 
+const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
 function HomeNotUserComponent() {
-    const classes = useStyles();
-    const theme = useTheme();
-    const [activeStep, setActiveStep] = React.useState(0);
-    const maxSteps = tutorialSteps.length;
+  const classes = useStyles();
 
-    function handleNext() {
-        setActiveStep(prevActiveStep => prevActiveStep + 1);
-    }
-
-    function handleBack() {
-        setActiveStep(prevActiveStep => prevActiveStep - 1);
-    }
-
-    function handleStepChange(step) {
-        setActiveStep(step);
-    }
-
-    return (
-        <div className={classes.root}>
-            <AutoPlaySwipeableViews
-                axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-                index={activeStep}
-                onChangeIndex={handleStepChange}
-                enableMouseEvents
-            >
-                {tutorialSteps.map((step, index) => (
-                    <div key={step.label}>
-                        {Math.abs(activeStep - index) <= 2 ? (
-                            <img className={classes.img} src={step.imgPath} alt={step.label} />
-                        ) : null}
-                    </div>
-                ))}
-            </AutoPlaySwipeableViews>
-
-
-                <Paper square elevation={0} className={classes.header}>
-                    <Typography>{tutorialSteps[activeStep].label}</Typography>
-                </Paper>
-
-
-            <MobileStepper
-                steps={maxSteps}
-                position="static"
-                variant="text"
-                activeStep={activeStep}
-                nextButton={
-                    <Button size="small" onClick={handleNext} disabled={activeStep === maxSteps - 1}>
-                        Next
-                        {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
-                    </Button>
-                }
-                backButton={
-                    <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
-                        {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
-                        Back
-                    </Button>
-                }
-            />
+  return (
+    <React.Fragment>
+      <CssBaseline />
+      <main>
+        {/* Hero unit */}
+        <div className={classes.heroContent}>
+          <Container maxWidth="md">
+            <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
+                    Let's Collect & Review Sneakers!
+            </Typography>
+      <div className="row">
+                            <div className='input-group mb-3'>
+                                <input className="form-control"
+                                       placeholder="Seach for Sneakers"/>
+                                <div className="input-group-append">
+                                    <button
+                                        className="btn btn-primary">
+                                        Search
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+            <div className={classes.heroButtons}>
+              <Grid container spacing={2} justify="center">
+                <Grid item>
+                  <Button variant="contained" color="primary">
+                    Main call to action
+                  </Button>
+                </Grid>
+                <Grid item>
+                  <Button variant="outlined" color="primary">
+                    Secondary action
+                  </Button>
+                </Grid>
+              </Grid>
+            </div>
+          </Container>
         </div>
-    );
+        <Container className={classes.cardGrid} maxWidth="md">
+          {/* End hero unit */}
+          <Grid container spacing={4}>
+            {cards.map(card => (
+              <Grid item key={card} xs={12} sm={6} md={4}>
+                <Card className={classes.card}>
+                  <CardMedia
+                    className={classes.cardMedia}
+                    image="https://source.unsplash.com/random"
+                    title="Image title"
+                  />
+                  <CardContent className={classes.cardContent}>
+                    <Typography gutterBottom variant="h5" component="h2">
+                      Heading
+                    </Typography>
+                    <Typography>
+                      This is a media card. You can use this section to describe the content.
+                    </Typography>
+                  </CardContent>
+                  <CardActions>
+                    <Button size="small" color="primary">
+                      View
+                    </Button>
+                    <Button size="small" color="primary">
+                      Edit
+                    </Button>
+                  </CardActions>
+                </Card>
+              </Grid>
+            ))}
+          </Grid>
+        </Container>
+      </main>
+      {/* Footer */}
+      <footer className={classes.footer}>
+        <Typography variant="h6" align="center" gutterBottom>
+          Footer
+        </Typography>
+        <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
+          Something here to give the footer a purpose!
+        </Typography>
+        <MadeWithLove />
+      </footer>
+      {/* End footer */}
+    </React.Fragment>
+  );
 }
 
 

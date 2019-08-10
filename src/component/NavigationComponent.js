@@ -33,7 +33,7 @@ export default function NavigationComponent() {
             <AppBar position="static" color={"default"}>
                 <Toolbar>
                     <Typography variant="h6" className={classes.title}>
-                        SearchStock
+                        SneakerStock
                     </Typography>
                     <Link to='/home'><Button  className={classes.button}>Home</Button></Link>
                     <Link to='/login'><Button>Login</Button></Link>
