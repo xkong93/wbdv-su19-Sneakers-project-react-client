@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import {Link} from "react-router-dom";
+import {Container} from "@material-ui/core";
 
 
 const useStyles = makeStyles(theme => ({
@@ -29,9 +30,11 @@ export default function NavigationComponent() {
     const classes = useStyles();
 
     return (
+
         <div className={classes.root}>
-            <AppBar position="static" color={"default"}>
-                <Toolbar>
+            <AppBar position="static" color={"default"}>            <Container maxWidth="lg">
+
+            <Toolbar>
                     <Typography variant="h6" className={classes.title}>
                         SneakerStock
                     </Typography>
@@ -40,7 +43,8 @@ export default function NavigationComponent() {
                     <Link to='/signup'><Button>Sign Up</Button></Link>
                     <Link to='/search'><Button >Search</Button></Link>
                     <Link to='/profile'><Button >My Account</Button></Link>
-                </Toolbar>
+                </Toolbar>            </Container>
+
             </AppBar>
         </div>
     );
