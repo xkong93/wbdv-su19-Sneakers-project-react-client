@@ -8,7 +8,7 @@ import {withStyles} from '@material-ui/core/styles';
 const styles = {
     root: {
         display: "flex",
-        justifyContent:'space-evenly',
+        justifyContent: 'space-evenly',
         flexWrap: 'wrap'
     },
     div: {
@@ -37,19 +37,27 @@ class ProductReviewContainer extends Component {
         if (this.props.params != undefined) {
             var urlKey = this.props.params.urlKey
             this.reviewService.getReviewsForProduct(urlKey)
-                .then(res => this.setState({
-                    reviews: res
-                }))
+                .then(res => {
+                    if (res.status == 200) {
+                        this.setState({
+                            reviews: res.body
+                        })  //key point write this in container not in service
+                    }
+                })
 
             this.reviewService.getRatingForPorduct(urlKey)
-                .then(res => this.setState({
-                    ratings: [res]
-                }))
+                     .then(res => {
+                    if (res.status == 200) {
+                        this.setState({
+                            reviews: res.body
+                        })
+                    }
+                })
         }
 
         if (this.props.match != undefined) {
             var uid = this.props.match.params.uid
-            this.reviewService.getReviewsByUser(1)
+            this.reviewService.getReviewsByUser(uid)
                 .then(res => this.modifiedReviewsByUser(res))
 
         }
@@ -84,9 +92,11 @@ class ProductReviewContainer extends Component {
     }
 
     render() {
+        console.log(this.state.ratings)
         return (
+
             <Container className={this.props.classes.root} maxWidth="lg">
-                <div >
+                <div>
                     {
                         this.state.ratings.length != 0 ? <RatingComponent ratings={this.state.ratings}/>
                             : <h2>No Ratings</h2>
