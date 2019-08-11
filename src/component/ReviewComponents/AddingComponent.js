@@ -65,22 +65,28 @@ export default function AddingComponent() {
     const reviewService= ReviewService.getInstance();
     const [values, setValues] = React.useState({
         overall:'',
-        size: 100,
+        size: 0,
         width: 100,
         comfort: 100,
         quality: 100,
         description: '',
-        isRecommend: false,
+        isRecommend: false
     });
 
+    // const [size, setSize] = React.useState(30);
+    //
+    // const handleChange1 = (event, newValue) => {
+    //     setSize(newValue);
+    // };
+
     const handleChange = prop => event => {
-        setValues({ ...values, [prop]: event.target.value });
+        setValues(values[prop].setValue( event.target.value))
     };
 
-    const notRecommend = () =>
-        setValues({...values, isRecommend: false})
-    const Recommend =() =>
-        setValues({...values, isRecommend: true})
+    const notRecommend = () =>{
+        setValues({...values, isRecommend: false})}
+    const Recommend =() =>{
+        setValues({...values, isRecommend: true})}
 
 
     function createReview (review, pid, uid) {
@@ -89,11 +95,11 @@ export default function AddingComponent() {
 
 
     const marks = [
-        {value: 0, label: 'Too Small',},
-        {value: 25, label: 'Small',},
-        {value: 50, label: 'Perfect',},
-        {value: 75, label: 'Large',},
-        {value: 100, label: 'Too Large',},
+        {value: 1, label: 'Too Small',},
+        {value: 2, label: 'Small',},
+        {value: 3, label: 'Perfect',},
+        {value: 4, label: 'Large',},
+        {value: 5, label: 'Too Large',},
     ];
     const marks1 = [
         {value: 0, label: 'Too Narrow',},
@@ -119,7 +125,7 @@ export default function AddingComponent() {
 
     return (
         <div>
-            {values.size}
+            {/*{console.log(values.size)}*/}
             <div className={classes.title}><h1>Write Your Reviews</h1></div>
             <Box className={classes.element}>
                 <Box component="fieldset" borderColor="transparent" >
@@ -136,10 +142,10 @@ export default function AddingComponent() {
                     <Typography><h5>Do you recommend this product?</h5></Typography>
                         <Box display="flex" bgcolor="background.paper">
                             <Box flexGrow={1}>
-                                <Button onClick={()=>Recommend} variant="outlined" color="inherit">Yes</Button>
+                                <Button onClick={()=>Recommend()} variant="outlined" color="inherit">Yes</Button>
                             </Box>
                             <Box >
-                                <Button onClick={()=>notRecommend} variant="outlined" color="inherit">No</Button>
+                                <Button onClick={()=>notRecommend()} variant="outlined" color="inherit">No</Button>
                             </Box>
                         </Box>
                     </Box>
@@ -155,11 +161,13 @@ export default function AddingComponent() {
                     // valueLabelFormat={valueLabelFormat}
                     getAriaValueText={valuetext}
                     aria-labelledby="discrete-slider-restrict"
-                    step={5}
+                    step={1}
                     valueLabelDisplay="auto"
                     marks={marks}
-                    defaultValue={values.size}
+                    value={values.size}
                     onChange={handleChange('size')}
+                    max={5}
+                    min={1}
                 />
                 </Box>
             </Box>
