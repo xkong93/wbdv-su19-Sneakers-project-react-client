@@ -8,7 +8,7 @@ import {withStyles} from '@material-ui/core/styles';
 const styles = {
     root: {
         display: "flex",
-        justifyContent: "space-evenly",
+        justifyContent:'space-evenly',
         flexWrap: 'wrap'
     },
     div: {
@@ -25,7 +25,7 @@ class ProductReviewContainer extends Component {
         this.reviewService = reviewService.getInstance();
         this.state = {
             reviews: [],
-            ratings: [],
+            ratings: [], //make it to an array for reusable component (user and product)
             reviewsByUser: []
         }
 
@@ -33,8 +33,7 @@ class ProductReviewContainer extends Component {
 
 
     componentDidMount() {
-        //key point, reusable component demo
-
+        //key point, reusable component demo. need to modified this.state
         if (this.props.params != undefined) {
             var urlKey = this.props.params.urlKey
             this.reviewService.getReviewsForProduct(urlKey)
@@ -62,7 +61,7 @@ class ProductReviewContainer extends Component {
     modifiedReviewsByUser = (reviewsByUser) => {
         let reviews = []
         let ratings = []
-        for (let i = 0; i < reviewsByUser.length; i++){
+        for (let i = 0; i < reviewsByUser.length; i++) {
             var tempReview = {}
             var tempRating = {}
             tempReview.id = reviewsByUser[i].id
@@ -79,30 +78,30 @@ class ProductReviewContainer extends Component {
             ratings[i] = tempRating;
         }
         this.setState({
-            reviews:reviews,
-            ratings:ratings
+            reviews: reviews,
+            ratings: ratings
         })
     }
 
     render() {
         return (
-            <div>
-                <Container className={this.props.classes.root} maxWidth="md">
-                    <div>
-                        {
-                            this.state.ratings.length != 0 ? <RatingComponent ratings={this.state.ratings}/>
-                                : <h2>No Ratings</h2>
-                        }
-                    </div>
-                </Container>
+            <Container className={this.props.classes.root} maxWidth="lg">
+                <div >
+                    {
+                        this.state.ratings.length != 0 ? <RatingComponent ratings={this.state.ratings}/>
+                            : <h2>No Ratings</h2>
+                    }
+                </div>
                 <div className={this.props.classes.div}>
                     {
+                        //key point
                         this.state.reviews.length != 0 ? this.state.reviews.map(review => <ReviewComponent
                                 key={review.id} review={review}/>)
                             : <h2>No Review</h2>
                     }
                 </div>
-            </div>
+            </Container>
+
         );
     }
 }

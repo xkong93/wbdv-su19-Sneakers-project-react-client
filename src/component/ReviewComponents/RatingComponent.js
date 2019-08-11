@@ -66,10 +66,10 @@ const marksQuality = [
 const RatingComponent = ({ratings}) => {
     const classes = useStyles();
     return (
-        <div>
+        <div className={classes.root}>
             {
                 ratings.map(rating =>
-                    <div className={classes.root}>
+                    <div >
                         <h2>RATINGS: {rating.overall} </h2>
                         <div>
                             <Typography id="discrete-slider" gutterBottom>
