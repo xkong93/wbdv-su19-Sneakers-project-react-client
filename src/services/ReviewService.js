@@ -11,6 +11,15 @@ export default class ReviewService {
         return this.myInstance;
     }
 
+    createReview = (review, uid, pid)=>
+        fetch(this.url+`user/${uid}/product/${pid}/review`, {
+            method: 'POST',
+            body: JSON.stringify(review),
+            headers: {
+                'content-type': 'application/json'
+            }
+        })
+
     getReviewsForProduct = (urlKey) =>
         fetch(this.url + `product/${urlKey}/review`)
             .then(res => {

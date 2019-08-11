@@ -47,6 +47,7 @@ class ProductReviewContainer extends Component {
 
     render() {
         return (
+            <div>
             <Container className={this.props.classes.root} maxWidth="lg">
                 <div>
                 {
@@ -54,14 +55,16 @@ class ProductReviewContainer extends Component {
                         : <h2>No Ratings</h2>
                 }
                 </div>
+            </Container>
                 <div className={this.props.classes.div}>
                     {
                         this.state.reviews != null ? this.state.reviews.map(review => <ReviewComponent
-                            key={review.id} review={review}/>)
-                            :<h2>No Raviews</h2>
+                                key={review.id} review={review}/>)
+                            :<h2>No Review</h2>
                     }
+
                 </div>
-            </Container>
+            </div>
         );
     }
 }

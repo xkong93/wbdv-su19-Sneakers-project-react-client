@@ -12,7 +12,7 @@ import LoginSignUpContainer from "./LoginSignUpContainer";
 import ProfileContainer from "./AccountContainer/ProfileContainer";
 import PortfolioContainer from "./AccountContainer/PortfolioContainer";
 import AccountContainer from "./AccountContainer/AccountContainer";
-import AddingComponent from "../component/ReviewComponents/AddingComponent";
+import AddingRContainer from "./AddingRContainer";
 
 class Main extends Component {
     render() {
@@ -28,7 +28,7 @@ class Main extends Component {
                         <Route path="/signup" component={SignUpComponent}/>
                         <Route path="/search" component={SearchStockContainer}/>
                         <Route path="/detail/:urlKey" component={StockDetailContainer}/>
-                        <Route path="/addReview" component={AddingComponent}/>
+                        <Route path="/add/:urlKey/:uid" component={AddingRContainer}/>
                         <Route path="/user/:uid" component={AccountContainer}/>
                         </Switch>
                 </Router>

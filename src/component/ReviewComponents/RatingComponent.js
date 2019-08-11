@@ -81,8 +81,7 @@ const RatingComponent = ({rating}) => {
                     step={5}
                     valueLabelDisplay="off"
                     marks={marksSize}
-                    max={5}
-                    min={0}
+
                 />
                 <Typography id="discrete-slider" gutterBottom>
                     WIDTH
@@ -94,8 +93,7 @@ const RatingComponent = ({rating}) => {
                     step={5}
                     valueLabelDisplay="off"
                     marks={marksWidth}
-                    max={5}
-                    min={0}
+
                 />
                 <Typography id="discrete-slider" gutterBottom>
                     COMFORT
@@ -107,8 +105,7 @@ const RatingComponent = ({rating}) => {
                     step={5}
                     valueLabelDisplay="off"
                     marks={marksComfort}
-                    max={5}
-                    min={0}
+
                 />
                 <Typography id="discrete-slider" gutterBottom>
                     QUALITY
@@ -120,8 +117,7 @@ const RatingComponent = ({rating}) => {
                     step={5}
                     valueLabelDisplay="off"
                     marks={marksQuality}
-                    max={5}
-                    min={0}
+
                 />
             </div>}
 

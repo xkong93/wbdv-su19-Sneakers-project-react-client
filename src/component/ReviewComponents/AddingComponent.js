@@ -16,6 +16,7 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Slider from '@material-ui/core/Slider';
 import Divider from '@material-ui/core/Divider';
+import ReviewService from "../../services/ReviewService";
 
 
 const ranges = [
@@ -61,26 +62,31 @@ const useStyles = makeStyles(theme => ({
 
 export default function AddingComponent() {
     const classes = useStyles();
-    const [value, setValue] = React.useState(2);
+    const reviewService= ReviewService.getInstance();
     const [values, setValues] = React.useState({
-        amount: '',
-        password: '',
-        weight: '',
-        weightRange: '',
-        showPassword: false,
+        overall:'',
+        size: 100,
+        width: 100,
+        comfort: 100,
+        quality: 100,
+        description: '',
+        isRecommend: false,
     });
 
     const handleChange = prop => event => {
         setValues({ ...values, [prop]: event.target.value });
     };
 
-    const handleClickShowPassword = () => {
-        setValues({ ...values, showPassword: !values.showPassword });
-    };
+    const notRecommend = () =>
+        setValues({...values, isRecommend: false})
+    const Recommend =() =>
+        setValues({...values, isRecommend: true})
 
-    const handleMouseDownPassword = event => {
-        event.preventDefault();
-    };
+
+    function createReview (review, pid, uid) {
+        reviewService.createReview(review, pid, uid);
+    }
+
 
     const marks = [
         {value: 0, label: 'Too Small',},
@@ -113,16 +119,15 @@ export default function AddingComponent() {
 
     return (
         <div>
+            {values.size}
             <div className={classes.title}><h1>Write Your Reviews</h1></div>
             <Box className={classes.element}>
                 <Box component="fieldset" borderColor="transparent" >
                     <Typography component="legend"><h5>Overall rating</h5></Typography>
                     <Rating size="large"
                         name="simple-controlled"
-                        value={value}
-                        onChange={(event, newValue) => {
-                            setValue(newValue);
-                        }}
+                        value={values.overall}
+                        onChange={handleChange('overall')}
                     />
                 </Box>
             </Box>
@@ -131,10 +136,10 @@ export default function AddingComponent() {
                     <Typography><h5>Do you recommend this product?</h5></Typography>
                         <Box display="flex" bgcolor="background.paper">
                             <Box flexGrow={1}>
-                                <Button variant="outlined" color="inherit">Yes</Button>
+                                <Button onClick={()=>Recommend} variant="outlined" color="inherit">Yes</Button>
                             </Box>
                             <Box >
-                                <Button variant="outlined" color="inherit">No</Button>
+                                <Button onClick={()=>notRecommend} variant="outlined" color="inherit">No</Button>
                             </Box>
                         </Box>
                     </Box>
@@ -147,13 +152,14 @@ export default function AddingComponent() {
                         </Typography>
                     </Box>
                 <Slider
-                    defaultValue={20}
                     // valueLabelFormat={valueLabelFormat}
                     getAriaValueText={valuetext}
                     aria-labelledby="discrete-slider-restrict"
                     step={null}
                     valueLabelDisplay="auto"
                     marks={marks}
+                    value={values.size}
+                    onChange={handleChange('size')}
                 />
                 </Box>
             </Box>
@@ -165,13 +171,14 @@ export default function AddingComponent() {
                         </Typography>
                     </Box>
                     <Slider
-                        defaultValue={20}
                         // valueLabelFormat={valueLabelFormat}
                         getAriaValueText={valuetext}
                         aria-labelledby="discrete-slider-restrict"
                         step={null}
                         valueLabelDisplay="auto"
                         marks={marks1}
+                        defaultValue={values.width}
+                        onChange={handleChange('width')}
                     />
                 </Box>
             </Box>
@@ -183,13 +190,14 @@ export default function AddingComponent() {
                         </Typography>
                     </Box>
                     <Slider
-                        defaultValue={20}
                         // valueLabelFormat={valueLabelFormat}
                         getAriaValueText={valuetext}
                         aria-labelledby="discrete-slider-restrict"
                         step={null}
                         valueLabelDisplay="auto"
                         marks={marks2}
+                        defaultValue={values.comfort}
+                        onChange={handleChange('comfort')}
                     />
                 </Box>
             </Box>
@@ -201,13 +209,14 @@ export default function AddingComponent() {
                         </Typography>
                     </Box>
                     <Slider
-                        defaultValue={20}
                         // valueLabelFormat={valueLabelFormat}
                         getAriaValueText={valuetext}
                         aria-labelledby="discrete-slider-restrict"
                         step={null}
                         valueLabelDisplay="auto"
                         marks={marks3}
+                        defaultValue={values.quality}
+                        onChange={handleChange('quality')}
                     />
                 </Box>
             </Box>
@@ -232,16 +241,17 @@ export default function AddingComponent() {
                     label="Review in Details"
                     multiline
                     rows="5"
-                    defaultValue="Default Value"
                     className={classes.textField}
                     margin="normal"
+                    value={values.description}
+                    onChange={handleChange('description')}
                 />
             </Box>
 
             <Divider />
 
             <Box className={classes.Sbutton}>
-                <Button fullWidth size={"large"} variant="outlined" color="secondary" className={classes.button}>
+                <Button onClick={()=>createReview(values, 1,1)} fullWidth size={"large"} variant="outlined" color="secondary" className={classes.button}>
                     Submit Review
                 </Button>
             </Box>

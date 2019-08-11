@@ -13,6 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Link from '@material-ui/core/Link';
+import {keys} from "@material-ui/core/styles/createBreakpoints";
 
 function MadeWithLove() {
   return (
@@ -59,8 +60,9 @@ const useStyles = makeStyles(theme => ({
 
 const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-function HomeNotUserComponent() {
+function HomeNotUserComponent({products}) {
   const classes = useStyles();
+
 
   return (
     <React.Fragment>
@@ -89,23 +91,24 @@ function HomeNotUserComponent() {
             </div>
           </Container>
         </div>
+          {/*{this.products.map((product, key)=><h1>{product}</h1>)}*/}
         <Container className={classes.cardGrid} maxWidth="md">
           {/* End hero unit */}
           <Grid container spacing={4}>
-            {cards.map(card => (
+            {products.map(card => (
               <Grid item key={card} xs={12} sm={6} md={4}>
                 <Card className={classes.card}>
                   <CardMedia
                     className={classes.cardMedia}
-                    image="https://source.unsplash.com/random"
-                    title="Image title"
+                    image={card.imageUrl}
+                    title={card.brand}
                   />
                   <CardContent className={classes.cardContent}>
                     <Typography gutterBottom variant="h5" component="h2">
-                      Heading
+                        {card.brand}
                     </Typography>
                     <Typography>
-                      This is a media card. You can use this section to describe the content.
+                      {card.description}
                     </Typography>
                   </CardContent>
                   <CardActions>
