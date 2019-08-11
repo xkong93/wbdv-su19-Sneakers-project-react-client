@@ -11,6 +11,16 @@ export default class UserService {
         return this.myInstance;
     }
 
+    createUser=(User)=>
+        fetch(this.url+'user', {
+            method: 'POST',
+            body: JSON.stringify(User),
+            headers: {
+                'content-type': 'application/json'
+            }
+        })
+
+
     login = (user) =>
         fetch(this.url + "login", {
             method: "POST",

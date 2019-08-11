@@ -12,6 +12,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import UserService from "../../services/UserService";
 
 
 
@@ -42,6 +43,22 @@ const useStyles = makeStyles(theme => ({
 
 export default function SignUp() {
   const classes = useStyles();
+  const userService = UserService.getInstance()
+
+
+  const [User, setValues] = React.useState({
+    firstName: "",
+    lastName: "" ,
+    email:"",
+    password:""
+  })
+  const createUser=(User)=>
+      userService.createUser(User)
+
+
+  const handleChange = prop => event => {
+    setValues({...User, [prop]: event.target.value});
+  };
 
   return (
     <Container component="main" maxWidth="xs">
@@ -65,6 +82,8 @@ export default function SignUp() {
                 id="firstName"
                 label="First Name"
                 autoFocus
+                onChange={handleChange("firstName")}
+                value={User.firstName}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -76,6 +95,8 @@ export default function SignUp() {
                 label="Last Name"
                 name="lastName"
                 autoComplete="lname"
+                onChange={handleChange("lastName")}
+                value={User.lastName}
               />
             </Grid>
             <Grid item xs={12}>
@@ -87,6 +108,8 @@ export default function SignUp() {
                 label="Email Address"
                 name="email"
                 autoComplete="email"
+                onChange={handleChange("email")}
+                value={User.email}
               />
             </Grid>
             <Grid item xs={12}>
@@ -103,11 +126,11 @@ export default function SignUp() {
             </Grid>
           </Grid>
           <Button
-            type="submit"
             fullWidth
             variant="contained"
             color="primary"
             className={classes.submit}
+            onClick={()=>createUser(User)}
           >
             Sign Up
           </Button>

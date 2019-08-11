@@ -15,7 +15,9 @@ class StockDetailContainer extends Component {
         super(props)
         this.stockService = StockService.getInstance()
         this.state = {
-            detail: {}
+            detail: {},
+            pid: this.props.match.params.pid,
+            uid:this.props.match.params.uid
         }
 
     }
@@ -34,7 +36,7 @@ class StockDetailContainer extends Component {
             <Container maxWidth="lg">
                 <StockDetailComponent detail={this.state.detail}/>
                 <ProductReviewContainer params={this.props.match.params}/>
-                <Link href="/addReview" color="inherit"><Button fullWidth size={"large"} variant="outlined" color="inherit">Add Review</Button></Link>
+                <Link href={`/add/${this.state.pid}/${this.state.uid}`} color="inherit"><Button fullWidth size={"large"} variant="outlined" color="inherit">Add Review</Button></Link>
             </Container>
         );
     }
