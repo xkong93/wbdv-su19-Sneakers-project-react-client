@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
 import LoginComponent from '../component/LoginSignUpComponents/LoginComponent'
-import SignupComponent from '../component/LoginSignUpComponents/SignUpComponent'
-import ProfileComponent from '../component/ProfileComponents/ProfileComponent'
 import UserService from "../services/UserService"
 import {Redirect} from 'react-router';
 
@@ -11,6 +9,7 @@ class LoginSignUpContainer extends Component {
         super(props);
         this.userService = UserService.getInstance()
         this.state = {
+            userId: null,
             isLoggedIn: false,
             isFailed: false,
             user: {
@@ -24,16 +23,21 @@ class LoginSignUpContainer extends Component {
         e.preventDefault()
         var body = this.state.user;
         this.userService.login(body)
-            .then(res => {
-                if (res.status == 200) {
+            .then(user => {
+                console.log(user.id)
+                if (user.id>0) {
+                    console.log(user.id)
                     this.setState({
-                        isLoggedIn: true
+                        isLoggedIn: true,
+                        userId: user.id
                     })
-                } else {
-                    this.setState({isFailed: true}, () => {
-                        setTimeout(() => this.setState({isFailed: false}), 3000)
-                    });
                 }
+                //暂时没想到要如何用
+                //else {
+                //    this.setState({isFailed: true}, () => {
+                 //       setTimeout(() => this.setState({isFailed: false}), 3000)
+                 //   });
+               // }
             })
 
 
@@ -60,12 +64,14 @@ class LoginSignUpContainer extends Component {
     }
 
     render() {
-        if (this.state.isLoggedIn === true) {
-            return (<Redirect to="/profile"/>);
+        if (this.state.isLoggedIn) {
+            console.log("logged in")
+            return (<Redirect to={`/user/${this.state.userId}/profile`}/>);
         } else {
-            return (<LoginComponent isFailed={this.state.isFailed} handleSubmit={this.handleSubmit}
-                                    handlePassword={this.handlePassword}
-                                    handleUserName={this.handleUserName}
+            return (<LoginComponent
+                handleSubmit={this.handleSubmit}
+                handlePassword={this.handlePassword}
+                handleUserName={this.handleUserName}
             />);
         }
     }

@@ -5,9 +5,7 @@ import StockDetailContainer from "./StockDetailContainer";
 import HomeContainer from "./HomeContainer"
 import NavigationComponent from "../component/NavigationComponent";
 import ProductReviewContainer from "./ProductReviewContainer";
-import LoginComponent from "../component/LoginSignUpComponents/LoginComponent";
-import SignUpComponent from "../component/LoginSignUpComponents/SignUpComponent";
-import NaviComponent from "../component/NaviComponent"
+import RegisterContainer from "./RegisterContainer";
 import LoginSignUpContainer from "./LoginSignUpContainer";
 import ProfileContainer from "./ProfileContainer";
 import PortfolioContainer from "./PortfolioContainer";
@@ -32,7 +30,7 @@ class Main extends Component {
                     <div>
                         <Route
                             path='/signup'
-                            component={SignUpComponent}
+                            component={RegisterContainer}
                         />
                     </div>
                     <div>

@@ -11,8 +11,25 @@ export default class UserService {
         return this.myInstance;
     }
 
+    validate = () =>
+        fetch(this.url +`user/validate`,{
+    method: "GET",
+    credentials: 'include'
+}).then(response => response.json())
+
+    register = (newUser) =>
+        fetch(this.url + `register`, {
+            method: "POST",
+            body: JSON.stringify(newUser),
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            credentials: 'include'//required
+        }).then(response => response.json())
+
     login = (user) =>
-        fetch(this.url + "login", {
+        fetch(this.url + `login`, {
             method: "POST",
             body: JSON.stringify(user),
             headers: {
@@ -20,7 +37,14 @@ export default class UserService {
                 'Content-Type': 'application/json',
             },
             credentials: 'include'//required
-        }).then(res => res)
+        }).then(response => response.json())
+
+    logout = () =>
+        fetch(this.url + `logout`, {
+            method: "GET",
+            credentials: 'include'//required
+        }).then(response => response.json())
+
 
     getPortfolioForUserByUserId = (uid) =>{
         return fetch(this.url +`user/${uid}/portfolio`)

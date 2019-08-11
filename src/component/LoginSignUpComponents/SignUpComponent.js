@@ -40,7 +40,9 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function SignUp() {
+export default function SignUp({handleUserName,handleFirstName
+,handleLastName,handleEmail,handlePassword
+,handleRegister}) {
   const classes = useStyles();
 
   return (
@@ -57,6 +59,18 @@ export default function SignUp() {
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField
+                  onChange={(event) => handleUserName(event)}
+                  autoComplete="uname"
+                  name="firstName"
+                  variant="outlined"
+                  required
+                  fullWidth
+                  id="userName"
+                  label="Username"
+                  autoFocus
+              />
+              <TextField
+                  onChange={(event) => handleFirstName(event)}
                 autoComplete="fname"
                 name="firstName"
                 variant="outlined"
@@ -69,6 +83,7 @@ export default function SignUp() {
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
+                  onChange={(event) => handleLastName(event)}
                 variant="outlined"
                 required
                 fullWidth
@@ -80,6 +95,7 @@ export default function SignUp() {
             </Grid>
             <Grid item xs={12}>
               <TextField
+                  onChange={(event) => handleEmail(event)}
                 variant="outlined"
                 required
                 fullWidth
@@ -91,6 +107,7 @@ export default function SignUp() {
             </Grid>
             <Grid item xs={12}>
               <TextField
+                  onChange={(event) => handlePassword(event)}
                 variant="outlined"
                 required
                 fullWidth
@@ -103,7 +120,7 @@ export default function SignUp() {
             </Grid>
           </Grid>
           <Button
-            type="submit"
+              onClick={() => handleRegister()}
             fullWidth
             variant="contained"
             color="primary"
