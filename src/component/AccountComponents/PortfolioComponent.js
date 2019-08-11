@@ -6,12 +6,13 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import {Container} from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
     root: {
-        width: '100%',
-        marginTop: theme.spacing(3),
-        overflowX: 'auto',
+    width: '100%',
+    marginTop: theme.spacing(3),
+    overflowX: 'auto',
     },
     image: {
         width: "93px",
@@ -25,7 +26,6 @@ const PortfolioComponent = ({portfolio}) => {
     const classes = useStyles();
 
     return (
-
         <Paper className={classes.root}>
             <Table className={classes.table}>
                 <TableHead>

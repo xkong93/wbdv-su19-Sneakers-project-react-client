@@ -20,6 +20,7 @@ import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
 import ProfileContainer from "../../container/AccountContainer/ProfileContainer";
 import PortfolioContainer from "../../container/AccountContainer/PortfolioContainer";
 import ProfileEditorComponent from "./ProfileEditorComponent";
+import {Container} from "@material-ui/core";
 const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
@@ -70,7 +71,7 @@ function AccountComponent(props) {
       <Divider/>
       <List>
         {['Profile', 'Portfolio', 'Reviews'].map((text, index) => (
-            <Link to={`/user/${props.match.params.uid}/${text}`}>
+            <Link to={`/user/${props.match.params.uid}/${text.toLowerCase()}`}>
           <ListItem button key={text}>
             <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
             <ListItemText primary={text} />
@@ -81,7 +82,7 @@ function AccountComponent(props) {
       <Divider />
       <List>
         {['Setting'].map((text, index) => (
-            <Link to={`/user/${props.match.params.uid}/${text}`}>
+            <Link to={`/user/${props.match.params.uid}/${text.toLowerCase()}`}>
           <ListItem button key={text}>
             <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
             <ListItemText primary={text} />
@@ -142,14 +143,15 @@ function AccountComponent(props) {
           </Drawer>
         </Hidden>
       </nav>
-      <main className={classes.content}>
+      <Container className={classes.content}>
+
                 <Switch>
                     //key point
-                    <Route path={`${props.match.url}/profile`} component={ProfileContainer}/>
-                    <Route path={`${props.match.url}/portfolio`} component={PortfolioContainer}/>
-                    <Route path={`${props.match.url}/setting`} component={ProfileEditorComponent}/>
+                    <Route path="/user/:uid/profile" component={ProfileContainer}/>
+                    <Route path="/user/:uid/portfolio" component={PortfolioContainer}/>
+                    <Route path="/user/:uid/setting" component={ProfileEditorComponent}/>
                 </Switch>
-      </main>
+      </Container>
     </div>
   );
 }

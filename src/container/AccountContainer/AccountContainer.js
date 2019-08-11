@@ -9,7 +9,7 @@ const styles = {
     root: {
         display: "flex",
         justifyContent: "space-evenly",
-        flexWrap:'wrap'
+        flexWrap: 'wrap'
     },
     div: {
         display: "flex",
@@ -23,21 +23,23 @@ class AccountContainer extends Component {
 
     constructor(props) {
         super(props);
+        this.match = this.props.match
         this.state = {
-            user:"",
+            user: "",
         }
-
 
     }
 
+    componentDidMount() {
+
+    }
 
     render() {
-        const match = this.props.match
 
 
         return (
-            <div >
-                <AccountComponent match={match} user={this.state.user}/>
+            <div>
+                <AccountComponent match={this.match} user={this.state.user}/>
             </div>
         );
     }

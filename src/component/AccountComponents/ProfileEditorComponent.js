@@ -1,6 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -43,8 +43,8 @@ const useStyles = makeStyles(theme => ({
     textField: {
         flexBasis: 600,
     },
-    Sbutton : {
-        marginTop: theme.spacing(5)
+    Sbutton: {
+        marginTop: theme.spacing(5),
     }
 }));
 
@@ -59,11 +59,11 @@ export default function ProfileEditorComponent() {
     });
 
     const handleChange = prop => event => {
-        setValues({ ...values, [prop]: event.target.value });
+        setValues({...values, [prop]: event.target.value});
     };
 
     const handleClickShowPassword = () => {
-        setValues({ ...values, showPassword: !values.showPassword });
+        setValues({...values, showPassword: !values.showPassword});
     };
 
     const handleMouseDownPassword = event => {
@@ -72,74 +72,74 @@ export default function ProfileEditorComponent() {
 
     return (
         <div>
-        <div className={classes.root}>
-            <TextField fullWidth
-                label="Username"
-                id="simple-start-adornment"
-                className={clsx(classes.margin, classes.textField)}
-                InputProps={{
-                    startAdornment: <InputAdornment position="start">Username</InputAdornment>,
-                }}
-            />
-            {/*<TextField*/}
-            {/*    select*/}
-            {/*    label="With Select"*/}
-            {/*    className={clsx(classes.margin, classes.textField)}*/}
-            {/*    value={values.weightRange}*/}
-            {/*    onChange={handleChange('weightRange')}*/}
-            {/*    InputProps={{*/}
-            {/*        startAdornment: <InputAdornment position="start">Kg</InputAdornment>,*/}
-            {/*    }}*/}
-            {/*>*/}
-            {/*    {ranges.map(option => (*/}
-            {/*        <MenuItem key={option.value} value={option.value}>*/}
-            {/*            {option.label}*/}
-            {/*        </MenuItem>*/}
-            {/*    ))}*/}
-            {/*</TextField>*/}
-            <FormControl className={clsx(classes.margin, classes.textField)}>
-                <InputLabel htmlFor="adornment-amount">FirstName</InputLabel>
-                <Input
-                    id="adornment-amount"
-                    value={values.amount}
-                    onChange={handleChange('amount')}
-                    startAdornment={<InputAdornment position="start">FirstName</InputAdornment>}
+            <div className={classes.root}>
+                <TextField fullWidth
+                           label="Username"
+                           id="simple-start-adornment"
+                           className={clsx(classes.margin, classes.textField)}
+                           InputProps={{
+                               startAdornment: <InputAdornment position="start">Username</InputAdornment>,
+                           }}
                 />
-            </FormControl>
-            <FormControl className={clsx(classes.margin, classes.textField)}>
-                <InputLabel htmlFor="adornment-amount">LastName</InputLabel>
-                <Input
-                    id="adornment-weight"
-                    value={values.weight}
-                    onChange={handleChange('weight')}
-                    startAdornment={<InputAdornment position="start">LastName</InputAdornment>}
-                    aria-describedby="weight-helper-text"
-                />
-            </FormControl>
-            <FormControl className={clsx(classes.margin, classes.textField)}>
-                <InputLabel htmlFor="adornment-password">Password</InputLabel>
-                <Input
-                    id="adornment-password"
-                    type={values.showPassword ? 'text' : 'password'}
-                    value={values.password}
-                    onChange={handleChange('password')}
-                    endAdornment={
-                        <InputAdornment position="end">
-                            <IconButton
-                                aria-label="toggle password visibility"
-                                onClick={handleClickShowPassword}
-                                onMouseDown={handleMouseDownPassword}
-                            >
-                                {values.showPassword ? <Visibility /> : <VisibilityOff />}
-                            </IconButton>
-                        </InputAdornment>
-                    }
-                />
-            </FormControl>
-        </div>
+                {/*<TextField*/}
+                {/*    select*/}
+                {/*    label="With Select"*/}
+                {/*    className={clsx(classes.margin, classes.textField)}*/}
+                {/*    value={values.weightRange}*/}
+                {/*    onChange={handleChange('weightRange')}*/}
+                {/*    InputProps={{*/}
+                {/*        startAdornment: <InputAdornment position="start">Kg</InputAdornment>,*/}
+                {/*    }}*/}
+                {/*>*/}
+                {/*    {ranges.map(option => (*/}
+                {/*        <MenuItem key={option.value} value={option.value}>*/}
+                {/*            {option.label}*/}
+                {/*        </MenuItem>*/}
+                {/*    ))}*/}
+                {/*</TextField>*/}
+                <FormControl className={clsx(classes.margin, classes.textField)}>
+                    <InputLabel htmlFor="adornment-amount">FirstName</InputLabel>
+                    <Input
+                        id="adornment-amount"
+                        value={values.amount}
+                        onChange={handleChange('amount')}
+                        startAdornment={<InputAdornment position="start">FirstName</InputAdornment>}
+                    />
+                </FormControl>
+                <FormControl className={clsx(classes.margin, classes.textField)}>
+                    <InputLabel htmlFor="adornment-amount">LastName</InputLabel>
+                    <Input
+                        id="adornment-weight"
+                        value={values.weight}
+                        onChange={handleChange('weight')}
+                        startAdornment={<InputAdornment position="start">LastName</InputAdornment>}
+                        aria-describedby="weight-helper-text"
+                    />
+                </FormControl>
+                <FormControl className={clsx(classes.margin, classes.textField)}>
+                    <InputLabel htmlFor="adornment-password">Password</InputLabel>
+                    <Input
+                        id="adornment-password"
+                        type={values.showPassword ? 'text' : 'password'}
+                        value={values.password}
+                        onChange={handleChange('password')}
+                        endAdornment={
+                            <InputAdornment position="end">
+                                <IconButton
+                                    aria-label="toggle password visibility"
+                                    onClick={handleClickShowPassword}
+                                    onMouseDown={handleMouseDownPassword}
+                                >
+                                    {values.showPassword ? <Visibility/> : <VisibilityOff/>}
+                                </IconButton>
+                            </InputAdornment>
+                        }
+                    />
+                </FormControl>
+            </div>
             <Box className={classes.Sbutton}>
-                <Button fullWidth variant="outlined" color="inherit" className={classes.button}>
-                    Inherit
+                <Button variant="outlined" color="inherit" className={classes.button}>
+                    Submit
                 </Button>
             </Box>
         </div>

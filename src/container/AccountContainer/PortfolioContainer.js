@@ -17,7 +17,9 @@ class PortfolioContainer extends Component {
     }
 
     componentDidMount() {
-        this.userService.getPortfolioForUserByUserId(1)
+
+        const uid = this.props.match.params.uid
+        this.userService.getPortfolioForUserByUserId(uid)
             .then(response => {
                 this.setState({
                     portfolioItems: response.portfolioItems,
