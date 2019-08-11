@@ -65,22 +65,32 @@ export default function AddingComponent() {
     const reviewService= ReviewService.getInstance();
     const [values, setValues] = React.useState({
         overall:'',
-        size: 0,
-        width: 100,
-        comfort: 100,
-        quality: 100,
         description: '',
         isRecommend: false
     });
 
-    // const [size, setSize] = React.useState(30);
-    //
-    // const handleChange1 = (event, newValue) => {
-    //     setSize(newValue);
-    // };
+    const [size, setSize] = React.useState('');
+    const handleChange1 = (event, newValue) => {
+        setSize(newValue);
+    };
+
+    const [width, setWidth] = React.useState('');
+    const handleChange2 = (event, newValue) => {
+        setWidth(newValue);
+    };
+
+    const [comfort, setComfort] = React.useState('');
+    const handleChange3 = (event, newValue) => {
+        setComfort(newValue);
+    };
+
+    const [quality, setQuality] = React.useState('');
+    const handleChange4 = (event, newValue) => {
+        setQuality(newValue);
+    };
 
     const handleChange = prop => event => {
-        setValues(values[prop].setValue( event.target.value))
+        setValues({...values, [prop]: event.target.value});
     };
 
     const notRecommend = () =>{
@@ -94,6 +104,16 @@ export default function AddingComponent() {
     }
 
 
+    const User={
+        overall: values.overall,
+        size: size,
+        width:width,
+        comfort:comfort,
+        quality: quality,
+        isRecommend: values.isRecommend,
+        description: values.description
+    }
+
     const marks = [
         {value: 1, label: 'Too Small',},
         {value: 2, label: 'Small',},
@@ -102,21 +122,25 @@ export default function AddingComponent() {
         {value: 5, label: 'Too Large',},
     ];
     const marks1 = [
-        {value: 0, label: 'Too Narrow',},
-        {value: 25, label: 'Narrow',},
-        {value: 50, label: 'Perfect',},
-        {value: 75, label: 'Wide',},
-        {value: 100, label: 'Too Wide',},
+        {value: 1, label: 'Too Narrow',},
+        {value: 2, label: 'Narrow',},
+        {value: 3, label: 'Perfect',},
+        {value: 4, label: 'Wide',},
+        {value: 5, label: 'Too Wide',},
     ];
     const marks2 = [
-        {value: 0, label: 'Uncomfortable',},
-        {value: 50, label: 'Ok',},
-        {value: 100, label: 'Comfortable',},
+        {value: 1, label: 'Very Uncomfortable',},
+        {value: 2, label: 'Uncomfortable',},
+        {value: 3, label: 'Ok',},
+        {value: 4, label: 'Comfortable',},
+        {value: 5, label: 'Very Comfortable',}
     ];
     const marks3 = [
-        {value: 0, label: 'Poor',},
-        {value: 50, label: 'Ok',},
-        {value: 100, label: 'Perfect',},
+        {value: 1, label: 'Too Poor',},
+        {value: 2, label: 'Poor',},
+        {value: 3, label: 'Ok',},
+        {value: 4, label: 'Ok',},
+        {value: 5, label: 'Perfect',}
     ];
 
     function valuetext(value) {
@@ -125,7 +149,7 @@ export default function AddingComponent() {
 
     return (
         <div>
-            {/*{console.log(values.size)}*/}
+            {console.log(User)}
             <div className={classes.title}><h1>Write Your Reviews</h1></div>
             <Box className={classes.element}>
                 <Box component="fieldset" borderColor="transparent" >
@@ -164,8 +188,8 @@ export default function AddingComponent() {
                     step={1}
                     valueLabelDisplay="auto"
                     marks={marks}
-                    value={values.size}
-                    onChange={handleChange('size')}
+                    value={size}
+                    onChange={handleChange1}
                     max={5}
                     min={1}
                 />
@@ -182,11 +206,13 @@ export default function AddingComponent() {
                         // valueLabelFormat={valueLabelFormat}
                         getAriaValueText={valuetext}
                         aria-labelledby="discrete-slider-restrict"
-                        step={null}
+                        step={1}
                         valueLabelDisplay="auto"
                         marks={marks1}
-                        defaultValue={values.width}
-                        onChange={handleChange('width')}
+                        value={width}
+                        onChange={handleChange2}
+                        max={5}
+                        min={1}
                     />
                 </Box>
             </Box>
@@ -201,11 +227,13 @@ export default function AddingComponent() {
                         // valueLabelFormat={valueLabelFormat}
                         getAriaValueText={valuetext}
                         aria-labelledby="discrete-slider-restrict"
-                        step={null}
+                        step={1}
                         valueLabelDisplay="auto"
                         marks={marks2}
-                        defaultValue={values.comfort}
-                        onChange={handleChange('comfort')}
+                        value={comfort}
+                        onChange={handleChange3}
+                        max={5}
+                        min={1}
                     />
                 </Box>
             </Box>
@@ -220,11 +248,13 @@ export default function AddingComponent() {
                         // valueLabelFormat={valueLabelFormat}
                         getAriaValueText={valuetext}
                         aria-labelledby="discrete-slider-restrict"
-                        step={null}
+                        step={1}
                         valueLabelDisplay="auto"
                         marks={marks3}
-                        defaultValue={values.quality}
-                        onChange={handleChange('quality')}
+                        value={quality}
+                        onChange={handleChange4}
+                        max={5}
+                        min={1}
                     />
                 </Box>
             </Box>
@@ -259,7 +289,7 @@ export default function AddingComponent() {
             <Divider />
 
             <Box className={classes.Sbutton}>
-                <Button onClick={()=>createReview(values, 1,1)} fullWidth size={"large"} variant="outlined" color="secondary" className={classes.button}>
+                <Button onClick={()=>createReview(User, 1,1)} fullWidth size={"large"} variant="outlined" color="secondary" className={classes.button}>
                     Submit Review
                 </Button>
             </Box>
