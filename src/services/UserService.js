@@ -28,7 +28,9 @@ export default class UserService {
         }
 
     getPublicProfileForUserByUserId = (uid) =>{
-        return fetch (this.url +`user/${uid}/profile`)
+        return fetch (this.url +`user/${uid}/publicProfile`)
             .then(response => response.json())
     }
+
+
 }

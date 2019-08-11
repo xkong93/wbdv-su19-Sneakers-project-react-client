@@ -3,7 +3,7 @@ import ProfileContainer from './ProfileContainer'
 import PortfolioContainer from './PortfolioContainer'
 import AccountComponent from "../../component/AccountComponents/AccountComponent";
 import {withStyles} from '@material-ui/core/styles';
-
+import UserService from "../../services/UserService"
 
 const styles = {
     root: {
@@ -24,22 +24,27 @@ class AccountContainer extends Component {
     constructor(props) {
         super(props);
         this.match = this.props.match
-        this.state = {
-            user: "",
-        }
+        this.uid = this.match.params.uid
+        // this.userSerivice = UserService.getInstance()
+        // this.state = {
+        //     user: "",
+        // }
 
     }
 
-    componentDidMount() {
-
-    }
+    // componentDidMount() {
+    //     this.userSerivice.getPublicProfileForUserByUserId(this.uid)
+    //         .then(response => this.setState({
+    //             user:response
+    //         }))
+    // }
 
     render() {
 
 
         return (
             <div>
-                <AccountComponent match={this.match} user={this.state.user}/>
+                <AccountComponent match={this.match} />
             </div>
         );
     }
