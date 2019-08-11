@@ -21,6 +21,7 @@ import ProfileContainer from "../../container/AccountContainer/ProfileContainer"
 import PortfolioContainer from "../../container/AccountContainer/PortfolioContainer";
 import ProfileEditorComponent from "./ProfileEditorComponent";
 import {Container} from "@material-ui/core";
+import ProductReviewContainer from "../../container/ProductReviewContainer";
 const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
@@ -108,7 +109,7 @@ function AccountComponent(props) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-            Responsive drawer
+            {props.user.firstName.toUpperCase()} {props.user.lastName.toUpperCase()}
           </Typography>
         </Toolbar>
       </AppBar>
@@ -149,6 +150,7 @@ function AccountComponent(props) {
                     //key point
                     <Route path="/user/:uid/profile" component={ProfileContainer}/>
                     <Route path="/user/:uid/portfolio" component={PortfolioContainer}/>
+                    <Route path="/user/:uid/reviews" component={ProductReviewContainer}/>
                     <Route path="/user/:uid/setting" component={ProfileEditorComponent}/>
                 </Switch>
       </Container>

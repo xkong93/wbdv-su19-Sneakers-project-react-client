@@ -28,12 +28,10 @@ const ProfileComponent = ({user}) => {
 
     return (
         <Paper>
-
-
                 <TextField
                     id="standard-read-only-input"
                     label="USERNAME"
-                    value={user.username.toUpperCase()}
+                    value={user.username}
                     className={classes.textField}
                     margin="normal"
                     InputProps={{

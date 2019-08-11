@@ -25,26 +25,26 @@ class AccountContainer extends Component {
         super(props);
         this.match = this.props.match
         this.uid = this.match.params.uid
-        // this.userSerivice = UserService.getInstance()
-        // this.state = {
-        //     user: "",
-        // }
+        this.userSerivice = UserService.getInstance()
+        this.state = {
+            user: "",
+        }
 
     }
 
-    // componentDidMount() {
-    //     this.userSerivice.getPublicProfileForUserByUserId(this.uid)
-    //         .then(response => this.setState({
-    //             user:response
-    //         }))
-    // }
+    componentDidMount() {
+        this.userSerivice.getPublicProfileForUserByUserId(this.uid)
+            .then(response => this.setState({
+                user:response
+            }))
+    }
 
     render() {
 
-
         return (
             <div>
-                <AccountComponent match={this.match} />
+                {this.state.user.firstName != undefined &&
+                <AccountComponent match={this.match} user={this.state.user}/>}
             </div>
         );
     }

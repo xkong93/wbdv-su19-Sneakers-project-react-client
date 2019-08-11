@@ -37,4 +37,12 @@ export default class ReviewService {
                 }
             })
 
+    getReviewsByUser = (uid) =>
+        fetch(this.url + `user/${uid}/review`)
+            .then( res =>{
+                if(res.status == 200){
+                    return res.json();
+                }
+            })
+
 }
