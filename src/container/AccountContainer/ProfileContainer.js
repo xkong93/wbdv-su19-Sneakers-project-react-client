@@ -4,26 +4,34 @@ import PortfolioComponent from '../../component/AccountComponents/PortfolioCompo
 import PortfolioContainer from "./PortfolioContainer";
 import Container from '@material-ui/core/Container'
 import {withStyles} from '@material-ui/core/styles';
+import UserService from "../../services/UserService"
 
 class ProfileContainer extends Component {
 
-    constructor(props) {
+     constructor(props) {
         super(props);
-        this.state = {}
-
+        this.match = this.props.match
+        this.uid = this.match.params.uid
+        this.userSerivice = UserService.getInstance()
+        this.state = {
+            user: "",
+        }
 
     }
 
-    componentDidMount() {
-
+   componentDidMount() {
+        this.userSerivice.getPublicProfileForUserByUserId(this.uid)
+            .then(response => this.setState({
+                user:response
+            }))
     }
 
     render() {
         return (
 
-            <Container>
+            <Container maxWidth="md">
                 <div>
-                    <ProfileComponent/>
+                    {this.state.user.username != undefined && <ProfileComponent user={this.state.user}/>}
                 </div>
 
             </Container>

@@ -155,10 +155,10 @@ export default function AddingComponent() {
                     // valueLabelFormat={valueLabelFormat}
                     getAriaValueText={valuetext}
                     aria-labelledby="discrete-slider-restrict"
-                    step={null}
+                    step={5}
                     valueLabelDisplay="auto"
                     marks={marks}
-                    value={values.size}
+                    defaultValue={values.size}
                     onChange={handleChange('size')}
                 />
                 </Box>
