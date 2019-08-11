@@ -38,18 +38,24 @@ class ProductReviewContainer extends Component {
             var urlKey = this.props.params.urlKey
             this.reviewService.getReviewsForProduct(urlKey)
                 .then(res => {
-                    if (res.status == 200) {
+                    //technique to handle review and rating 404
+                    if (res.status == 404) {
+                        console.log('review 404')
+                    } else {
                         this.setState({
-                            reviews: res.body
-                        })  //key point write this in container not in service
+                            reviews: res
+                        })
                     }
+
                 })
 
             this.reviewService.getRatingForPorduct(urlKey)
-                     .then(res => {
-                    if (res.status == 200) {
+                .then(res => {
+                    if (res.status == 404) {
+                        console.log('rating 404')
+                    } else {
                         this.setState({
-                            reviews: res.body
+                            ratings: [res] //key point
                         })
                     }
                 })
@@ -57,7 +63,7 @@ class ProductReviewContainer extends Component {
 
         if (this.props.match != undefined) {
             var uid = this.props.match.params.uid
-            this.reviewService.getReviewsByUser(uid)
+            this.reviewService.getReviewsByUser(1)
                 .then(res => this.modifiedReviewsByUser(res))
 
         }
@@ -92,7 +98,6 @@ class ProductReviewContainer extends Component {
     }
 
     render() {
-        console.log(this.state.ratings)
         return (
 
             <Container className={this.props.classes.root} maxWidth="lg">
