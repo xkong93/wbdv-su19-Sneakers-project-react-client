@@ -73,8 +73,9 @@ export default function NavigationComponent() {
             <AppBar position="static" color={"default"}>
 
             <Toolbar>
-                
-                    <Typography variant="h6" className={window.location.pathname ==='/'  && (classes.title)}
+
+                    <Typography variant="h6" className={window.location.pathname ==='/' &&  (classes.title)
+                        || window.location.pathname ==='/search' &&  (classes.title)}
                     > SneakerStock</Typography>
 
                 {window.location.pathname!=='/' && window.location.pathname!=='/search' && <div className={clsx(classes.search, classes.title)}>
