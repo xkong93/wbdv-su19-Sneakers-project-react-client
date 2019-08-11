@@ -90,17 +90,16 @@ export default function AddingComponent() {
     };
 
     const handleChange = prop => event => {
-<<<<<<< HEAD
         setValues(values[prop].setValue(event.target.value))
-=======
         setValues({...values, [prop]: event.target.value});
->>>>>>> 57a6dc840da9736fc18e07eaa6f9190e8149ade6
     };
 
     const notRecommend = () =>{
         setValues({...values, isRecommend: false})}
     const Recommend =() =>{
         setValues({...values, isRecommend: true})}
+
+
 
 
     function createReview (review, pid, uid) {
