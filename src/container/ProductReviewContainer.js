@@ -32,6 +32,7 @@ class ProductReviewContainer extends Component {
 
     }
 
+
     componentDidMount() {
         const urlKey = this.props.params.urlKey;
         this.reviewService.getReviewsForProduct(urlKey)
