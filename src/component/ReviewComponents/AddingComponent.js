@@ -80,7 +80,7 @@ export default function AddingComponent() {
     // };
 
     const handleChange = prop => event => {
-        setValues(values[prop].setValue( event.target.value))
+        setValues(values[prop].setValue(event.target.value))
     };
 
     const notRecommend = () =>{

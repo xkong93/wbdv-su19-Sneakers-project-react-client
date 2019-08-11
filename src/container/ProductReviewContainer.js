@@ -46,11 +46,11 @@ class ProductReviewContainer extends Component {
                             reviews: res
                         })
                     }
-
                 })
 
             this.reviewService.getRatingForPorduct(urlKey)
                 .then(res => {
+                    console.log(res)
                     if (res.status == 404) {
                         console.log('rating 404')
                     } else {
