@@ -33,7 +33,7 @@ class ProductReviewContainer extends Component {
     }
 
     componentDidMount() {
-        const urlKey = this.props.match.params.urlKey;
+        const urlKey = this.props.params.urlKey;
         this.reviewService.getReviewsForProduct(urlKey)
             .then(res => this.setState({
                 reviews: res}))

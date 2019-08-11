@@ -4,8 +4,12 @@ import StockService from "../services/StockService"
 import Grid from '@material-ui/core/Grid'
 import Box from '@material-ui/core/Box'
 import Container from '@material-ui/core/Container'
-class StockDetailContainer extends Component {
+import ProductReviewContainer from "./ProductReviewContainer";
+import Button from '@material-ui/core/Button';
+import Link from '@material-ui/core/Link';
 
+
+class StockDetailContainer extends Component {
 
     constructor(props) {
         super(props)
@@ -29,6 +33,8 @@ class StockDetailContainer extends Component {
         return (
             <Container maxWidth="lg">
                 <StockDetailComponent detail={this.state.detail}/>
+                <ProductReviewContainer params={this.props.match.params}/>
+                <Link href="/addReview" color="inherit"><Button fullWidth size={"large"} variant="outlined" color="inherit">Add Review</Button></Link>
             </Container>
         );
     }

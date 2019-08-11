@@ -84,12 +84,16 @@ export default function AddingComponent() {
 
     const marks = [
         {value: 0, label: 'Too Small',},
+        {value: 25, label: 'Small',},
         {value: 50, label: 'Perfect',},
+        {value: 75, label: 'Large',},
         {value: 100, label: 'Too Large',},
     ];
     const marks1 = [
         {value: 0, label: 'Too Narrow',},
+        {value: 25, label: 'Narrow',},
         {value: 50, label: 'Perfect',},
+        {value: 75, label: 'Wide',},
         {value: 100, label: 'Too Wide',},
     ];
     const marks2 = [
