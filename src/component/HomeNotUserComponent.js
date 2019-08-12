@@ -69,11 +69,8 @@ function HomeNotUserComponent({products}) {
       <CssBaseline />
       <main>
         {/* Hero unit */}
-        <div className={classes.heroContent}>
-          <Container maxWidth="md">
-            <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-                    Let's Collect & Review Sneakers!
-            </Typography>
+      {/*  <div className={classes.heroContent}>*/}
+      {/*    <Container maxWidth="md">*/}
       {/*<div className="row">*/}
       {/*                      <div className='input-group mb-3'>*/}
       {/*                          <input className="form-control"*/}
@@ -86,11 +83,11 @@ function HomeNotUserComponent({products}) {
       {/*                          </div>*/}
       {/*                      </div>*/}
       {/*                  </div>*/}
-            <div className={classes.heroButtons}>
+      {/*      <div className={classes.heroButtons}>*/}
 
-            </div>
-          </Container>
-        </div>
+      {/*      </div>*/}
+      {/*    </Container>*/}
+      {/*  </div>*/}
           {/*{this.products.map((product, key)=><h1>{product}</h1>)}*/}
         <Container className={classes.cardGrid} maxWidth="md">
           {/* End hero unit */}
