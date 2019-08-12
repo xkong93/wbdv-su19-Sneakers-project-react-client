@@ -26,7 +26,7 @@ class ProfileEditCotainer extends Component {
         }
 
 
-    }
+    
 
 
     render() {
@@ -44,5 +44,6 @@ class ProfileEditCotainer extends Component {
         );
     }
 }
+
 
 export default ProfileEditCotainer;
