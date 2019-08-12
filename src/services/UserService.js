@@ -18,7 +18,7 @@ export default class UserService {
             headers: {
                 'content-type': 'application/json'
             }
-        })
+        }).then(res => res)
 
     login = (user) =>
         fetch(this.url + "login", {

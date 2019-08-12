@@ -13,6 +13,12 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Cookies from "js-cookie"
 import Divider from "@material-ui/core/Divider";
+import {
+    BrowserRouter as Router,
+    Route,
+    Link2,
+    Redirect,
+} from "react-router-dom";
 
 class StockDetailContainer extends Component {
 
@@ -23,11 +29,12 @@ class StockDetailContainer extends Component {
 
         this.state = {
             detail: {},
-            response:{},
+            response: {},
             uid: localStorage.getItem(Cookies.get("JSESSIONID")),
             urlKey: this.props.match.params.urlKey,
             openSuccess: false,
             openFailure: false,
+            redirect: false
         }
 
     }
@@ -41,36 +48,51 @@ class StockDetailContainer extends Component {
             }))
 
         var loginJson = JSON.parse(localStorage.getItem(Cookies.get("JSESSIONID")))
-        if (loginJson != null){
+        if (loginJson != null) {
             this.setState({
                 uid: loginJson.uid
             })
         }
     }
 
-    getProductByUrl=(url)=>
+    getProductByUrl = (url) =>
         this.productService.findProductByUrlKey(url).then(response => this.setState({response: response}))
 
 
-    addProduct = (urlKey, uid) =>
-        this.productService.addProduct(urlKey, uid)
-            .then(response => {
-                if (response.status != 200) {
-                    this.setState({
-                        openFailure: true
-                    })
-                }else{
-                    this.setState({
-                        openSuccess: true
-                    })
-                }
+    addProduct = (urlKey, uid) => {
+        if (Cookies.get("JSESSIONID") != undefined) {
+            return this.productService.addProduct(urlKey, uid)
+                .then(response => {
+                    if (response.status != 200) {
+                        this.setState({
+                            openFailure: true
+                        })
+                    } else {
+                        this.setState({
+                            openSuccess: true
+                        })
+                    }
+                })
+        } else {
+            this.setState({
+                redirect: true
             })
+        }
 
+    }
     closeSnackbar = () => {
-        this.setState({openSuccess: false, openFailure:false})
+        this.setState({openSuccess: false, openFailure: false})
+    }
+
+
+    renderRedirectLogin = () => {
+        if (this.state.redirect) {
+            return <Redirect to='/login'/>
+        }
     }
 
     render() {
+        const url = "/add/" + this.state.response.id + "/" + this.state.uid
         return (
             <Container maxWidth="lg">
                 <Snackbar
@@ -104,20 +126,23 @@ class StockDetailContainer extends Component {
                         </IconButton>
                     ]}
                 />
+
                 {/*{console.log(this.state.product.timestamp)}*/}
                 <div className="float-right">
-                    {Cookies.get("JSESSIONID") !=null && <button type="button" className="btn btn-info"
+                    <button type="button" className="btn btn-info"
                             onClick={() => this.addProduct(this.state.urlKey, this.state.uid)}>Add to Collection
-                    </button>}
+                    </button>
                 </div>
                 <StockDetailComponent detail={this.state.detail}/>
                 <ProductReviewContainer params={this.props.match.params}/>
-                {Cookies.get("JSESSIONID") !=null && <Link href={`/add/${this.state.response.id}/${this.state.uid}`} color="inherit"><Button fullWidth size={"large"}
-                                                                                                variant="outlined"
-                                                                                                color="inherit">Add
-                    Review</Button></Link>}
-                <Divider />
-                {Cookies.get("JSESSIONID") ==null&& <h3>Please Login Before Add Review or Product</h3>}
+                <Link href={Cookies.get("JSESSIONID") != undefined ? `${url}` : "/login"} color="inherit">
+                    <Button fullWidth
+                            size={"large"}
+                            variant="outlined"
+                            color="inherit">Add
+                        Review</Button></Link>
+                {this.renderRedirectLogin()}
+
             </Container>
         );
     }
