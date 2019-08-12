@@ -3,8 +3,6 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
@@ -13,12 +11,10 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import UserService from "../../services/UserService";
-
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import FormControl from '@material-ui/core/FormControl';
 import NativeSelect from '@material-ui/core/NativeSelect';
+import EditorService from "../../services/EditorService";
 
 
 const useStyles = makeStyles(theme => ({
@@ -49,7 +45,7 @@ const useStyles = makeStyles(theme => ({
 export default function SignUp() {
     const classes = useStyles();
     const userService = UserService.getInstance()
-
+    const editorService = EditorService.getInstance()
 
     const [User, setValues] = React.useState({
         firstName: "",
@@ -57,7 +53,8 @@ export default function SignUp() {
         email: "",
         password: "",
         username: "",
-        role:""
+        role:"User",
+        code:""
     })
 
     const createUser = (User,) =>{
@@ -65,6 +62,9 @@ export default function SignUp() {
                 userService.createUser(User)
 
     }
+
+    const createEditor=(Editor, code)=>
+         editorService.createEditor(Editor, code)
 
 
     const handleChange = prop => event => {
@@ -150,6 +150,7 @@ export default function SignUp() {
                                 onChange={handleChange("password")}
                             />
                         </Grid>
+
                         <Grid className={classes.form}>
                             <InputLabel shrink htmlFor="age-native-label-placeholder">
                                 Role
@@ -164,9 +165,21 @@ export default function SignUp() {
                                 <option value="Editor">Editor</option>
                             </NativeSelect>
                         </Grid>
-
+                        {User.role == "Editor" && <Grid item xs={12}>
+                            <TextField
+                                variant="outlined"
+                                required
+                                fullWidth
+                                name="code"
+                                label="Editor Code"
+                                id="code"
+                                autoComplete="current-password"
+                                value={User.code}
+                                onChange={handleChange("code")}
+                            />
+                        </Grid>}
                     </Grid>
-                    <Button
+                    {User.role=="User" && <Button
                         fullWidth
                         variant="contained"
                         color="primary"
@@ -174,7 +187,16 @@ export default function SignUp() {
                         onClick={() => createUser(User)}
                     >
                         Sign Up
-                    </Button>
+                    </Button>}
+                    {User.role=="Editor" && <Button
+                        fullWidth
+                        variant="contained"
+                        color="primary"
+                        className={classes.submit}
+                        onClick={() => createEditor(User, User.code)}
+                    >
+                        Sign Up for Editor
+                    </Button>}
                     <Grid container justify="flex-end">
                         <Grid item>
                             <Link href="/login" to='/login' variant="body2">
