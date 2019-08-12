@@ -23,6 +23,7 @@ import ProfileEditorComponent from "./ProfileEditorComponent";
 import {Container} from "@material-ui/core";
 import ProductReviewContainer from "../../container/ProductReviewContainer";
 import Box from '@material-ui/core/Box';
+import ProfileEditCotainer from "../../container/AccountContainer/ProfileEditCotainer";
 
 
 const drawerWidth = 240;
@@ -164,7 +165,7 @@ function AccountComponent(props) {
                     <Route path="/user/:uid/profile" component={ProfileContainer}/>
                     <Route path="/user/:uid/portfolio" component={PortfolioContainer}/>
                     <Route path="/user/:uid/reviews" component={ProductReviewContainer}/>
-                    <Route path="/user/:uid/setting" component={ProfileEditorComponent}/>
+                    <Route path="/user/:uid/setting" component={ProfileEditCotainer}/>
                 </Switch>
       </Container>
     </div>

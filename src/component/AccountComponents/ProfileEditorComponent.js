@@ -47,6 +47,7 @@ export default function ProfileEditorComponent({user}) {
     //     showPassword: false,
     // });
 
+    {console.log(user)}
     const [values, setValues] = React.useState({
         firstName: 'user.firstName',
         lastName: 'user.lastName',
