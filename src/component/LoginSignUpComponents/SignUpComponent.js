@@ -179,7 +179,7 @@ export default function SignUp() {
                             />
                         </Grid>}
                     </Grid>
-                    {User.role=="User" && <Button
+                    {User.role=="User" && <Link href="/login" ><Button
                         fullWidth
                         variant="contained"
                         color="primary"
@@ -187,8 +187,8 @@ export default function SignUp() {
                         onClick={() => createUser(User)}
                     >
                         Sign Up
-                    </Button>}
-                    {User.role=="Editor" && <Button
+                    </Button></Link>}
+                    {User.role=="Editor" && <Link href="/login" ><Button
                         fullWidth
                         variant="contained"
                         color="primary"
@@ -196,7 +196,7 @@ export default function SignUp() {
                         onClick={() => createEditor(User, User.code)}
                     >
                         Sign Up for Editor
-                    </Button>}
+                    </Button></Link>}
                     <Grid container justify="flex-end">
                         <Grid item>
                             <Link href="/login" to='/login' variant="body2">

@@ -26,6 +26,12 @@ class ProfileEditCotainer extends Component {
         }
 
 
+    firstNameChange=(e)=>
+        this.setState({user:{firstName :e.target.value}})
+    lastNameChange=(e)=>
+        this.setState({user:{lastName :e.target.value}})
+
+
 
 
 
@@ -33,9 +39,10 @@ class ProfileEditCotainer extends Component {
         return (
 
             <Container maxWidth="md">
+                {console.log(this.state.user)}
                 <div>
                     {Cookies.get("JSESSIONID") != undefined && <ProfileEditorComponent
-                        user={this.state.user}/>
+                        user={this.state.user} first={this.firstNameChange} last={this.lastNameChange}/>
 
                     }
                 </div>

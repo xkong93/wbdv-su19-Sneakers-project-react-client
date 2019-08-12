@@ -13,6 +13,7 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import Button from '@material-ui/core/Button';
 import {Box} from "@material-ui/core";
 import UserService from "../../services/UserService";
+import Cookies from "js-cookie";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -34,9 +35,10 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-export default function ProfileEditorComponent({user}) {
+export default function ProfileEditorComponent({user, first, last}) {
     const classes = useStyles();
     const userService = UserService.getInstance();
+    const uid = (JSON.parse(localStorage.getItem(Cookies.get("JSESSIONID")))).uid
 
     const [values, setValues] = React.useState({
         firstName: user.firstName,
@@ -46,15 +48,19 @@ export default function ProfileEditorComponent({user}) {
         username: user.username,
         showPassword: false,
     });
-    {console.log(user)}
-    // const [values, setValues] = React.useState({
-    //     firstName: '123',
-    //     lastName: 'user.lastName',
-    //     email: 'user.email',
-    //     password: 'user.password',
-    //     username: 'user.username',
-    //     showPassword: false,
+
+
+
+    // const [values, setValues] = React.useState(()=>{
+    //     const firstName = user.firstName
+        // lastName: last,
+        // email: 'user.email',
+        // password: 'user.password',
+        // username: 'user.username',
+        // showPassword: false,
     // });
+
+
 
     const handleChange = prop => event => {
         setValues({...values, [prop]: event.target.value});
@@ -75,12 +81,13 @@ export default function ProfileEditorComponent({user}) {
     return (
         <div>
             <div className={classes.root}>
+                {/*{console.log(values)}*/}
                 <TextField
                     id="standard-read-only-input"
                     label="USERNAME"
                     className={classes.textField}
                     margin="normal"
-                    value={values.username}
+                    value={user.username}
                     InputProps={{
                         readOnly: true,
                     }}
@@ -91,7 +98,7 @@ export default function ProfileEditorComponent({user}) {
                     label="EMAIL"
                     className={classes.textField}
                     margin="normal"
-                    value={values.email}
+                    value={user.email}
                     InputProps={{
                         readOnly: true,
                     }}
@@ -103,8 +110,8 @@ export default function ProfileEditorComponent({user}) {
                     label="FIRST NAME"
                     className={classes.textField}
                     margin="normal"
-                    value={values.firstName}
-                    onChange={handleChange('firstName')}
+                    value={user.firstName}
+                    onChange={first}
 
                 />
                 <TextField
@@ -112,8 +119,8 @@ export default function ProfileEditorComponent({user}) {
                     label="LAST NAME"
                     className={classes.textField}
                     margin="normal"
-                    value={values.lastName}
-                    onChange={handleChange('lastName')}
+                    value={user.lastName}
+                    onChange={last}
                 />
 
                 <FormControl className={clsx(classes.margin, classes.textField)}>
@@ -121,7 +128,10 @@ export default function ProfileEditorComponent({user}) {
                     <Input
                         id="adornment-password"
                         type={values.showPassword ? 'text' : 'password'}
-                        value={values.password}
+                        value={user.password}
+                        InputProps={{
+                            readOnly: true,
+                        }}
                         endAdornment={
                             <InputAdornment position="end">
                                 <IconButton
@@ -138,7 +148,7 @@ export default function ProfileEditorComponent({user}) {
 
             </div>
             <Box className={classes.Sbutton}>
-                <Button onClick={ ()=> updateUser(values, user.id)} variant="outlined" color="inherit" className={classes.button}>
+                <Button onClick={ ()=> updateUser(values, uid)} variant="outlined" color="inherit" className={classes.button}>
                     Submit
                 </Button>
             </Box>
