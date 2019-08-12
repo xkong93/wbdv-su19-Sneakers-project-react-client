@@ -19,14 +19,6 @@ class ProfileEditCotainer extends Component {
     }
 
     componentDidMount() {
-
-
-        var loginJson = JSON.parse(localStorage.getItem(Cookies.get("JSESSIONID")))
-        if (loginJson != null) {
-            console.log(loginJson.uid)
-            this.setState({
-                uid: loginJson.uid
-            })
             this.userSerivice.getPrivateProfileForUserByUserId(this.state.uid)
             .then(response => this.setState({
                 user: response
