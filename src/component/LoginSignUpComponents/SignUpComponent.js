@@ -57,14 +57,16 @@ export default function SignUp() {
         code:""
     })
 
-    const createUser = (User,) =>{
-        console.log(User)
-                userService.createUser(User)
+    const createUser = (User) =>{
+        userService.createUser(User)
+            .then(res => console.log(res))
+
 
     }
 
     const createEditor=(Editor, code)=>
          editorService.createEditor(Editor, code)
+
 
 
     const handleChange = prop => event => {
