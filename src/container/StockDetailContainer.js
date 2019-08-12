@@ -19,6 +19,7 @@ class StockDetailContainer extends Component {
         super(props)
         this.stockService = StockService.getInstance()
         this.productService = ProductService.getInstance()
+
         this.state = {
             detail: {},
             response:{},
@@ -37,6 +38,13 @@ class StockDetailContainer extends Component {
             .then(responseJSON => this.setState({
                 detail: responseJSON.Product
             }))
+
+        var loginJson = JSON.parse(localStorage.getItem(Cookies.get("JSESSIONID")))
+        if (loginJson != null){
+            this.setState({
+                uid: loginJson.uid
+            })
+        }
     }
 
     getProductByUrl=(url)=>

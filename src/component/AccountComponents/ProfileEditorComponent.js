@@ -49,7 +49,7 @@ export default function ProfileEditorComponent({user}) {
 
     {console.log(user)}
     const [values, setValues] = React.useState({
-        firstName: 'user.firstName',
+        firstName: '123',
         lastName: 'user.lastName',
         email: 'user.email',
         password: 'user.password',
@@ -68,6 +68,7 @@ export default function ProfileEditorComponent({user}) {
     const handleMouseDownPassword = event => {
         event.preventDefault();
     };
+
 
     const updateUser =(user, uid)=>
         userService.updateUser(user, uid)
