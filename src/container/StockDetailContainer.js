@@ -22,8 +22,8 @@ class StockDetailContainer extends Component {
 
         this.state = {
             detail: {},
-            pid: this.props.match.params.pid,
-            uid: '',
+            response:{},
+            uid: localStorage.getItem(Cookies.get("JSESSIONID")),
             urlKey: this.props.match.params.urlKey,
             openSuccess: false,
             openFailure: false,
@@ -32,7 +32,7 @@ class StockDetailContainer extends Component {
     }
 
     componentDidMount() {
-
+        this.getProductByUrl(this.state.urlKey)
         // const urlKey = this.props.match.params.urlKey
         this.stockService.obtainDetailInfo(this.state.urlKey)
             .then(responseJSON => this.setState({
@@ -46,6 +46,10 @@ class StockDetailContainer extends Component {
             })
         }
     }
+
+    getProductByUrl=(url)=>
+        this.productService.findProductByUrlKey(url).then(response => this.setState({response: response}))
+
 
     addProduct = (urlKey, uid) =>
         this.productService.addProduct(urlKey, uid)
@@ -68,7 +72,6 @@ class StockDetailContainer extends Component {
     render() {
         return (
             <Container maxWidth="lg">
-
                 <Snackbar
                     anchorOrigin={{vertical: "top", horizontal: "left"}}
                     open={this.state.openSuccess}
@@ -108,7 +111,7 @@ class StockDetailContainer extends Component {
                 </div>
                 <StockDetailComponent detail={this.state.detail}/>
                 <ProductReviewContainer params={this.props.match.params}/>
-                <Link href={`/add/${this.state.pid}/${this.state.uid}`} color="inherit"><Button fullWidth size={"large"}
+                <Link href={`/add/${this.state.response.id}/${this.state.uid}`} color="inherit"><Button fullWidth size={"large"}
                                                                                                 variant="outlined"
                                                                                                 color="inherit">Add
                     Review</Button></Link>

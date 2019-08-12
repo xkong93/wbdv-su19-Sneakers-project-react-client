@@ -16,13 +16,10 @@ export default class ProductService {
             .then(res => {
                 if (res.status == 200) {
                     //product already exists
-                    console.log("sssss")
                     return fetch(this.url + `user/${uid}/product/${urlKey}`)
                         .then(response => response) //this will response a status code
                 } else {
                     //create new product
-                                        console.log("dddd")
-
                    return fetch(this.url + `product/${urlKey}`, {
                         method: 'POST',
                         headers: {
@@ -37,4 +34,7 @@ export default class ProductService {
 
     findAllProduct = () =>
         fetch(this.url + 'product').then(response => response.json())
+
+    findProductByUrlKey=(urlKey)=>
+        fetch(this.url + 'product/getId/' + urlKey).then(response => response.json())
 }
