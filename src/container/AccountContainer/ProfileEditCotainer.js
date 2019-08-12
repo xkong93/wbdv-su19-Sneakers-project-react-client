@@ -12,7 +12,7 @@ class ProfileEditCotainer extends Component {
         this.userSerivice = UserService.getInstance()
         this.state = {
             user: {},
-            uid: ''
+            uid: this.props.match.params.uid
         }
 
 
@@ -26,7 +26,7 @@ class ProfileEditCotainer extends Component {
         }
 
 
-    
+
 
 
     render() {
