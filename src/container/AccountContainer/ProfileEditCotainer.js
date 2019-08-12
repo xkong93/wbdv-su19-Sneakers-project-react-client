@@ -11,7 +11,6 @@ class ProfileEditCotainer extends Component {
         this.match = this.props.match
         this.uid = this.match.params.uid
         this.userSerivice = UserService.getInstance()
-         this.handleFirstNameChange = this.handleFirstNameChange.bind(this)
          this.state = {
             user: "",
         }
@@ -24,12 +23,9 @@ class ProfileEditCotainer extends Component {
             .then(response => this.setState({
                 user:response
             }))
+       // this.userSerivice.findUserById(this.uid).then
     }
 
-    //两个bind 方法实验了 都不行
-    handleLastName = () => {
-        console.log("ddddd")
-    }
 
     render() {
         return (
@@ -37,7 +33,6 @@ class ProfileEditCotainer extends Component {
             <Container maxWidth="md">
                 <div>
                     {<ProfileEditorComponent
-                        handleLastName={this.handleFirstNameChange}
                         user={this.state.user}/>
 
                     }

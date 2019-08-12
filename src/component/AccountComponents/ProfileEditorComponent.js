@@ -12,6 +12,7 @@ import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import Button from '@material-ui/core/Button';
 import {Box} from "@material-ui/core";
+import UserService from "../../services/UserService";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -33,13 +34,25 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-export default function ProfileEditorComponent({handleLastName}) {
+export default function ProfileEditorComponent({user}) {
     const classes = useStyles();
+    const userService = UserService.getInstance();
+
+    // const [values, setValues] = React.useState({
+    //     firstName: user.firstName,
+    //     lastName: user.lastName,
+    //     email: user.email,
+    //     password: user.password,
+    //     username: user.username,
+    //     showPassword: false,
+    // });
+
     const [values, setValues] = React.useState({
-        firstName: "",
-        lastName: "",
-        email: "",
-        password: "",
+        firstName: 'user.firstName',
+        lastName: 'user.lastName',
+        email: 'user.email',
+        password: 'user.password',
+        username: 'user.username',
         showPassword: false,
     });
 
@@ -55,6 +68,9 @@ export default function ProfileEditorComponent({handleLastName}) {
         event.preventDefault();
     };
 
+    const updateUser =(user, uid)=>
+        userService.updateUser(user, uid)
+
     return (
         <div>
             <div className={classes.root}>
@@ -63,6 +79,7 @@ export default function ProfileEditorComponent({handleLastName}) {
                     label="USERNAME"
                     className={classes.textField}
                     margin="normal"
+                    value={values.username}
                     InputProps={{
                         readOnly: true,
                     }}
@@ -73,6 +90,7 @@ export default function ProfileEditorComponent({handleLastName}) {
                     label="EMAIL"
                     className={classes.textField}
                     margin="normal"
+                    value={values.email}
                     InputProps={{
                         readOnly: true,
                     }}
@@ -119,7 +137,7 @@ export default function ProfileEditorComponent({handleLastName}) {
 
             </div>
             <Box className={classes.Sbutton}>
-                <Button variant="outlined" color="inherit" className={classes.button}>
+                <Button onClick={ ()=> updateUser(values, user.id)} variant="outlined" color="inherit" className={classes.button}>
                     Submit
                 </Button>
             </Box>

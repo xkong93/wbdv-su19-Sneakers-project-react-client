@@ -22,6 +22,9 @@ import PortfolioContainer from "../../container/AccountContainer/PortfolioContai
 import ProfileEditorComponent from "./ProfileEditorComponent";
 import {Container} from "@material-ui/core";
 import ProductReviewContainer from "../../container/ProductReviewContainer";
+import Box from '@material-ui/core/Box';
+
+
 const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
@@ -91,6 +94,15 @@ function AccountComponent(props) {
             </Link>
         ))}
       </List>
+
+        <Box bgcolor="grey.300"
+             color="white"
+             p={2}
+             position="absolute"
+             bottom="5%"
+        >
+            <Link to="/" color="inherit">Back to Home Page</Link>
+        </Box>
     </div>
   );
 
@@ -144,7 +156,8 @@ function AccountComponent(props) {
           </Drawer>
         </Hidden>
       </nav>
-      <Container className={classes.content}>
+
+        <Container className={classes.content}>
 
                 <Switch>
                     //key point

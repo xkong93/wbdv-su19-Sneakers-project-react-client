@@ -14,6 +14,12 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import UserService from "../../services/UserService";
 
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+import NativeSelect from '@material-ui/core/NativeSelect';
+
 const useStyles = makeStyles(theme => ({
     '@global': {
         body: {
@@ -48,7 +54,9 @@ export default function SignUp() {
         firstName: "",
         lastName: "",
         email: "",
-        password: ""
+        password: "",
+        username: "",
+        role:""
     })
     const createUser = (User) =>
         userService.createUser(User)
@@ -115,13 +123,43 @@ export default function SignUp() {
                                 variant="outlined"
                                 required
                                 fullWidth
+                                name="userName"
+                                label="userName"
+                                id="userName"
+                                autoComplete="userName"
+                                value={User.username}
+                                onChange={handleChange("username")}
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <TextField
+                                variant="outlined"
+                                required
+                                fullWidth
                                 name="password"
                                 label="Password"
                                 type="password"
                                 id="password"
                                 autoComplete="current-password"
+                                value={User.password}
+                                onChange={handleChange("password")}
                             />
                         </Grid>
+                        <Grid className={classes.form}>
+                            <InputLabel shrink htmlFor="age-native-label-placeholder">
+                                Role
+                            </InputLabel>
+                            <NativeSelect
+                                fullWidth
+                               value={User.role}
+                                onChange={handleChange('role')}
+                                input={<Input name="age" id="age-native-label-placeholder" />}
+                            >
+                                <option value="User">User</option>
+                                <option value="Editor">Editor</option>
+                            </NativeSelect>
+                        </Grid>
+
                     </Grid>
                     <Button
                         fullWidth

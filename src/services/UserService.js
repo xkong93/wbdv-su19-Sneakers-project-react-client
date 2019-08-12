@@ -20,7 +20,6 @@ export default class UserService {
             }
         })
 
-
     login = (user) =>
         fetch(this.url + "login", {
             method: "POST",
@@ -31,6 +30,10 @@ export default class UserService {
             },
             credentials: 'include'//required
         }).then(res => res)
+
+
+    findUserById =(uid)=>
+        fetch(this.url + "user/" + uid).then(respose => respose.json())
 
     getPortfolioForUserByUserId = (uid) => {
         return fetch(this.url + `user/${uid}/portfolio`)
@@ -48,5 +51,13 @@ export default class UserService {
             .then(response => response.json())
     }
 
+    updateUser =(user, uid) =>
+        fetch(this.url+ "user/" + uid, {
+            method: 'PUT',
+            body: JSON.stringify(user),
+            headers: {
+                'content-type': 'application/json'
+            }
+        })
 
 }
