@@ -51,7 +51,10 @@ export default class UserService {
 
 
     getPrivateProfileForUserByUserId = (uid) => {
-        return fetch(this.url + `user/${uid}/privateProfile`)
+        return fetch(this.url + `user/${uid}/privateProfile`,{
+                        credentials: 'include'//required
+
+        })
             .then(response => response.json())
     }
 

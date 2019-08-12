@@ -12,21 +12,13 @@ class ProfileEditCotainer extends Component {
         this.userSerivice = UserService.getInstance()
         this.state = {
             user: {},
-            uid: ''
+            uid: this.props.match.params.uid
         }
 
 
     }
 
     componentDidMount() {
-
-
-        var loginJson = JSON.parse(localStorage.getItem(Cookies.get("JSESSIONID")))
-        if (loginJson != null) {
-            console.log(loginJson.uid)
-            this.setState({
-                uid: loginJson.uid
-            })
             this.userSerivice.getPrivateProfileForUserByUserId(this.state.uid)
             .then(response => this.setState({
                 user: response
@@ -34,7 +26,7 @@ class ProfileEditCotainer extends Component {
         }
 
 
-    }
+
 
 
     render() {
@@ -52,5 +44,6 @@ class ProfileEditCotainer extends Component {
         );
     }
 }
+
 
 export default ProfileEditCotainer;
