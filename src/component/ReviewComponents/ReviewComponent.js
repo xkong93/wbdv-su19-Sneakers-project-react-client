@@ -21,9 +21,7 @@ const ReviewComponent = ({review}) => {
         <div >
             {review != undefined && <p>{review.description} </p>}
         </div>
-            <div>
-                {}
-            </div>
+            {console.log(review)}
         </Paper>
         </div>
     )

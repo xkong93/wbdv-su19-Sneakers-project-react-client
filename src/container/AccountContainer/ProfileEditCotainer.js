@@ -9,21 +9,20 @@ class ProfileEditCotainer extends Component {
      constructor(props) {
         super(props);
         this.match = this.props.match
-        this.uid = this.match.params.uid
         this.userSerivice = UserService.getInstance()
          this.state = {
             user: "",
+            uid: this.props.match.params.uid
         }
 
 
     }
 
    componentDidMount() {
-        this.userSerivice.getPrivateProfileForUserByUserId(this.uid)
+        this.userSerivice.getPrivateProfileForUserByUserId(this.state.uid)
             .then(response => this.setState({
                 user:response
             }))
-       // this.userSerivice.findUserById(this.uid).then
     }
 
 
