@@ -73,7 +73,7 @@ export default function NavigationComponent() {
         Cookies.remove("JSESSIONID")
     }
 
-    var uid = localStorage.getItem(Cookies.get("JSESSIONID"))
+    var loginJson = JSON.parse(localStorage.getItem(Cookies.get("JSESSIONID")))
     return (
 
         <div className={classes.root}>
@@ -105,7 +105,7 @@ export default function NavigationComponent() {
                 {Cookies.get("JSESSIONID") ==null &&<Link to='/signup'><Button>Sign Up</Button></Link>}
                 {Cookies.get("JSESSIONID") !=null && <Link to="/home"><Button  onClick={()=>logout()} >Sign Out</Button></Link>}
                     <Link to='/search'><Button>Search</Button></Link>
-                    <Link to={`/user/${uid}/profile`}><Button >My Account</Button></Link>
+                {loginJson != null && <Link to={`/user/${loginJson.uid}/profile`}><Button >My Account</Button></Link>}
             </Toolbar>
             </AppBar>
         </div>

@@ -3,26 +3,37 @@ import Container from '@material-ui/core/Container'
 import {withStyles} from '@material-ui/core/styles';
 import UserService from "../../services/UserService"
 import ProfileEditorComponent from "../../component/AccountComponents/ProfileEditorComponent";
+import Cookies from "js-cookie"
 
 class ProfileEditCotainer extends Component {
 
-     constructor(props) {
+    constructor(props) {
         super(props);
-        this.match = this.props.match
         this.userSerivice = UserService.getInstance()
-         this.state = {
-            user: "",
-            uid: this.props.match.params.uid
+        this.state = {
+            user: {},
+            uid: ''
         }
 
 
     }
 
-   componentDidMount() {
-        this.userSerivice.getPrivateProfileForUserByUserId(this.state.uid)
+    componentDidMount() {
+
+
+        var loginJson = JSON.parse(localStorage.getItem(Cookies.get("JSESSIONID")))
+        if (loginJson != null) {
+            console.log(loginJson.uid)
+            this.setState({
+                uid: loginJson.uid
+            })
+            this.userSerivice.getPrivateProfileForUserByUserId(this.state.uid)
             .then(response => this.setState({
-                user:response
+                user: response
             }))
+        }
+
+
     }
 
 
@@ -31,7 +42,7 @@ class ProfileEditCotainer extends Component {
 
             <Container maxWidth="md">
                 <div>
-                    {<ProfileEditorComponent
+                    {Cookies.get("JSESSIONID") != undefined && <ProfileEditorComponent
                         user={this.state.user}/>
 
                     }

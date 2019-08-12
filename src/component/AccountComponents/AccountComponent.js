@@ -24,6 +24,7 @@ import {Container} from "@material-ui/core";
 import ProductReviewContainer from "../../container/ProductReviewContainer";
 import Box from '@material-ui/core/Box';
 import ProfileEditCotainer from "../../container/AccountContainer/ProfileEditCotainer";
+import Cookies from "js-cookie"
 
 
 const drawerWidth = 240;
@@ -85,7 +86,7 @@ function AccountComponent(props) {
         ))}
       </List>
       <Divider />
-      <List>
+        {Cookies.get("JSESSIONID") != undefined &&<List>
         {['Setting'].map((text, index) => (
             <Link to={`/user/${props.match.params.uid}/${text.toLowerCase()}`}>
           <ListItem button key={text}>
@@ -94,7 +95,7 @@ function AccountComponent(props) {
           </ListItem>
             </Link>
         ))}
-      </List>
+      </List>}
 
         <Box bgcolor="grey.300"
              color="white"

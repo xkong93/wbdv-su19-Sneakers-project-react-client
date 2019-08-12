@@ -16,7 +16,6 @@ class LoginSignUpContainer extends Component {
                 username: "",
                 password: ""
             },
-            uid:''
         }
     }
 
@@ -25,10 +24,9 @@ class LoginSignUpContainer extends Component {
         var body = this.state.user;
         this.userService.login(body)
             .then(res => {
-                if (res >= 1) {
+                if (res != undefined) {
                     var sessionId = Cookies.get().JSESSIONID;
-                    localStorage.setItem(sessionId,res);
-                    console.log(localStorage.getItem(sessionId))
+                    localStorage.setItem(sessionId,JSON.stringify(res)); //json to string
                     this.setState({
                         isLoggedIn: true,
                         uid: res

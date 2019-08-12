@@ -19,10 +19,11 @@ class StockDetailContainer extends Component {
         super(props)
         this.stockService = StockService.getInstance()
         this.productService = ProductService.getInstance()
+
         this.state = {
             detail: {},
             pid: this.props.match.params.pid,
-            uid: localStorage.getItem(Cookies.get("JSESSIONID")),
+            uid: '',
             urlKey: this.props.match.params.urlKey,
             openSuccess: false,
             openFailure: false,
@@ -37,6 +38,13 @@ class StockDetailContainer extends Component {
             .then(responseJSON => this.setState({
                 detail: responseJSON.Product
             }))
+
+        var loginJson = JSON.parse(localStorage.getItem(Cookies.get("JSESSIONID")))
+        if (loginJson != null){
+            this.setState({
+                uid: loginJson.uid
+            })
+        }
     }
 
     addProduct = (urlKey, uid) =>
