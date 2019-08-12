@@ -1,4 +1,4 @@
-export default class ProductService{
+export default class ProductService {
     url = "http://localhost:8080/api/";
     static myInstance = null;
 
@@ -10,13 +10,31 @@ export default class ProductService{
         return this.myInstance;
     }
 
-    addProduct = (urlKey, uid)=>
-        fetch(this.url+ "product/" + urlKey + "/" +uid, {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            }}).then(response => response.json())
+    //trick
+    addProduct = (urlKey, uid) =>
+        fetch(this.url + "product/" + urlKey)
+            .then(res => {
+                if (res.status == 200) {
+                    //product already exists
+                    console.log("sssss")
+                    return fetch(this.url + `user/1/product/${urlKey}`)
+                        .then(response => response) //this will response a status code
+                } else {
+                    //create new product
+                                        console.log("dddd")
 
-    findAllProduct =() =>
-        fetch(this.url +'product').then(response => response.json())
+                   return fetch(this.url + `product/${urlKey}`, {
+                        method: 'POST',
+                        headers: {
+                            'content-type': 'application/json'
+                        }
+                    }).then(() => fetch(this.url + `user/1/product/${urlKey}`))
+                        .then(res =>
+                           res
+                        )
+                }
+            })
+
+    findAllProduct = () =>
+        fetch(this.url + 'product').then(response => response.json())
 }
