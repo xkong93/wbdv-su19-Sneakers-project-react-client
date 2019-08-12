@@ -82,7 +82,7 @@ export default function ProfileEditorComponent({user, first, last}) {
         <div>
             <div className={classes.root}>
                 {/*{console.log(values)}*/}
-                <TextField
+                {user.username != undefined && <TextField
                     id="standard-read-only-input"
                     label="USERNAME"
                     className={classes.textField}
@@ -91,9 +91,9 @@ export default function ProfileEditorComponent({user, first, last}) {
                     InputProps={{
                         readOnly: true,
                     }}
-                />
+                /> }
 
-                <TextField
+                {user.email != undefined && <TextField
                     id="standard-read-only-input"
                     label="EMAIL"
                     className={classes.textField}
@@ -102,10 +102,10 @@ export default function ProfileEditorComponent({user, first, last}) {
                     InputProps={{
                         readOnly: true,
                     }}
-                />
+                /> }
 
 
-                <TextField
+                {user.username != undefined &&<TextField
                     id="standard-read-only-input"
                     label="FIRST NAME"
                     className={classes.textField}
@@ -113,17 +113,17 @@ export default function ProfileEditorComponent({user, first, last}) {
                     value={user.firstName}
                     onChange={first}
 
-                />
-                <TextField
+                />}
+                {user.username != undefined && <TextField
                     id="standard-read-only-input"
                     label="LAST NAME"
                     className={classes.textField}
                     margin="normal"
                     value={user.lastName}
                     onChange={last}
-                />
+                />}
 
-                <FormControl className={clsx(classes.margin, classes.textField)}>
+                {user.username !=undefined && <FormControl className={clsx(classes.margin, classes.textField)}>
                     <InputLabel htmlFor="adornment-password">PASSWORD</InputLabel>
                     <Input
                         id="adornment-password"
@@ -144,7 +144,7 @@ export default function ProfileEditorComponent({user, first, last}) {
                             </InputAdornment>
                         }
                     />
-                </FormControl>
+                </FormControl>}
 
             </div>
             <Box className={classes.Sbutton}>
