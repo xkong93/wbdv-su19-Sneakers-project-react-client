@@ -14,6 +14,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Link from '@material-ui/core/Link';
 import {keys} from "@material-ui/core/styles/createBreakpoints";
+import Cookies from 'js-cookie'
+
 
 function MadeWithLove() {
   return (
@@ -69,28 +71,7 @@ function HomeNotUserComponent({products}) {
       <CssBaseline />
       <main>
         {/* Hero unit */}
-        <div className={classes.heroContent}>
-          <Container maxWidth="md">
-            <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-                    Let's Collect & Review Sneakers!
-            </Typography>
-      {/*<div className="row">*/}
-      {/*                      <div className='input-group mb-3'>*/}
-      {/*                          <input className="form-control"*/}
-      {/*                                 placeholder="Seach for Sneakers"/>*/}
-      {/*                          <div className="input-group-append">*/}
-      {/*                              <button*/}
-      {/*                                  className="btn btn-primary">*/}
-      {/*                                  Search*/}
-      {/*                              </button>*/}
-      {/*                          </div>*/}
-      {/*                      </div>*/}
-      {/*                  </div>*/}
-            <div className={classes.heroButtons}>
 
-            </div>
-          </Container>
-        </div>
           {/*{this.products.map((product, key)=><h1>{product}</h1>)}*/}
         <Container className={classes.cardGrid} maxWidth="md">
           {/* End hero unit */}
@@ -112,12 +93,11 @@ function HomeNotUserComponent({products}) {
                     </Typography>
                   </CardContent>
                   <CardActions>
-                    <Button size="small" color="primary">
-                      View
-                    </Button>
-                    <Button size="small" color="primary">
-                      Edit
-                    </Button>
+
+                      {localStorage.getItem(Cookies.get("JSESSIONID"))!=null &&
+                      (JSON.parse(localStorage.getItem(Cookies.get("JSESSIONID")))).dtype == "Editor" && <Button size="small" color="primary">
+                      Delete
+                    </Button>}
                   </CardActions>
                 </Card>
               </Grid>
