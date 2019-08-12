@@ -35,9 +35,11 @@ export default class UserService {
             }
         })
 
+    findUserByUsername=(uname)=>
+        fetch(this.url + "username/" + uname).then(response => response.json())
 
     findUserById =(uid)=>
-        fetch(this.url + "user/" + uid).then(respose => respose.json())
+        fetch(this.url + "user/" + uid).then(response => response.json())
 
     getPortfolioForUserByUserId = (uid) => {
         return fetch(this.url + `user/${uid}/portfolio`)

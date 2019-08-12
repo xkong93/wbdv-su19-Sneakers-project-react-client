@@ -60,7 +60,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-export default function AddingComponent() {
+export default function AddingComponent({username}) {
     const classes = useStyles();
     const reviewService= ReviewService.getInstance();
     const [values, setValues] = React.useState({
@@ -151,7 +151,7 @@ export default function AddingComponent() {
 
     return (
         <div>
-            {console.log(User)}
+
             <div className={classes.title}><h1>Write Your Reviews</h1></div>
             <Box className={classes.element}>
                 <Box component="fieldset" borderColor="transparent" >
