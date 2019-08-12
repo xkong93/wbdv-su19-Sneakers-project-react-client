@@ -11,6 +11,8 @@ import {Link} from "react-router-dom";
 import {Container} from "@material-ui/core";
 import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
+import Cookies from 'js-cookie'
+
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -67,6 +69,11 @@ const useStyles = makeStyles(theme => ({
 export default function NavigationComponent() {
     const classes = useStyles();
 
+    const logout =()=>{
+        Cookies.remove("JSESSIONID")
+    }
+
+
     return (
 
         <div className={classes.root}>
@@ -93,9 +100,10 @@ export default function NavigationComponent() {
                 </div>
                 }
                     <Link to='/'><Button  className={classes.button}>Home</Button></Link>
-                    <Link to='/login'><Button>Login</Button></Link>
-                    <Link to='/signup'><Button>Sign Up</Button></Link>
-                    <Link to='/search'><Button >Search</Button></Link>
+                {Cookies.get("JSESSIONID") ==null && <Link to='/login'><Button>Login</Button></Link>}
+                {Cookies.get("JSESSIONID") ==null &&<Link to='/signup'><Button>Sign Up</Button></Link>}
+                {Cookies.get("JSESSIONID") !=null && <Link to="/home"><Button  onClick={()=>logout()} >Sign Out</Button></Link>}
+                    <Link to='/search'><Button>Search</Button></Link>
                     <Link to='/user/1/profile'><Button >My Account</Button></Link>
             </Toolbar>
             </AppBar>
