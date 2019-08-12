@@ -36,12 +36,16 @@ const useStyles = makeStyles(theme => ({
 export default function ProfileEditorComponent({handleLastName}) {
     const classes = useStyles();
     const [values, setValues] = React.useState({
-        amount: '',
-        password: '',
-        weight: '',
-        weightRange: '',
+        firstName: "",
+        lastName: "",
+        email: "",
+        password: "",
         showPassword: false,
     });
+
+    const handleChange = prop => event => {
+        setValues({...values, [prop]: event.target.value});
+    };
 
     const handleClickShowPassword = () => {
         setValues({...values, showPassword: !values.showPassword});
@@ -80,6 +84,8 @@ export default function ProfileEditorComponent({handleLastName}) {
                     label="FIRST NAME"
                     className={classes.textField}
                     margin="normal"
+                    value={values.firstName}
+                    onChange={handleChange('firstName')}
 
                 />
                 <TextField
@@ -87,7 +93,8 @@ export default function ProfileEditorComponent({handleLastName}) {
                     label="LAST NAME"
                     className={classes.textField}
                     margin="normal"
-                        onChange={(event) => handleLastName(event)}
+                    value={values.lastName}
+                    onChange={handleChange('lastName')}
                 />
 
                 <FormControl className={clsx(classes.margin, classes.textField)}>
