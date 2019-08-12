@@ -41,6 +41,9 @@ export default class UserService {
     findUserById =(uid)=>
         fetch(this.url + "user/" + uid).then(response => response.json())
 
+    getProductsForUser=(uid)=>
+        fetch(this.url + "user/" + uid + "/product").then(response => response.json())
+
     getPortfolioForUserByUserId = (uid) => {
         return fetch(this.url + `user/${uid}/portfolio`)
             .then(response => response.json())

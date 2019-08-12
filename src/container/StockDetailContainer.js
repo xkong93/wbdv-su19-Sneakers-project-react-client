@@ -12,6 +12,7 @@ import {Snackbar} from "@material-ui/core";
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Cookies from "js-cookie"
+import Divider from "@material-ui/core/Divider";
 
 class StockDetailContainer extends Component {
 
@@ -105,16 +106,18 @@ class StockDetailContainer extends Component {
                 />
                 {/*{console.log(this.state.product.timestamp)}*/}
                 <div className="float-right">
-                    <button type="button" className="btn btn-info"
+                    {Cookies.get("JSESSIONID") !=null && <button type="button" className="btn btn-info"
                             onClick={() => this.addProduct(this.state.urlKey, this.state.uid)}>Add to Collection
-                    </button>
+                    </button>}
                 </div>
                 <StockDetailComponent detail={this.state.detail}/>
                 <ProductReviewContainer params={this.props.match.params}/>
-                <Link href={`/add/${this.state.response.id}/${this.state.uid}`} color="inherit"><Button fullWidth size={"large"}
+                {Cookies.get("JSESSIONID") !=null && <Link href={`/add/${this.state.response.id}/${this.state.uid}`} color="inherit"><Button fullWidth size={"large"}
                                                                                                 variant="outlined"
                                                                                                 color="inherit">Add
-                    Review</Button></Link>
+                    Review</Button></Link>}
+                <Divider />
+                {Cookies.get("JSESSIONID") ==null&& <h3>Please Login Before Add Review or Product</h3>}
             </Container>
         );
     }

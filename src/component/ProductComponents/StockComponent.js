@@ -10,8 +10,7 @@ const StockComponent = ({stock}) => (
         <div className="card-body">
             <h5 className="card-title">{stock.title}</h5>
             <h5 className="card-title">${stock.market.averageDeadstockPrice}</h5>
-            <button className="btn btn-success">Save</button>
-            <button className="btn btn-warning">Remove</button>
+
         </div>
     </div>
 )

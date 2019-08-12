@@ -74,18 +74,18 @@ function HomeNotUserComponent({products}) {
             <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
                     Let's Collect & Review Sneakers!
             </Typography>
-      <div className="row">
-                            <div className='input-group mb-3'>
-                                <input className="form-control"
-                                       placeholder="Seach for Sneakers"/>
-                                <div className="input-group-append">
-                                    <button
-                                        className="btn btn-primary">
-                                        Search
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
+      {/*<div className="row">*/}
+      {/*                      <div className='input-group mb-3'>*/}
+      {/*                          <input className="form-control"*/}
+      {/*                                 placeholder="Seach for Sneakers"/>*/}
+      {/*                          <div className="input-group-append">*/}
+      {/*                              <button*/}
+      {/*                                  className="btn btn-primary">*/}
+      {/*                                  Search*/}
+      {/*                              </button>*/}
+      {/*                          </div>*/}
+      {/*                      </div>*/}
+      {/*                  </div>*/}
             <div className={classes.heroButtons}>
 
             </div>
@@ -108,7 +108,7 @@ function HomeNotUserComponent({products}) {
                         {card.brand}
                     </Typography>
                     <Typography>
-                      {card.description}
+                      ${card.marketPrice}
                     </Typography>
                   </CardContent>
                   <CardActions>
