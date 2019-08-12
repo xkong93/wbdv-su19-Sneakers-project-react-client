@@ -38,24 +38,23 @@ export default function ProfileEditorComponent({user}) {
     const classes = useStyles();
     const userService = UserService.getInstance();
 
-    // const [values, setValues] = React.useState({
-    //     firstName: user.firstName,
-    //     lastName: user.lastName,
-    //     email: user.email,
-    //     password: user.password,
-    //     username: user.username,
-    //     showPassword: false,
-    // });
-
-    {console.log(user)}
     const [values, setValues] = React.useState({
-        firstName: '123',
-        lastName: 'user.lastName',
-        email: 'user.email',
-        password: 'user.password',
-        username: 'user.username',
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        password: user.password,
+        username: user.username,
         showPassword: false,
     });
+    {console.log(user)}
+    // const [values, setValues] = React.useState({
+    //     firstName: '123',
+    //     lastName: 'user.lastName',
+    //     email: 'user.email',
+    //     password: 'user.password',
+    //     username: 'user.username',
+    //     showPassword: false,
+    // });
 
     const handleChange = prop => event => {
         setValues({...values, [prop]: event.target.value});
