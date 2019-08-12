@@ -35,14 +35,11 @@ export default class HomeContainer extends Component {
         return (
 
             <div>
-                <div >
-                    <Container maxWidth="md">
-                        <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-                            Let's Collect & Review Sneakers!
-                        </Typography>
-                        {Cookies.get("JSESSIONID") != null &&<h3 align="center">Your Collection:</h3>}
-                    </Container>
-                </div>
+                {/*<div >*/}
+                {/*    <Container maxWidth="md">*/}
+                {/*        {Cookies.get("JSESSIONID") != null &&<h3 align="center">Your Collection:</h3>}*/}
+                {/*    </Container>*/}
+                {/*</div>*/}
 
                 {Cookies.get("JSESSIONID") != null && this.state.products !=null &&<HomeNotUserComponent products={this.state.UserProduct}></HomeNotUserComponent>}
                 {Cookies.get("JSESSIONID") == null &&<HomeNotUserComponent products={this.state.products}></HomeNotUserComponent>}
