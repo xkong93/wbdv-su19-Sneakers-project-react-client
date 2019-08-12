@@ -36,7 +36,7 @@ class SearchStockContainer extends Component {
             <div className="container">
                 <div className="row">
 
-                    <h1>Search Stock</h1>
+                    <h1>Search Sneaker</h1>
                     <div className='input-group mb-3'>
                         <input className="form-control"
                                value={this.state.keywords}
