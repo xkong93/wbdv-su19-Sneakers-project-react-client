@@ -11,8 +11,8 @@ export default class UserService {
         return this.myInstance;
     }
 
-    createUser=(User)=>
-        fetch(this.url+'user', {
+    createUser = (User) =>
+        fetch(this.url + 'user', {
             method: 'POST',
             body: JSON.stringify(User),
             headers: {
@@ -32,13 +32,19 @@ export default class UserService {
             credentials: 'include'//required
         }).then(res => res)
 
-    getPortfolioForUserByUserId = (uid) =>{
-        return fetch(this.url +`user/${uid}/portfolio`)
+    getPortfolioForUserByUserId = (uid) => {
+        return fetch(this.url + `user/${uid}/portfolio`)
             .then(response => response.json())
-        }
+    }
 
-    getPublicProfileForUserByUserId = (uid) =>{
-        return fetch (this.url +`user/${uid}/publicProfile`)
+    getPublicProfileForUserByUserId = (uid) => {
+        return fetch(this.url + `user/${uid}/publicProfile`)
+            .then(response => response.json())
+    }
+
+
+    getPrivateProfileForUserByUserId = (uid) => {
+        return fetch(this.url + `user/${uid}/privateProfile`)
             .then(response => response.json())
     }
 

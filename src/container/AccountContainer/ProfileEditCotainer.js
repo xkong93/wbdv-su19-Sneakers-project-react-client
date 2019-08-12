@@ -1,39 +1,46 @@
 import React, {Component} from 'react';
-import ProfileComponent from '../../component/AccountComponents/ProfileComponent'
-import PortfolioComponent from '../../component/AccountComponents/PortfolioComponent'
-import PortfolioContainer from "./PortfolioContainer";
 import Container from '@material-ui/core/Container'
 import {withStyles} from '@material-ui/core/styles';
 import UserService from "../../services/UserService"
+import ProfileEditorComponent from "../../component/AccountComponents/ProfileEditorComponent";
 
-class ProfileContainer extends Component {
+class ProfileEditCotainer extends Component {
 
      constructor(props) {
         super(props);
         this.match = this.props.match
         this.uid = this.match.params.uid
         this.userSerivice = UserService.getInstance()
-        this.state = {
+         this.handleFirstNameChange = this.handleFirstNameChange.bind(this)
+         this.state = {
             user: "",
         }
+
+
     }
 
    componentDidMount() {
-        this.userSerivice.getPublicProfileForUserByUserId(this.uid)
+        this.userSerivice.getPrivateProfileForUserByUserId(this.uid)
             .then(response => this.setState({
                 user:response
             }))
     }
 
-
+    //两个bind 方法实验了 都不行
+    handleLastName = () => {
+        console.log("ddddd")
+    }
 
     render() {
         return (
 
             <Container maxWidth="md">
                 <div>
-                    {this.state.user.username != undefined && <ProfileComponent
-                        user={this.state.user}/>}
+                    {<ProfileEditorComponent
+                        handleLastName={this.handleFirstNameChange}
+                        user={this.state.user}/>
+
+                    }
                 </div>
 
             </Container>
@@ -41,4 +48,4 @@ class ProfileContainer extends Component {
     }
 }
 
-export default ProfileContainer;
+export default ProfileEditCotainer;

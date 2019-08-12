@@ -13,21 +13,6 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import Button from '@material-ui/core/Button';
 import {Box} from "@material-ui/core";
 
-const ranges = [
-    {
-        value: '0-20',
-        label: '0 to 20',
-    },
-    {
-        value: '21-50',
-        label: '21 to 50',
-    },
-    {
-        value: '51-100',
-        label: '51 to 100',
-    },
-];
-
 const useStyles = makeStyles(theme => ({
     root: {
         display: 'flex',
@@ -48,7 +33,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-export default function ProfileEditorComponent() {
+export default function ProfileEditorComponent({handleLastName}) {
     const classes = useStyles();
     const [values, setValues] = React.useState({
         amount: '',
@@ -57,10 +42,6 @@ export default function ProfileEditorComponent() {
         weightRange: '',
         showPassword: false,
     });
-
-    const handleChange = prop => event => {
-        setValues({...values, [prop]: event.target.value});
-    };
 
     const handleClickShowPassword = () => {
         setValues({...values, showPassword: !values.showPassword});
@@ -73,56 +54,48 @@ export default function ProfileEditorComponent() {
     return (
         <div>
             <div className={classes.root}>
-                <TextField fullWidth
-                           label="Username"
-                           id="simple-start-adornment"
-                           className={clsx(classes.margin, classes.textField)}
-                           InputProps={{
-                               startAdornment: <InputAdornment position="start">Username</InputAdornment>,
-                           }}
+                <TextField
+                    id="standard-read-only-input"
+                    label="USERNAME"
+                    className={classes.textField}
+                    margin="normal"
+                    InputProps={{
+                        readOnly: true,
+                    }}
                 />
-                {/*<TextField*/}
-                {/*    select*/}
-                {/*    label="With Select"*/}
-                {/*    className={clsx(classes.margin, classes.textField)}*/}
-                {/*    value={values.weightRange}*/}
-                {/*    onChange={handleChange('weightRange')}*/}
-                {/*    InputProps={{*/}
-                {/*        startAdornment: <InputAdornment position="start">Kg</InputAdornment>,*/}
-                {/*    }}*/}
-                {/*>*/}
-                {/*    {ranges.map(option => (*/}
-                {/*        <MenuItem key={option.value} value={option.value}>*/}
-                {/*            {option.label}*/}
-                {/*        </MenuItem>*/}
-                {/*    ))}*/}
-                {/*</TextField>*/}
+
+                <TextField
+                    id="standard-read-only-input"
+                    label="EMAIL"
+                    className={classes.textField}
+                    margin="normal"
+                    InputProps={{
+                        readOnly: true,
+                    }}
+                />
+
+
+                <TextField
+                    id="standard-read-only-input"
+                    label="FIRST NAME"
+                    className={classes.textField}
+                    margin="normal"
+
+                />
+                <TextField
+                    id="standard-read-only-input"
+                    label="LAST NAME"
+                    className={classes.textField}
+                    margin="normal"
+                        onChange={(event) => handleLastName(event)}
+                />
+
                 <FormControl className={clsx(classes.margin, classes.textField)}>
-                    <InputLabel htmlFor="adornment-amount">FirstName</InputLabel>
-                    <Input
-                        id="adornment-amount"
-                        value={values.amount}
-                        onChange={handleChange('amount')}
-                        startAdornment={<InputAdornment position="start">FirstName</InputAdornment>}
-                    />
-                </FormControl>
-                <FormControl className={clsx(classes.margin, classes.textField)}>
-                    <InputLabel htmlFor="adornment-amount">LastName</InputLabel>
-                    <Input
-                        id="adornment-weight"
-                        value={values.weight}
-                        onChange={handleChange('weight')}
-                        startAdornment={<InputAdornment position="start">LastName</InputAdornment>}
-                        aria-describedby="weight-helper-text"
-                    />
-                </FormControl>
-                <FormControl className={clsx(classes.margin, classes.textField)}>
-                    <InputLabel htmlFor="adornment-password">Password</InputLabel>
+                    <InputLabel htmlFor="adornment-password">PASSWORD</InputLabel>
                     <Input
                         id="adornment-password"
                         type={values.showPassword ? 'text' : 'password'}
                         value={values.password}
-                        onChange={handleChange('password')}
                         endAdornment={
                             <InputAdornment position="end">
                                 <IconButton
@@ -136,6 +109,7 @@ export default function ProfileEditorComponent() {
                         }
                     />
                 </FormControl>
+
             </div>
             <Box className={classes.Sbutton}>
                 <Button variant="outlined" color="inherit" className={classes.button}>
