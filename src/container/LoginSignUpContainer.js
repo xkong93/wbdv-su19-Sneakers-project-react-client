@@ -4,8 +4,7 @@ import SignupComponent from '../component/LoginSignUpComponents/SignUpComponent'
 import ProfileComponent from '../component/AccountComponents/ProfileComponent'
 import UserService from "../services/UserService"
 import {Redirect} from 'react-router';
-
-
+import Cookies from 'js-cookie'
 class LoginSignUpContainer extends Component {
     constructor(props) {
         super(props);
@@ -16,7 +15,8 @@ class LoginSignUpContainer extends Component {
             user: {
                 username: "",
                 password: ""
-            }
+            },
+            uid:''
         }
     }
 
@@ -25,9 +25,13 @@ class LoginSignUpContainer extends Component {
         var body = this.state.user;
         this.userService.login(body)
             .then(res => {
-                if (res.status == 200) {
+                if (res >= 1) {
+                    var sessionId = Cookies.get().JSESSIONID;
+                    localStorage.setItem(sessionId,res);
+                    console.log(localStorage.getItem(sessionId))
                     this.setState({
-                        isLoggedIn: true
+                        isLoggedIn: true,
+                        uid: res
                     })
                 } else {
                     this.setState({isFailed: true}, () => {
@@ -40,7 +44,6 @@ class LoginSignUpContainer extends Component {
     }
 
     handleUserName = (e) => {
-        console.log(e.target.value)
         this.setState({
             user: {
                 username: e.target.value,

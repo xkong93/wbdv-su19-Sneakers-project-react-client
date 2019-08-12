@@ -59,8 +59,12 @@ export default function SignUp() {
         username: "",
         role:""
     })
-    const createUser = (User) =>
-        userService.createUser(User)
+
+    const createUser = (User,) =>{
+        console.log(User)
+                userService.createUser(User)
+
+    }
 
 
     const handleChange = prop => event => {

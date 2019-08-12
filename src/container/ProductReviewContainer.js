@@ -63,7 +63,7 @@ class ProductReviewContainer extends Component {
 
         if (this.props.match != undefined) {
             var uid = this.props.match.params.uid
-            this.reviewService.getReviewsByUser(1)
+            this.reviewService.getReviewsByUser(uid)
                 .then(res => this.modifiedReviewsByUser(res))
 
         }

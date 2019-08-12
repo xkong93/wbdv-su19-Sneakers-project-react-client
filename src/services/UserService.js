@@ -29,7 +29,11 @@ export default class UserService {
                 'Content-Type': 'application/json',
             },
             credentials: 'include'//required
-        }).then(res => res)
+        }).then(res => {
+            if (res.status == 200){
+                return res.json()
+            }
+        })
 
 
     findUserById =(uid)=>

@@ -11,7 +11,7 @@ import ProductService from "../services/ProductService";
 import {Snackbar} from "@material-ui/core";
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
-
+import Cookies from "js-cookie"
 
 class StockDetailContainer extends Component {
 
@@ -22,7 +22,7 @@ class StockDetailContainer extends Component {
         this.state = {
             detail: {},
             pid: this.props.match.params.pid,
-            uid: this.props.match.params.uid,
+            uid: localStorage.getItem(Cookies.get("JSESSIONID")),
             urlKey: this.props.match.params.urlKey,
             openSuccess: false,
             openFailure: false,
