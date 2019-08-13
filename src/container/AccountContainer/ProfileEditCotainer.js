@@ -26,10 +26,10 @@ class ProfileEditCotainer extends Component {
         }
 
 
-    firstNameChange=(e)=>
-        this.setState({user:{firstName :e.target.value}})
-    lastNameChange=(e)=>
-        this.setState({user:{lastName :e.target.value}})
+    firstNameChange=(u)=>
+        this.setState({user: u})
+    lastNameChange=(u)=>
+        this.setState({user: u})
 
 
 

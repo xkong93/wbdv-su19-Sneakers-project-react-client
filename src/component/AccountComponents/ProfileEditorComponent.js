@@ -81,7 +81,7 @@ export default function ProfileEditorComponent({user, first, last}) {
     return (
         <div>
             <div className={classes.root}>
-                {/*{console.log(values)}*/}
+                {console.log(user)}
                 {user.username != undefined && <TextField
                     id="standard-read-only-input"
                     label="USERNAME"
@@ -105,25 +105,25 @@ export default function ProfileEditorComponent({user, first, last}) {
                 /> }
 
 
-                {user.username != undefined &&<TextField
+                {user.firstName != undefined &&<TextField
                     id="standard-read-only-input"
                     label="FIRST NAME"
                     className={classes.textField}
                     margin="normal"
                     value={user.firstName}
-                    onChange={first}
+                    onChange={(e)=>first({...user, firstName: e.target.value})}
 
                 />}
-                {user.username != undefined && <TextField
+                {user.lastName != undefined && <TextField
                     id="standard-read-only-input"
                     label="LAST NAME"
                     className={classes.textField}
                     margin="normal"
                     value={user.lastName}
-                    onChange={last}
+                    onChange={(e)=>last({...user, lastName: e.target.value})}
                 />}
 
-                {user.username !=undefined && <FormControl className={clsx(classes.margin, classes.textField)}>
+                {user.password !=undefined && <FormControl className={clsx(classes.margin, classes.textField)}>
                     <InputLabel htmlFor="adornment-password">PASSWORD</InputLabel>
                     <Input
                         id="adornment-password"
@@ -148,7 +148,7 @@ export default function ProfileEditorComponent({user, first, last}) {
 
             </div>
             <Box className={classes.Sbutton}>
-                <Button onClick={ ()=> updateUser(values, uid)} variant="outlined" color="inherit" className={classes.button}>
+                <Button onClick={ ()=> updateUser(user, uid)} variant="outlined" color="inherit" className={classes.button}>
                     Submit
                 </Button>
             </Box>
