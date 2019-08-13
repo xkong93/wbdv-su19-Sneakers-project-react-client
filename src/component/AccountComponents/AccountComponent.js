@@ -66,7 +66,7 @@ function AccountComponent(props) {
   const classes = useStyles();
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
-
+  const id= (JSON.parse(localStorage.getItem(Cookies.get("JSESSIONID")))).uid
   function handleDrawerToggle() {
     setMobileOpen(!mobileOpen);
   }
@@ -86,7 +86,7 @@ function AccountComponent(props) {
         ))}
       </List>
       <Divider />
-        {Cookies.get("JSESSIONID") != undefined &&<List>
+        {id == props.match.params.uid &&<List>
         {['Setting'].map((text, index) => (
             <Link to={`/user/${props.match.params.uid}/${text.toLowerCase()}`}>
           <ListItem button key={text}>
