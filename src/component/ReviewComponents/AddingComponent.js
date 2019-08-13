@@ -1,15 +1,7 @@
 import React from 'react';
-import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import FormControl from '@material-ui/core/FormControl';
 import TextField from '@material-ui/core/TextField';
-import Visibility from '@material-ui/icons/Visibility';
-import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import Button from '@material-ui/core/Button';
 import Rating from '@material-ui/lab/Rating';
 import Typography from '@material-ui/core/Typography';
@@ -19,6 +11,7 @@ import Divider from '@material-ui/core/Divider';
 import ReviewService from "../../services/ReviewService";
 import {Snackbar} from "@material-ui/core";
 import CloseIcon from "@material-ui/core/SvgIcon/SvgIcon";
+import Link from "@material-ui/core/Link"
 
 
 const ranges = [
@@ -62,7 +55,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-export default function AddingComponent({uid, pid}) {
+export default function AddingComponent({uid, pid, url}) {
     const classes = useStyles();
     const reviewService= ReviewService.getInstance();
     const [values, setValues] = React.useState({
@@ -339,6 +332,11 @@ export default function AddingComponent({uid, pid}) {
                 <Button onClick={()=>createReview(User, uid,pid)} fullWidth size={"large"} variant="outlined" color="secondary" className={classes.button}>
                     Submit Review
                 </Button>
+            </Box>
+            <Box className={classes.Sbutton}>
+                <Link href={`/detail/${url}`}><Button fullWidth size={"large"} variant="outlined" color="inherit" className={classes.button}>
+                    Back to Product
+                </Button></Link>
             </Box>
         </div>
     );
