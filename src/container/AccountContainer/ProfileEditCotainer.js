@@ -30,7 +30,8 @@ class ProfileEditCotainer extends Component {
         this.setState({user: u})
     lastNameChange=(u)=>
         this.setState({user: u})
-
+    passwordChange=(u)=>
+        this.setState({user: u})
 
 
 
@@ -42,7 +43,7 @@ class ProfileEditCotainer extends Component {
                 {console.log(this.state.user)}
                 <div>
                     {Cookies.get("JSESSIONID") != undefined && <ProfileEditorComponent
-                        user={this.state.user} first={this.firstNameChange} last={this.lastNameChange}/>
+                        user={this.state.user} first={this.firstNameChange} last={this.lastNameChange} pass={this.passwordChange}/>
 
                     }
                 </div>

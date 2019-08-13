@@ -28,7 +28,7 @@ class Main extends Component {
                         <Route path="/signup" component={SignUpComponent}/>
                         <Route path="/search" component={SearchStockContainer}/>
                         <Route path="/detail/:urlKey" component={StockDetailContainer}/>
-                        <Route path="/add/:pid/:uid" component={AddingRContainer}/>
+                        <Route path="/add/:urlKey/:pid/:uid" component={AddingRContainer}/>
                         <Route path="/user/:uid" component={AccountContainer}/>
                         </Switch>
                 </Router>

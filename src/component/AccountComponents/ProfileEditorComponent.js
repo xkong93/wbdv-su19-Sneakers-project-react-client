@@ -11,9 +11,11 @@ import TextField from '@material-ui/core/TextField';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import Button from '@material-ui/core/Button';
-import {Box} from "@material-ui/core";
+import {Box, Snackbar} from "@material-ui/core";
 import UserService from "../../services/UserService";
 import Cookies from "js-cookie";
+import CloseIcon from "@material-ui/core/SvgIcon/SvgIcon";
+import Container from "@material-ui/core/Container";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -35,30 +37,18 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-export default function ProfileEditorComponent({user, first, last}) {
+export default function ProfileEditorComponent({user, first, last, pass}) {
     const classes = useStyles();
     const userService = UserService.getInstance();
     const uid = (JSON.parse(localStorage.getItem(Cookies.get("JSESSIONID")))).uid
 
+    //for test purpose
     const [values, setValues] = React.useState({
-        firstName: user.firstName,
-        lastName: user.lastName,
-        email: user.email,
-        password: user.password,
-        username: user.username,
         showPassword: false,
+        openSuccess: false,
+        openFailure: false,
+        re: {}
     });
-
-
-
-    // const [values, setValues] = React.useState(()=>{
-    //     const firstName = user.firstName
-        // lastName: last,
-        // email: 'user.email',
-        // password: 'user.password',
-        // username: 'user.username',
-        // showPassword: false,
-    // });
 
 
 
@@ -74,12 +64,53 @@ export default function ProfileEditorComponent({user, first, last}) {
         event.preventDefault();
     };
 
-
     const updateUser =(user, uid)=>
-        userService.updateUser(user, uid)
+        userService.updateUser(user, uid).then(response => {
+        if (response.status != 200) {
+            setValues({...values, openFailure: true})
+        } else {
+            setValues({...values, openSuccess: true})
+        }
+    })
+
+    const closeSnackbar = () => {
+        setValues({...values, openFailure: false})
+        setValues({...values, openSuccess: false})
+    }
 
     return (
         <div>
+            <Snackbar
+                anchorOrigin={{vertical: "top", horizontal: "right"}}
+                open={values.openSuccess}
+                autoHideDuration={3000}
+                message={<span id="message-id">Update Succeed!</span>}
+                ContentProps={{
+                    "aria-describedby": "message-id"
+                }}
+                onClose={closeSnackbar}
+                action={[
+                    <IconButton onClick={closeSnackbar} color='inherit' key='close' aria-label='close'>
+                        <CloseIcon/>
+                    </IconButton>
+                ]}
+            />
+
+            <Snackbar
+                anchorOrigin={{vertical: "top", horizontal: "right"}}
+                open={values.openFailure}
+                autoHideDuration={3000}
+                message={<span id="message-id">Update Fail! </span>}
+                ContentProps={{
+                    "aria-describedby": "message-id"
+                }}
+                onClose={closeSnackbar}
+                action={[
+                    <IconButton onClick={closeSnackbar} color='inherit' key='close' aria-label='close'>
+                        <CloseIcon/>
+                    </IconButton>
+                ]}
+            />
             <div className={classes.root}>
                 {console.log(user)}
                 {user.username != undefined && <TextField
@@ -129,9 +160,7 @@ export default function ProfileEditorComponent({user, first, last}) {
                         id="adornment-password"
                         type={values.showPassword ? 'text' : 'password'}
                         value={user.password}
-                        InputProps={{
-                            readOnly: true,
-                        }}
+                        onChange={(e)=>pass({...user, password: e.target.value})}
                         endAdornment={
                             <InputAdornment position="end">
                                 <IconButton

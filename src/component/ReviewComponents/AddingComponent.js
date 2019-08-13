@@ -17,6 +17,8 @@ import Box from '@material-ui/core/Box';
 import Slider from '@material-ui/core/Slider';
 import Divider from '@material-ui/core/Divider';
 import ReviewService from "../../services/ReviewService";
+import {Snackbar} from "@material-ui/core";
+import CloseIcon from "@material-ui/core/SvgIcon/SvgIcon";
 
 
 const ranges = [
@@ -60,13 +62,16 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-export default function AddingComponent({username}) {
+export default function AddingComponent({uid, pid}) {
     const classes = useStyles();
     const reviewService= ReviewService.getInstance();
     const [values, setValues] = React.useState({
         overall:'',
         description: '',
-        isRecommend: false
+        isRecommend: false,
+        openFailure: false,
+        openSuccess: false
+
     });
 
     const [size, setSize] = React.useState('');
@@ -102,9 +107,19 @@ export default function AddingComponent({username}) {
 
 
     function createReview (review, pid, uid) {
-        reviewService.createReview(review, pid, uid);
+        reviewService.createReview(review, pid, uid).then(response => {
+            if (response.status != 200) {
+                setValues({...values, openFailure: true})
+            } else {
+                setValues({...values, openSuccess: true})
+            }
+        });
     }
 
+    const closeSnackbar = () => {
+        setValues({...values, openFailure: false})
+        setValues({...values, openSuccess: false})
+    }
 
     const User={
         overall: values.overall,
@@ -151,7 +166,37 @@ export default function AddingComponent({username}) {
 
     return (
         <div>
+            <Snackbar
+                anchorOrigin={{vertical: "top", horizontal: "right"}}
+                open={values.openSuccess}
+                autoHideDuration={3000}
+                message={<span id="message-id">Update Succeed!</span>}
+                ContentProps={{
+                    "aria-describedby": "message-id"
+                }}
+                onClose={closeSnackbar}
+                action={[
+                    <IconButton onClick={closeSnackbar} color='inherit' key='close' aria-label='close'>
+                        <CloseIcon/>
+                    </IconButton>
+                ]}
+            />
 
+            <Snackbar
+                anchorOrigin={{vertical: "top", horizontal: "right"}}
+                open={values.openFailure}
+                autoHideDuration={3000}
+                message={<span id="message-id">Update Fail! </span>}
+                ContentProps={{
+                    "aria-describedby": "message-id"
+                }}
+                onClose={closeSnackbar}
+                action={[
+                    <IconButton onClick={closeSnackbar} color='inherit' key='close' aria-label='close'>
+                        <CloseIcon/>
+                    </IconButton>
+                ]}
+            />
             <div className={classes.title}><h1>Write Your Reviews</h1></div>
             <Box className={classes.element}>
                 <Box component="fieldset" borderColor="transparent" >
@@ -263,18 +308,18 @@ export default function AddingComponent({username}) {
 
             <Divider />
 
-            <Box className={classes.element} >
-                <TextField
-                    id="standard-multiline-flexible"
-                    label="Your Opinion in one sentence"
-                    multiline
-                    rowsMax="1"
-                    value={values.multiline}
-                    onChange={handleChange('multiline')}
-                    className={classes.textField}
-                    margin="normal"
-                />
-            </Box>
+            {/*<Box className={classes.element} >*/}
+            {/*    <TextField*/}
+            {/*        id="standard-multiline-flexible"*/}
+            {/*        label="Your Opinion in one sentence"*/}
+            {/*        multiline*/}
+            {/*        rowsMax="1"*/}
+            {/*        value={values.multiline}*/}
+            {/*        onChange={handleChange('multiline')}*/}
+            {/*        className={classes.textField}*/}
+            {/*        margin="normal"*/}
+            {/*    />*/}
+            {/*</Box>*/}
             <Box className={classes.element} >
                 <TextField
                     id="standard-multiline-static"
@@ -291,7 +336,7 @@ export default function AddingComponent({username}) {
             <Divider />
 
             <Box className={classes.Sbutton}>
-                <Button onClick={()=>createReview(User, 1,1)} fullWidth size={"large"} variant="outlined" color="secondary" className={classes.button}>
+                <Button onClick={()=>createReview(User, uid,pid)} fullWidth size={"large"} variant="outlined" color="secondary" className={classes.button}>
                     Submit Review
                 </Button>
             </Box>

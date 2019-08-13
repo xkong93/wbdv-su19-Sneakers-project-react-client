@@ -65,7 +65,7 @@ class StockDetailContainer extends Component {
                 .then(response => {
                     if (response.status != 200) {
                         this.setState({
-                            openFailure: true
+                            openFailure: true,
                         })
                     } else {
                         this.setState({
@@ -92,14 +92,14 @@ class StockDetailContainer extends Component {
     }
 
     render() {
-        const url = "/add/" + this.state.response.id + "/" + this.state.uid
+        const url = "/add/"+ this.state.urlKey + "/" + this.state.response.id + "/" + this.state.uid
         return (
             <Container maxWidth="lg">
                 <Snackbar
                     anchorOrigin={{vertical: "top", horizontal: "left"}}
                     open={this.state.openSuccess}
                     autoHideDuration={3000}
-                    message={<span id="message-id">Added to your portfolio!</span>}
+                    message={<span id="message-id">Added to your portfolio! Please refresh!</span>}
                     ContentProps={{
                         "aria-describedby": "message-id"
                     }}
@@ -135,12 +135,16 @@ class StockDetailContainer extends Component {
                 </div>
                 <StockDetailComponent detail={this.state.detail}/>
                 <ProductReviewContainer params={this.props.match.params}/>
+                <br/>
                 <Link href={Cookies.get("JSESSIONID") != undefined ? `${url}` : "/login"} color="inherit">
                     <Button fullWidth
                             size={"large"}
                             variant="outlined"
+                            onClick={(Cookies.get("JSESSIONID") != undefined)?
+                                ()=>this.addProduct(this.state.urlKey, this.state.uid): ""}
                             color="inherit">Add
                         Review</Button></Link>
+                {/*{this.state.response.id ==null && <h2>Click Add Collection Before Writting a Review</h2> }*/}
                 {this.renderRedirectLogin()}
 
             </Container>
