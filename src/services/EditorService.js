@@ -11,12 +11,18 @@ export default class EditorService {
         return this.myInstance;
     }
 
-    createEditor = (editor, code)=>
+    createEditor = (editor, code) =>
         fetch(this.url + "editor/" + code, {
             method: 'POST',
             body: JSON.stringify(editor),
             headers: {
                 'content-type': 'application/json'
             }
-        })
+        }).then(res => res)
+
+
+    getAllEditor = () =>
+        fetch(this.url + "editor/product")
+            .then(res => res.json());
+
 }

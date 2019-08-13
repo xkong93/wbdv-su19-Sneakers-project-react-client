@@ -3,11 +3,11 @@ import SearchStockContainer from "./SearchStockContainer";
 import {BrowserRouter as Router, Switch,Route, Link} from "react-router-dom";
 import StockDetailContainer from "./StockDetailContainer";
 import HomeContainer from "./HomeContainer"
-import NavigationComponent from "../component/NavigationComponent";
+import NavigationComponent from "../component/HomeComponents/NavigationComponent";
 import ProductReviewContainer from "./ProductReviewContainer";
 import LoginComponent from "../component/LoginSignUpComponents/LoginComponent";
 import SignUpComponent from "../component/LoginSignUpComponents/SignUpComponent";
-import NaviComponent from "../component/NaviComponent"
+import NaviComponent from "../component/HomeComponents/NaviComponent"
 import LoginSignUpContainer from "./LoginSignUpContainer";
 import ProfileContainer from "./AccountContainer/ProfileContainer";
 import PortfolioContainer from "./AccountContainer/PortfolioContainer";
