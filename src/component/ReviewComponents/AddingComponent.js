@@ -102,7 +102,10 @@ export default function AddingComponent({username}) {
 
 
     function createReview (review, pid, uid) {
-        reviewService.createReview(review, pid, uid);
+        reviewService.createReview(review, pid, uid)
+            // .then(res => {
+            //     if (res.status == 200){}
+            // });
     }
 
 

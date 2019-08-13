@@ -104,7 +104,7 @@ export default function NavigationComponent() {
                 {Cookies.get("JSESSIONID") ==null && <Link to='/login'><Button>Login</Button></Link>}
                 {Cookies.get("JSESSIONID") ==null &&<Link to='/signup'><Button>Sign Up</Button></Link>}
                 {Cookies.get("JSESSIONID") !=null && <Link to="/home"><Button  onClick={()=>logout()} >Sign Out</Button></Link>}
-                    <Link to='/search'><Button>Search</Button></Link>
+                    <Link to='/search/keywords'><Button>Search</Button></Link>
                 {loginJson != null && <Link to={`/user/${loginJson.uid}/profile`}><Button >My Account</Button></Link>}
             </Toolbar>
             </AppBar>

@@ -12,6 +12,7 @@ import {withStyles} from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
+import {Link} from "react-router-dom";
 
 
 const styles = theme => ({
@@ -106,10 +107,12 @@ class HomeContainer extends Component {
                                     <input className="form-control"
                                            placeholder="Seach for Sneakers"/>
                                     <div className="input-group-append">
-                                        <button
-                                            className="btn btn-primary">
-                                            Search
-                                        </button>
+                                        <Link to='/search/keywords'>
+                                            <button
+                                                className="btn btn-primary">
+                                                Search
+                                            </button>
+                                        </Link>
                                     </div>
                                 </div>
                             </div>
@@ -117,10 +120,14 @@ class HomeContainer extends Component {
                             </div>
                         </Container>
                     </div>
+
+
                     {this.state.editorPickProducts.length > 0 && <Container maxWidth="md">
                         <h3>EDITORS' PICKS</h3>
                         <EditorProductComponent editorProducts={this.state.editorPickProducts}/>
                     </Container>}
+
+
                     {Cookies.get("JSESSIONID") != undefined && this.state.userProducts.length > 0 &&
                     <Container maxWidth="md">
                         <h3>MY COLLECTION</h3>
