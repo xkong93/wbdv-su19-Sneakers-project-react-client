@@ -18,7 +18,7 @@ export default class ReviewService {
             headers: {
                 'content-type': 'application/json'
             }
-        })
+        }).then(res => res)
 
     getReviewsForProduct = (urlKey) =>
         fetch(this.url + `product/${urlKey}/review`)
