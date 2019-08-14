@@ -8,6 +8,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import {Container} from "@material-ui/core";
 import Button from '@material-ui/core/Button';
+import UserService from "../../services/UserService"
 
 
 const styles = theme => ({
@@ -25,27 +26,53 @@ const styles = theme => ({
     },
 });
 
-function deleteItem(i) {
-    const {items} = this.state;
-    items.splice(i, 1);
-    this.setState({items});
-}
 
 class PortfolioComponent extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            portfolio: '',
-
+            portfolioItems: this.props.portfolio.portfolioItems,
+            totalItem: this.props.portfolio.totalItem,
+            retailSum: this.props.portfolio.retailSum,
+            marketSum: this.props.portfolio.marketSum,
+            gainLossSum: this.props.portfolio.gainLossSum
         }
+        this.userService = UserService.getInstance();
     }
 
-    componentDidMount() {
+    deleteItem = (i) => {
+        const items = this.state.portfolioItems;
+        const itemCount = 1;
+        const itemRetail = this.state.portfolioItems[i].retailPrice;
+        const itemMarket = this.state.portfolioItems[i].marketPrice;
+        const itemGainLoss = this.state.portfolioItems[i].gainLoss;
+        const totalCount = this.state.totalItem - itemCount;
+        const retailSum = this.state.retailSum - itemRetail;
+        const marketSum = this.state.marketSum - itemMarket;
+        const gainLossSum = this.state.gainLossSum - itemGainLoss;
+        const productUrlKey =  this.state.portfolioItems[i].productUrlKey
+        items.splice(i, 1);
         this.setState({
-            portfolio: this.props.portfolio
-        })
+            portfolioItems: items,
+            totalItem: totalCount,
+            retailSum: retailSum,
+            marketSum: marketSum,
+            gainLossSum: gainLossSum
+        });
+
+        this.DeleteProductFromUser(this.props.uid,productUrlKey)
     }
+
+    DeleteProductFromUser = (uid,pid) =>{
+        this.userService.DeleteProductFromUserById(uid,pid)
+    }
+
+    // componentDidMount() {
+    //     this.setState({
+    //         portfolio: this.props.portfolio
+    //     })
+    // }
 
     render() {
         const {classes} = this.props;
@@ -66,15 +93,14 @@ class PortfolioComponent extends Component {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {this.portfolio.portfolioItems.map((row,i) => (
+                            {this.state.portfolioItems.map((row, i) => (
                                 <TableRow key={`row-${i}`}>
                                     <TableCell align="center"> <Button
-                                        onClick={() => deleteItem(i)}
+                                        onClick={() => this.deleteItem(i)}
                                         color="secondary"
                                     >
                                         Delete
                                     </Button></TableCell>
-                                    <h1>{i}</h1>
                                     <TableCell component="th" scope="row">
                                         <img className={classes.image} src={row.imageUrl} alt="Logo"/>
                                         <span>{row.name}</span>
@@ -88,11 +114,13 @@ class PortfolioComponent extends Component {
                             ))}
 
                             <TableRow>
-                                <TableCell align="center">Totals:&nbsp;{this.portfolio.totalItem} Items </TableCell>
+                                <TableCell colSpan={1}/>
+                                <TableCell
+                                    align="center">Totals:&nbsp;{this.state.totalItem} Items </TableCell>
                                 <TableCell colSpan={2}/>
-                                <TableCell align="center">${this.portfolio.retailSum} </TableCell>
-                                <TableCell align="center">${this.portfolio.marketSum} </TableCell>
-                                <TableCell align="center">${this.portfolio.gainLossSum} </TableCell>
+                                <TableCell align="center">${this.state.retailSum} </TableCell>
+                                <TableCell align="center">${this.state.marketSum} </TableCell>
+                                <TableCell align="center">${this.state.gainLossSum} </TableCell>
 
                             </TableRow>
                         </TableBody>

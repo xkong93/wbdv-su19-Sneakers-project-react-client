@@ -30,18 +30,18 @@ export default class UserService {
             },
             credentials: 'include'//required
         }).then(res => {
-            if (res.status == 200){
+            if (res.status == 200) {
                 return res.json()
             }
         })
 
-    findUserByUsername=(uname)=>
+    findUserByUsername = (uname) =>
         fetch(this.url + "username/" + uname).then(response => response.json())
 
-    findUserById =(uid)=>
+    findUserById = (uid) =>
         fetch(this.url + "user/" + uid).then(response => response.json())
 
-    getProductsForUser=(uid)=>
+    getProductsForUser = (uid) =>
         fetch(this.url + "user/" + uid + "/product").then(response => response.json())
 
     getPortfolioForUserByUserId = (uid) => {
@@ -56,15 +56,15 @@ export default class UserService {
 
 
     getPrivateProfileForUserByUserId = (uid) => {
-        return fetch(this.url + `user/${uid}/privateProfile`,{
-                        credentials: 'include'//required
+        return fetch(this.url + `user/${uid}/privateProfile`, {
+            credentials: 'include'//required
 
         })
             .then(response => response.json())
     }
 
-    updateUser =(user, uid) =>
-        fetch(this.url+ "user/" + uid, {
+    updateUser = (user, uid) =>
+        fetch(this.url + "user/" + uid, {
             method: 'PUT',
             body: JSON.stringify(user),
             headers: {
@@ -72,4 +72,9 @@ export default class UserService {
             }
         })
 
+    DeleteProductFromUserById = (uid,productUrlKey) =>
+         fetch(this.url + `user/${uid}/product/${productUrlKey}` ,{
+            method: 'DELETE',
+
+        })
 }

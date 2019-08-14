@@ -34,7 +34,7 @@ class PortfolioContainer extends Component {
         return (
             <div>
                 {console.log(this.state)}
-                {this.portfolioItems != undefined &&<PortfolioComponent portfolio={this.state}/>}
+                {this.state.portfolioItems.length > 0 && <PortfolioComponent uid={this.props.match.params.uid} portfolio={this.state}/>}
             </div>
         );
     }
