@@ -4,13 +4,15 @@ import UserService from "../services/UserService"
 import {Redirect} from 'react-router';
 import Cookies from 'js-cookie'
 
-class LoginSignUpContainer extends Component {
+class LoginContainer extends Component {
     constructor(props) {
         super(props);
         this.userService = UserService.getInstance()
         this.state = {
             isLoggedIn: false,
             isFailed: false,
+            register: false,
+            notregister:false,
             user: {
                 username: "",
                 password: ""
@@ -27,8 +29,7 @@ class LoginSignUpContainer extends Component {
                     var sessionId = Cookies.get().JSESSIONID;
                     localStorage.setItem(sessionId,JSON.stringify(res)); //json to string
                     this.setState({
-                        isLoggedIn: true,
-                        uid: res
+                        register: true,
                     })
                 } else {
                     this.setState({isFailed: true}, () => {
@@ -36,9 +37,24 @@ class LoginSignUpContainer extends Component {
                     });
                 }
             })
-
-
     }
+
+
+    createUser =(user,e) =>{
+        e.preventDefault()
+        this.userService.createUser(user).then(res => {
+            if (res != undefined) {
+                this.setState({
+                    isLoggedIn: true,
+                })
+            } else {
+                this.setState({notregister: true}, () => {
+                    setTimeout(() => this.setState({notregister: false}), 3000)
+                });
+            }
+        })
+    }
+
 
     handleUserName = (e) => {
         this.setState({
@@ -71,4 +87,4 @@ class LoginSignUpContainer extends Component {
     }
 }
 
-export default LoginSignUpContainer;
+export default LoginContainer;

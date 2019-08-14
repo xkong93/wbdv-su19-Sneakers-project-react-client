@@ -42,10 +42,9 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-export default function SignUp() {
+export default function SignUp({isFailed, createU,noEditor,createE}) {
     const classes = useStyles();
-    const userService = UserService.getInstance()
-    const editorService = EditorService.getInstance()
+
 
     const [User, setValues] = React.useState({
         firstName: "",
@@ -54,22 +53,8 @@ export default function SignUp() {
         password: "",
         username: "",
         role:"User",
-        code:"",
-        success: false
+        code: " "
     })
-
-    const createUser = (User) =>{
-        userService.createUser(User).then(res => {if(res.status==304 || res.status==200){setValues({...User, success: true})}
-        else{alert("signpUp fail")}})
-
-
-
-    }
-
-    const createEditor=(Editor, code)=>
-         editorService.createEditor(Editor, code).then(res => {if(res.status==304 || res.status==200){setValues({...User, success: true})}
-         else{alert("signpUp fail")}})
-
 
 
     const handleChange = prop => event => {
@@ -78,7 +63,6 @@ export default function SignUp() {
 
     return (
         <Container component="main" maxWidth="xs">
-            {console.log(User.success)}
             <CssBaseline/>
             <div className={classes.paper}>
                 <Avatar className={classes.avatar}>
@@ -87,6 +71,8 @@ export default function SignUp() {
                 <Typography component="h1" variant="h5">
                     Sign up
                 </Typography>
+                {isFailed==true && <div>Fail to Register! Please check if you already registered.</div>}
+                {noEditor==true && <div>Check your Code, or if you already registered.</div>}
                 <form className={classes.form} noValidate>
                     <Grid container spacing={2}>
                         <Grid item xs={12} sm={6}>
@@ -185,24 +171,25 @@ export default function SignUp() {
                             />
                         </Grid>}
                     </Grid>
-                    {User.role=="User" && <Link {...User.success? {to: '/login'}: {} }><Button
+                    {User.role=="User" && <Button
                         fullWidth
                         variant="contained"
                         color="primary"
                         className={classes.submit}
-                        onClick={() => createUser(User)}
+                        onClick={(e) => createU(User, e)}
                     >
                         Sign Up
-                    </Button></Link>}
-                    {User.role=="Editor" && <Link to={User.success ? '/login': ''} ><Button
+                    </Button>}
+
+                    {User.role=="Editor" &&<Button
                         fullWidth
                         variant="contained"
                         color="primary"
                         className={classes.submit}
-                        onClick={() => createEditor(User, User.code)}
+                        onClick={(e) => createE(User, User.code, e)}
                     >
                         Sign Up for Editor
-                    </Button></Link>}
+                    </Button>}
                     <Grid container justify="flex-end">
                         <Grid item>
                             <Link  to='/login' variant="body2">
