@@ -65,6 +65,7 @@ function AccountComponent(props) {
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const id= Cookies.get("JSESSIONID") !=null? (JSON.parse(localStorage.getItem(Cookies.get("JSESSIONID")))).uid : -1
+  const type = Cookies.get("JSESSIONID") !=null? (JSON.parse(localStorage.getItem(Cookies.get("JSESSIONID")))).dtype : -1
   function handleDrawerToggle() {
     setMobileOpen(!mobileOpen);
   }
@@ -95,7 +96,8 @@ function AccountComponent(props) {
         ))} </List>}
 
         <Divider />
-        {id == props.match.params.uid &&<List>
+
+        {type=="Editor" && id == props.match.params.uid &&<List>
             {['Review'].map((text, index) => (
                 <Link to={`/user/${props.match.params.uid}/${text.toLowerCase()}`}>
                     <ListItem button key={`${text}(EditorOnly)`}>

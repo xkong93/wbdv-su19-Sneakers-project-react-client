@@ -54,18 +54,21 @@ export default function SignUp() {
         password: "",
         username: "",
         role:"User",
-        code:""
+        code:"",
+        success: false
     })
 
     const createUser = (User) =>{
-        userService.createUser(User)
+        userService.createUser(User).then(status => {if(status==200){setValues({...User, success: true})}
+        else{alert("signpUp fail")}})
 
 
 
     }
 
     const createEditor=(Editor, code)=>
-         editorService.createEditor(Editor, code)
+         editorService.createEditor(Editor, code).then(status => {if(status==200){setValues({...User, success: true})}
+         else{alert("signpUp fail")}})
 
 
 
@@ -181,16 +184,17 @@ export default function SignUp() {
                             />
                         </Grid>}
                     </Grid>
-                    {User.role=="User" && <Link href="/login" ><Button
+                    {User.role=="User" && <Link href={User.success ? '/login': ''} ><Button
                         fullWidth
                         variant="contained"
                         color="primary"
+                        type="submit"
                         className={classes.submit}
                         onClick={() => createUser(User)}
                     >
                         Sign Up
                     </Button></Link>}
-                    {User.role=="Editor" && <Link href="/login" ><Button
+                    {User.role=="Editor" && <Link href={User.success ? '/login': ''} ><Button
                         fullWidth
                         variant="contained"
                         color="primary"
