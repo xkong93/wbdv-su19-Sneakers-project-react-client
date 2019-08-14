@@ -110,7 +110,6 @@ export default function ProfileEditorComponent({user, first, last, pass}) {
                 ]}
             />
             <div className={classes.root}>
-                {console.log(user)}
                 {user.username != undefined && <TextField
                     id="standard-read-only-input"
                     label="USERNAME"
