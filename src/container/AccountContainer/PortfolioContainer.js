@@ -33,7 +33,8 @@ class PortfolioContainer extends Component {
     render() {
         return (
             <div>
-                <PortfolioComponent portfolio={this.state}/>
+                {console.log(this.state)}
+                {this.portfolioItems != undefined &&<PortfolioComponent portfolio={this.state}/>}
             </div>
         );
     }
