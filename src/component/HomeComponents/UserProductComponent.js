@@ -5,7 +5,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import {makeStyles} from '@material-ui/core/styles';
-import Link from "@material-ui/core/Link";
+import {Link} from "react-router-dom";
 
 
 const useStyles = makeStyles(theme => ({
@@ -54,8 +54,7 @@ function UserProductComponent({userProducts}) {
             {userProducts.map(card => (
                 <Grid item key={card} xs={12} sm={6} md={4}>
                     <Card className={classes.card}>
-                        <Link target="_blank" to={"/detail/" + card.featuredProduct.urlKey}>
-
+                        <Link target="_blank" to={"/detail/" + card.urlKey}>
                             <CardMedia
                                 className={classes.cardMedia}
                                 image={card.imageUrl}
