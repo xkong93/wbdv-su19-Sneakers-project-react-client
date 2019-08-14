@@ -58,14 +58,16 @@ class HomeContainer extends Component {
             editorPickProducts: [],
             userProducts: [],
             uid: '',
-            search:""
+            search: ""
         }
     }
 
     componentDidMount() {
         this.editorService.getAllEditor()
-            .then(response => {if(response.status!=200){this.setState({editorPickProducts: 0})
-            }else{this.setState({editorPickProducts: response})}
+            .then(response => {
+              this.setState({
+                  editorPickProducts: response
+              })
             })
 
 
@@ -85,10 +87,11 @@ class HomeContainer extends Component {
                 userProducts: products
             }))
 
-    searchChange=(e)=>
+    searchChange = (e) =>
         this.setState({search: e.target.value})
 
     render() {
+        console.log(this.state.editorPickProducts)
         const {classes} = this.props;
         return (
             <React.Fragment>
@@ -103,7 +106,7 @@ class HomeContainer extends Component {
                                 <div className='input-group mb-3'>
                                     <input className="form-control"
                                            value={this.state.search}
-                                           onChange={(e)=>this.searchChange(e)}
+                                           onChange={(e) => this.searchChange(e)}
                                            placeholder="Seach for Sneakers"/>
                                     <div className="input-group-append">
                                         <Link to={`/search/${this.state.search}`}>
@@ -120,10 +123,6 @@ class HomeContainer extends Component {
                         </Container>
                     </div>
 
-
-                    {this.state.editorPickProducts==0 && <Container maxWidth="md" align="center">
-                        <h2>Feature Product Coming Soon!</h2>
-                    </Container>}
 
                     {this.state.editorPickProducts.length > 0 && <Container maxWidth="md">
                         <h3>EDITORS' PICKS</h3>
