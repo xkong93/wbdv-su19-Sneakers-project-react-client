@@ -5,7 +5,6 @@ import IconButton from '@material-ui/core/IconButton';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import TextField from '@material-ui/core/TextField';
 import Visibility from '@material-ui/icons/Visibility';
@@ -15,7 +14,6 @@ import {Box, Snackbar} from "@material-ui/core";
 import UserService from "../../services/UserService";
 import Cookies from "js-cookie";
 import CloseIcon from "@material-ui/core/SvgIcon/SvgIcon";
-import Container from "@material-ui/core/Container";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -112,7 +110,6 @@ export default function ProfileEditorComponent({user, first, last, pass}) {
                 ]}
             />
             <div className={classes.root}>
-                {console.log(user)}
                 {user.username != undefined && <TextField
                     id="standard-read-only-input"
                     label="USERNAME"

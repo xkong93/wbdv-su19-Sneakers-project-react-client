@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import AddingComponent from "../component/ReviewComponents/AddingComponent";
 import UserService from "../services/UserService";
 import ProductService from "../services/ProductService";
@@ -30,7 +30,6 @@ export default class AddingRContainer extends React.Component{
     render(){
         return(
             <div>
-                {console.log(this.state.response)}
                 <AddingComponent uid={this.state.uid} pid={this.state.response.id} url={this.state.urlKey}/>
             </div>
         )

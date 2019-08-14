@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
-import StockService from "../services/StockService";
 import UserProductComponent from "../component/HomeComponents/UserProductComponent";
 import EditorProductComponent from "../component/HomeComponents/EditorProductsComponent";
-import ProductService from "../services/ProductService";
 import Cookies from 'js-cookie'
 import UserService from "../services/UserService";
 import EditorService from "../services/EditorService";
@@ -10,8 +8,6 @@ import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import {withStyles} from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Grid from '@material-ui/core/Grid';
-import Button from '@material-ui/core/Button';
 import {Link} from "react-router-dom";
 
 
@@ -56,7 +52,6 @@ class HomeContainer extends Component {
     constructor(props) {
 
         super(props);
-        this.productService = ProductService.getInstance();
         this.userService = UserService.getInstance()
         this.editorService = EditorService.getInstance();
         this.state = {
@@ -69,11 +64,11 @@ class HomeContainer extends Component {
 
     componentDidMount() {
         this.editorService.getAllEditor()
-            .then(response => this.setState({editorPickProducts: response}))
-        // this.getProductsForUser(this.state.uid)
-        //     .then(response => this.setState({
-        //         userService: response
-        //     }))
+            .then(response => {if(response.status!=200){this.setState({editorPickProducts: 0})
+            }else{this.setState({editorPickProducts: response})}
+            })
+
+
         if (localStorage.getItem(Cookies.get("JSESSIONID")) != null) {
             var uid = JSON.parse(localStorage.getItem(Cookies.get("JSESSIONID"))).uid
             this.setState({
@@ -126,6 +121,10 @@ class HomeContainer extends Component {
                     </div>
 
 
+                    {this.state.editorPickProducts==0 && <Container maxWidth="md" align="center">
+                        <h2>Feature Product Coming Soon!</h2>
+                    </Container>}
+
                     {this.state.editorPickProducts.length > 0 && <Container maxWidth="md">
                         <h3>EDITORS' PICKS</h3>
                         <EditorProductComponent editorProducts={this.state.editorPickProducts}/>
@@ -135,7 +134,6 @@ class HomeContainer extends Component {
                     {Cookies.get("JSESSIONID") != undefined && this.state.userProducts.length > 0 &&
                     <Container maxWidth="md">
                         <h3>MY COLLECTION</h3>
-                        {console.log(this.state.userProducts)}
                         <UserProductComponent userProducts={this.state.userProducts}/>
 
                     </Container>}
@@ -143,12 +141,14 @@ class HomeContainer extends Component {
                 </main>
 
                 {/* Footer */}
-                <footer>
+                <footer className={"card text-white bg-dark mb-3"}>
                     <Typography variant="h6" align="center" gutterBottom>
-                        Footer
+                        Creators
                     </Typography>
-                    <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-                        Something here to give the footer a purpose!
+                    <Typography variant="subtitle1" align="center" component="p">
+                        Xuan Kong,
+                        Hao Qin,
+                        Qi Zhou
                     </Typography>
                 </footer>
                 {/* End footer */}

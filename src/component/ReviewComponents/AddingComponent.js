@@ -14,20 +14,7 @@ import CloseIcon from "@material-ui/core/SvgIcon/SvgIcon";
 import Link from "@material-ui/core/Link"
 
 
-const ranges = [
-    {
-        value: '0-20',
-        label: '0 to 20',
-    },
-    {
-        value: '21-50',
-        label: '21 to 50',
-    },
-    {
-        value: '51-100',
-        label: '51 to 100',
-    },
-];
+
 
 const useStyles = makeStyles(theme => ({
     element: {
@@ -301,18 +288,6 @@ export default function AddingComponent({uid, pid, url}) {
 
             <Divider />
 
-            {/*<Box className={classes.element} >*/}
-            {/*    <TextField*/}
-            {/*        id="standard-multiline-flexible"*/}
-            {/*        label="Your Opinion in one sentence"*/}
-            {/*        multiline*/}
-            {/*        rowsMax="1"*/}
-            {/*        value={values.multiline}*/}
-            {/*        onChange={handleChange('multiline')}*/}
-            {/*        className={classes.textField}*/}
-            {/*        margin="normal"*/}
-            {/*    />*/}
-            {/*</Box>*/}
             <Box className={classes.element} >
                 <TextField
                     id="standard-multiline-static"

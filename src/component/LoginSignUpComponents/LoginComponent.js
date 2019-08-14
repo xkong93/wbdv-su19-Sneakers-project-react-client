@@ -39,6 +39,8 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function SignIn({isFailed,handleSubmit, handleUserName, handlePassword}) {
+
+
     const classes = useStyles();
     return (
         <Container component="main" maxWidth="xs">
@@ -82,7 +84,6 @@ export default function SignIn({isFailed,handleSubmit, handleUserName, handlePas
                     />
                     <Button
                         onClick={handleSubmit}
-                        type="submit"
                         fullWidth
                         variant="contained"
                         color="primary"
@@ -92,7 +93,7 @@ export default function SignIn({isFailed,handleSubmit, handleUserName, handlePas
                     </Button>
                     <Grid container>
                         <Grid item>
-                            <Link to="/signup" variant="body2">
+                            <Link href="/signup" variant="body2">
                                 {"Don't have an account? Sign Up"}
                             </Link>
                         </Grid>

@@ -40,7 +40,6 @@ class ProductReviewContainer extends Component {
                 .then(res => {
                     //technique to handle review and rating 404
                     if (res.status == 404) {
-                        console.log('review 404')
                     } else {
                         this.setState({
                             reviews: res
@@ -50,9 +49,7 @@ class ProductReviewContainer extends Component {
 
             this.reviewService.getRatingForPorduct(urlKey)
                 .then(res => {
-                    console.log(res)
                     if (res.status == 404) {
-                        console.log('rating 404')
                     } else {
                         this.setState({
                             ratings: [res] //key point
@@ -101,6 +98,7 @@ class ProductReviewContainer extends Component {
         return (
 
             <Container className={this.props.classes.root} maxWidth="lg">
+
                 <div>
                     {
                         this.state.ratings.length != 0 ? <RatingComponent ratings={this.state.ratings}/>

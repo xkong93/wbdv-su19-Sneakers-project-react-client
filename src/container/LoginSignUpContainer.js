@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
 import LoginComponent from '../component/LoginSignUpComponents/LoginComponent'
-import SignupComponent from '../component/LoginSignUpComponents/SignUpComponent'
-import ProfileComponent from '../component/AccountComponents/ProfileComponent'
 import UserService from "../services/UserService"
 import {Redirect} from 'react-router';
 import Cookies from 'js-cookie'
+
 class LoginSignUpContainer extends Component {
     constructor(props) {
         super(props);
@@ -62,7 +61,7 @@ class LoginSignUpContainer extends Component {
 
     render() {
         if (this.state.isLoggedIn === true) {
-            return (<Redirect to="/profile"/>);
+            return (<Redirect to="/"/>);
         } else {
             return (<LoginComponent isFailed={this.state.isFailed} handleSubmit={this.handleSubmit}
                                     handlePassword={this.handlePassword}

@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Divider from '@material-ui/core/Divider';
@@ -15,17 +14,16 @@ import MailIcon from '@material-ui/icons/Mail';
 import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import {makeStyles, useTheme} from '@material-ui/core/styles';
-import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
+import { makeStyles, useTheme } from '@material-ui/core/styles';
+import {Switch, Route, Link} from "react-router-dom";
 import ProfileContainer from "../../container/AccountContainer/ProfileContainer";
 import PortfolioContainer from "../../container/AccountContainer/PortfolioContainer";
-import ProfileEditorComponent from "./ProfileEditorComponent";
 import {Container} from "@material-ui/core";
 import ProductReviewContainer from "../../container/ProductReviewContainer";
 import Box from '@material-ui/core/Box';
 import ProfileEditCotainer from "../../container/AccountContainer/ProfileEditCotainer";
 import Cookies from "js-cookie"
-
+import ReviewEditorContainer from "../../container/AccountContainer/ReviewEditorContainer"
 
 const drawerWidth = 240;
 
@@ -62,6 +60,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function AccountComponent(props) {
+<<<<<<< HEAD
     const {container} = props;
     const classes = useStyles();
     const theme = useTheme();
@@ -98,6 +97,53 @@ function AccountComponent(props) {
                     </Link>
                 ))}
             </List>}
+=======
+  const { container } = props;
+  const classes = useStyles();
+  const theme = useTheme();
+  const [mobileOpen, setMobileOpen] = React.useState(false);
+  const id= Cookies.get("JSESSIONID") !=null? (JSON.parse(localStorage.getItem(Cookies.get("JSESSIONID")))).uid : -1
+  function handleDrawerToggle() {
+    setMobileOpen(!mobileOpen);
+  }
+
+  const drawer = (
+    <div>
+      <div className={classes.toolbar} />
+      <Divider/>
+      <List>
+        {['Profile', 'Portfolio', 'Reviews'].map((text, index) => (
+            <Link to={`/user/${props.match.params.uid}/${text.toLowerCase()}`}>
+          <ListItem button key={text}>
+            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+            <ListItemText primary={text} />
+          </ListItem>
+            </Link>
+        ))}
+      </List>
+      <Divider />
+        {id == props.match.params.uid &&<List>
+        {['Setting'].map((text, index) => (
+            <Link to={`/user/${props.match.params.uid}/${text.toLowerCase()}`}>
+          <ListItem button key={text}>
+            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+            <ListItemText primary={text} />
+          </ListItem>
+            </Link>
+        ))} </List>}
+
+        <Divider />
+        {id == props.match.params.uid &&<List>
+            {['Review'].map((text, index) => (
+                <Link to={`/user/${props.match.params.uid}/${text.toLowerCase()}`}>
+                    <ListItem button key={`${text}(EditorOnly)`}>
+                        <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                        <ListItemText primary={`${text}(EditorOnly)`} />
+                    </ListItem>
+                </Link>
+            ))}
+      </List>}
+>>>>>>> 71a832cf3df33cc627ea9c26e926dbb0aff95571
 
             <Box bgcolor="grey.300"
                  color="white"
@@ -169,6 +215,7 @@ function AccountComponent(props) {
                     <Route path="/user/:uid/portfolio" component={PortfolioContainer}/>
                     <Route path="/user/:uid/reviews" component={ProductReviewContainer}/>
                     <Route path="/user/:uid/setting" component={ProfileEditCotainer}/>
+                    <Route Path="user/:uid/review" component={ReviewEditorContainer}/>
                 </Switch>
             </Container>
         </div>

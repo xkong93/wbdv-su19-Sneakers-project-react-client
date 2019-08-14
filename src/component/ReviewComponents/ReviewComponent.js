@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import {Paper} from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
@@ -10,7 +10,6 @@ const useStyles = makeStyles(theme => ({
         display: "flex",
         flexDirection: "column",
         padding: theme.spacing(3, 2),
-        margin: "5px"
     },
 
 }));
