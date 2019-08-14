@@ -9,11 +9,11 @@ class RegisterContainer extends Component {
     constructor(props) {
         super(props);
         this.userService = UserService.getInstance()
-         this.editorService = EditorService.getInstance()
+        this.editorService = EditorService.getInstance()
         this.state = {
             register: false,
-            notregister:false,
-            editor:false,
+            notregister: false,
+            editor: false,
             noEditor: false,
             response: {}
 
@@ -21,10 +21,11 @@ class RegisterContainer extends Component {
     }
 
 
-    createUser =(user,e) =>{
+    createUser = (user, e) => {
         e.preventDefault()
         this.userService.createUser(user).then(res => {
-            if (res.status == 200 || res.status==304) {
+            console.log(res.status)
+            if (res.status == 200 || res.status == 304) {
                 this.setState({
                     register: true,
                 })
@@ -36,12 +37,14 @@ class RegisterContainer extends Component {
         })
     }
 
-    creatEditor=(editor, code, e) =>{
+    creatEditor = (editor, code, e) => {
         e.preventDefault()
-        this.editorService.createEditor(editor, code).then(res =>
-        {if (res.status == 200 || res.status==304) {
+        this.editorService.createEditor(editor, code).then(res => {
+                        console.log(res.status)
+
+            if (res.status == 200 || res.status == 304) {
                 this.setState({
-                    editor: true,
+                    register: true,
                 })
             } else {
                 this.setState({noEditor: true}, () => {
@@ -52,11 +55,11 @@ class RegisterContainer extends Component {
     }
 
     render() {
-        if (this.state.register === true) {
+        if (this.state.register == true) {
             return (<Redirect to="/login"/>);
         } else {
             return (<SignUpComponent isFailed={this.state.notregister} createU={this.createUser}
-                                     noEditor={this.state.noEditor}  createE={this.creatEditor}
+                                     noEditor={this.state.noEditor} createE={this.creatEditor}
             />);
         }
     }

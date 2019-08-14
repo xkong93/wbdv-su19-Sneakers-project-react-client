@@ -11,8 +11,6 @@ class LoginContainer extends Component {
         this.state = {
             isLoggedIn: false,
             isFailed: false,
-            register: false,
-            notregister:false,
             user: {
                 username: "",
                 password: ""
@@ -27,9 +25,10 @@ class LoginContainer extends Component {
             .then(res => {
                 if (res != undefined) {
                     var sessionId = Cookies.get().JSESSIONID;
-                    localStorage.setItem(sessionId,JSON.stringify(res)); //json to string
+                    localStorage.setItem(sessionId, JSON.stringify(res)); //json to string
                     this.setState({
                         register: true,
+                        isLoggedIn:true
                     })
                 } else {
                     this.setState({isFailed: true}, () => {
@@ -39,21 +38,6 @@ class LoginContainer extends Component {
             })
     }
 
-
-    createUser =(user,e) =>{
-        e.preventDefault()
-        this.userService.createUser(user).then(res => {
-            if (res != undefined) {
-                this.setState({
-                    isLoggedIn: true,
-                })
-            } else {
-                this.setState({notregister: true}, () => {
-                    setTimeout(() => this.setState({notregister: false}), 3000)
-                });
-            }
-        })
-    }
 
 
     handleUserName = (e) => {
@@ -76,8 +60,8 @@ class LoginContainer extends Component {
     }
 
     render() {
-        if (this.state.isLoggedIn === true) {
-            return (<Redirect to="/"/>);
+        if (this.state.isLoggedIn == true) {
+            return (<Redirect to="/home"/>);
         } else {
             return (<LoginComponent isFailed={this.state.isFailed} handleSubmit={this.handleSubmit}
                                     handlePassword={this.handlePassword}
