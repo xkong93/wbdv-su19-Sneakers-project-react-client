@@ -66,7 +66,7 @@ function AccountComponent(props) {
   const classes = useStyles();
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
-  const id= (JSON.parse(localStorage.getItem(Cookies.get("JSESSIONID")))).uid
+  const id= Cookies.get("JSESSIONID") !=null? (JSON.parse(localStorage.getItem(Cookies.get("JSESSIONID")))).uid : -1
   function handleDrawerToggle() {
     setMobileOpen(!mobileOpen);
   }
