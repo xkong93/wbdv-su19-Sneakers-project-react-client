@@ -193,10 +193,12 @@ export default function AddingComponent({uid, pid, url}) {
                     <Typography><h5>Do you recommend this product?</h5></Typography>
                         <Box display="flex" bgcolor="background.paper">
                             <Box flexGrow={1}>
-                                <Button onClick={()=>Recommend()} variant="outlined" color="inherit">Yes</Button>
+                                {/*<button className={"active"} onClick={()=>Recommend()} variant="outlined" color="inherit">Yes</button>*/}
+                                <label onClick={()=>Recommend()} className={`btn btn-secondary ${values.isRecommend==true? `active`: ``}`}>Yes</label>
                             </Box>
                             <Box >
-                                <Button onClick={()=>notRecommend()} variant="outlined" color="inherit">No</Button>
+                                {/*<button onClick={()=>notRecommend()} variant="outlined" color="inherit">No</button>*/}
+                                <label onClick={()=>notRecommend()} className={`btn btn-secondary ${values.isRecommend==false? `active`: ``}`}>No</label>
                             </Box>
                         </Box>
                     </Box>
