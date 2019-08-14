@@ -8,7 +8,7 @@ import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import UserService from "../../services/UserService";
 import Input from '@material-ui/core/Input';
@@ -53,23 +53,31 @@ export default function SignUp() {
         email: "",
         password: "",
         username: "",
-        role:"User",
-        code:"",
+        role: "User",
+        code: "",
         success: false
     })
 
-    const createUser = (User) =>{
-        userService.createUser(User).then(status => {if(status==200){setValues({...User, success: true})}
-        else{alert("signpUp fail")}})
-
+    const createUser = (User) => {
+        userService.createUser(User).then(status => {
+            if (status == 200) {
+                setValues({...User, success: true})
+            } else {
+                alert("signpUp fail")
+            }
+        })
 
 
     }
 
-    const createEditor=(Editor, code)=>
-         editorService.createEditor(Editor, code).then(status => {if(status==200){setValues({...User, success: true})}
-         else{alert("signpUp fail")}})
-
+    const createEditor = (Editor, code) =>
+        editorService.createEditor(Editor, code).then(status => {
+            if (status == 200) {
+                setValues({...User, success: true})
+            } else {
+                alert("signpUp fail")
+            }
+        })
 
 
     const handleChange = prop => event => {
@@ -162,9 +170,9 @@ export default function SignUp() {
                             </InputLabel>
                             <NativeSelect
                                 fullWidth
-                               value={User.role}
+                                value={User.role}
                                 onChange={handleChange('role')}
-                                input={<Input name="age" id="age-native-label-placeholder" />}
+                                input={<Input name="age" id="age-native-label-placeholder"/>}
                             >
                                 <option value="User">User</option>
                                 <option value="Editor">Editor</option>
@@ -184,7 +192,7 @@ export default function SignUp() {
                             />
                         </Grid>}
                     </Grid>
-                    {User.role=="User" && <Link href={User.success ? '/login': ''} ><Button
+                    {User.role == "User" && <Link to={User.success ? '/login' : ''}><Button
                         fullWidth
                         variant="contained"
                         color="primary"
@@ -194,7 +202,7 @@ export default function SignUp() {
                     >
                         Sign Up
                     </Button></Link>}
-                    {User.role=="Editor" && <Link href={User.success ? '/login': ''} ><Button
+                    {User.role == "Editor" && <Link to={User.success ? '/login' : ''}><Button
                         fullWidth
                         variant="contained"
                         color="primary"
@@ -205,7 +213,7 @@ export default function SignUp() {
                     </Button></Link>}
                     <Grid container justify="flex-end">
                         <Grid item>
-                            <Link  to='/login' variant="body2">
+                            <Link to='/login' variant="body2">
                                 <a>Already have an account? Sign in</a>
                             </Link>
                         </Grid>
