@@ -5,7 +5,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import {makeStyles} from '@material-ui/core/styles';
-
+import Link from "@material-ui/core/Link";
 
 
 const useStyles = makeStyles(theme => ({
@@ -59,9 +59,9 @@ function UserProductComponent({userProducts}) {
                             image={card.imageUrl}
                         />
                         <CardContent className={classes.cardContent}>
-                            <Typography gutterBottom variant="h5" component="h2">
+                            <Link href={`/detail/${card.urlKey}`}><Typography gutterBottom variant="h5" component="h2">
                                 {card.title}
-                            </Typography>
+                            </Typography></Link>
                             <Typography>
                                 ${card.marketPrice}
                             </Typography>
