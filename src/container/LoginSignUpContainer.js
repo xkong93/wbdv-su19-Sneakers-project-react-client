@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
 import LoginComponent from '../component/LoginSignUpComponents/LoginComponent'
-import SignupComponent from '../component/LoginSignUpComponents/SignUpComponent'
-import ProfileComponent from '../component/AccountComponents/ProfileComponent'
 import UserService from "../services/UserService"
 import {Redirect} from 'react-router';
 import Cookies from 'js-cookie'
+
 class LoginSignUpContainer extends Component {
     constructor(props) {
         super(props);

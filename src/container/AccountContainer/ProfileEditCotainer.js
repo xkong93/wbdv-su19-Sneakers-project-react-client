@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import Container from '@material-ui/core/Container'
-import {withStyles} from '@material-ui/core/styles';
 import UserService from "../../services/UserService"
 import ProfileEditorComponent from "../../component/AccountComponents/ProfileEditorComponent";
 import Cookies from "js-cookie"
@@ -40,7 +39,6 @@ class ProfileEditCotainer extends Component {
         return (
 
             <Container maxWidth="md">
-                {console.log(this.state.user)}
                 <div>
                     {Cookies.get("JSESSIONID") != undefined && <ProfileEditorComponent
                         user={this.state.user} first={this.firstNameChange} last={this.lastNameChange} pass={this.passwordChange}/>

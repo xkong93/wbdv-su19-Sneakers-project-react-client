@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import StockDetailComponent from "../component/ProductComponents/StockDetailComponent";
 import StockService from "../services/StockService"
-import Grid from '@material-ui/core/Grid'
-import Box from '@material-ui/core/Box'
 import Container from '@material-ui/core/Container'
 import ProductReviewContainer from "./ProductReviewContainer";
 import Button from '@material-ui/core/Button';
@@ -12,13 +10,7 @@ import {Snackbar} from "@material-ui/core";
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Cookies from "js-cookie"
-import Divider from "@material-ui/core/Divider";
-import {
-    BrowserRouter as Router,
-    Route,
-    Link2,
-    Redirect,
-} from "react-router-dom";
+import {Redirect} from "react-router-dom";
 
 class StockDetailContainer extends Component {
 
@@ -127,7 +119,7 @@ class StockDetailContainer extends Component {
                     ]}
                 />
 
-                {/*{console.log(this.state.product.timestamp)}*/}
+
                 <div className="float-right">
                     <button type="button" className="btn btn-info"
                             onClick={() => this.addProduct(this.state.urlKey, this.state.uid)}>Add to Collection
@@ -144,7 +136,6 @@ class StockDetailContainer extends Component {
                                 ()=>this.addProduct(this.state.urlKey, this.state.uid): ""}
                             color="inherit">Add
                         Review</Button></Link>
-                {/*{this.state.response.id ==null && <h2>Click Add Collection Before Writting a Review</h2> }*/}
                 {this.renderRedirectLogin()}
 
             </Container>

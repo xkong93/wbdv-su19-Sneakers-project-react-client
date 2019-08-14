@@ -1,6 +1,4 @@
 import React, {Component} from 'react';
-import ProfileContainer from './ProfileContainer'
-import PortfolioContainer from './PortfolioContainer'
 import AccountComponent from "../../component/AccountComponents/AccountComponent";
 import {withStyles} from '@material-ui/core/styles';
 import UserService from "../../services/UserService"

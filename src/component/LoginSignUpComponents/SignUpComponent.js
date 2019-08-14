@@ -59,7 +59,7 @@ export default function SignUp() {
 
     const createUser = (User) =>{
         userService.createUser(User)
-            .then(res => console.log(res))
+
 
 
     }

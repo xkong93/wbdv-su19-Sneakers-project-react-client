@@ -1,17 +1,10 @@
 import React, {Component} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
-import StockComponent from "../ProductComponents/StockComponent";
 import {Card} from "@material-ui/core";
-import GridList from "@material-ui/core/GridList";
-import Container from "@material-ui/core/Container";
 import Grid from '@material-ui/core/Grid';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import {keys} from "@material-ui/core/styles/createBreakpoints";
 
 const useStyles = makeStyles(theme => ({
     icon: {

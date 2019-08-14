@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Divider from '@material-ui/core/Divider';
@@ -16,10 +15,9 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
+import {Switch, Route, Link} from "react-router-dom";
 import ProfileContainer from "../../container/AccountContainer/ProfileContainer";
 import PortfolioContainer from "../../container/AccountContainer/PortfolioContainer";
-import ProfileEditorComponent from "./ProfileEditorComponent";
 import {Container} from "@material-ui/core";
 import ProductReviewContainer from "../../container/ProductReviewContainer";
 import Box from '@material-ui/core/Box';
