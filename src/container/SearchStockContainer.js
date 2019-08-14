@@ -46,7 +46,7 @@ class SearchStockContainer extends Component {
                     <h1>Search Sneaker</h1>
                     <div className='input-group mb-3'>
                         <input className="form-control"
-                               value={this.state.keywords}
+                               value={this.props.match.params.keywords}
                                onChange={this.keywordChange}
                                placeholder="keyword"/>
                         <div className="input-group-append">
