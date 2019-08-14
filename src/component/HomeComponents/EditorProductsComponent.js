@@ -5,6 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
+import {Link} from 'react-router-dom'
 
 const useStyles = makeStyles(theme => ({
     icon: {
@@ -293,35 +294,72 @@ const output = (edidtors) => {
 //     console.log(data)
 // }
 
-const EditorProductsComponent = ({editorProducts}) => {
-    var products = output(editorProducts)
+const EditorProductsComponent = ({editorProducts, login}) => {
+    var products
+    if (!login) {
+        products = output(editorProducts)
+    } else {
+        products = editorProducts
+        console.log(products)
+    }
     const classes = useStyles()
 
     return (
-        <Grid container spacing={4}>
-            {products.map(card => (
-                <Grid item key={card} xs={12} sm={6} md={4}>
-                    <Card className={classes.card}>
-                        <CardMedia
-                            className={classes.cardMedia}
-                            image={card.featuredProduct.imageUrl}
-                        />
-                        <CardContent className={classes.cardContent}>
-                            <Typography gutterBottom variant="h5" component="h2">
-                                {card.featuredProduct.title}
-                            </Typography>
-                            <Typography variant="h4">
-                                ${card.featuredProduct.marketPrice}
-                            </Typography>
-                            <Typography variant="h6">
-                            by: {card.firstName}
-                        </Typography>
-                        </CardContent>
+        <div>
+            {login ? <Grid container spacing={4}>
+                    {products.map(card => (
+                        <Grid item key={card} xs={12} sm={6} md={4}>
+                            <Card className={classes.card}>
+                                <Link target="_blank" to={"/detail/" + card.urlKey}>
+                                    <CardMedia
+                                        className={classes.cardMedia}
+                                        image={card.imageUrl}
+                                    />
+                                </Link>
 
-                    </Card>
+                                <CardContent className={classes.cardContent}>
+                                    <Typography gutterBottom variant="h5" component="h2">
+                                        {card.title}
+                                    </Typography>
+                                    <Typography variant="h4">
+                                        ${card.marketPrice}
+                                    </Typography>
+                                </CardContent>
+
+                            </Card>
+                        </Grid>
+                    ))}
                 </Grid>
-            ))}
-        </Grid>
+                :
+                <Grid container spacing={4}>
+                    {products.map(card => (
+                        <Grid item key={card} xs={12} sm={6} md={4}>
+                            <Card className={classes.card}>
+                                <Link target="_blank" to={"/detail/" + card.featuredProduct.urlKey}>
+
+                                    <CardMedia
+                                        className={classes.cardMedia}
+                                        image={card.featuredProduct.imageUrl}
+                                    />
+                                </Link>
+                                <CardContent className={classes.cardContent}>
+                                    <Typography gutterBottom variant="h5" component="h2">
+                                        {card.featuredProduct.title}
+                                    </Typography>
+                                    <Typography variant="h4">
+                                        ${card.featuredProduct.marketPrice}
+                                    </Typography>
+                                    <Typography variant="h6">
+                                        by: {card.firstName}
+                                    </Typography>
+                                </CardContent>
+
+                            </Card>
+                        </Grid>
+                    ))}
+                </Grid>
+            }
+        </div>
     )
 }
 

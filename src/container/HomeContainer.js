@@ -54,8 +54,11 @@ class HomeContainer extends Component {
         super(props);
         this.userService = UserService.getInstance()
         this.editorService = EditorService.getInstance();
+        this.id = Cookies.get("JSESSIONID") != null ? (JSON.parse(localStorage.getItem(Cookies.get("JSESSIONID")))).uid : -1
+        this.type = Cookies.get("JSESSIONID") != null ? (JSON.parse(localStorage.getItem(Cookies.get("JSESSIONID")))).dtype : -1
         this.state = {
             editorPickProducts: [],
+            editorPickByEditor: [],
             userProducts: [],
             uid: '',
             search: ""
@@ -65,11 +68,19 @@ class HomeContainer extends Component {
     componentDidMount() {
         this.editorService.getAllEditor()
             .then(response => {
-              this.setState({
-                  editorPickProducts: response
-              })
+                this.setState({
+                    editorPickProducts: response
+                })
             })
 
+        if (Cookies.get("JSESSIONID") != null && this.type == "Editor"){
+            this.userService.getPortfolioForEditorByEditorId(this.id)
+                .then(response =>{
+                    this.setState({
+                        editorPickByEditor: response
+                    })
+                })
+        }
 
         if (localStorage.getItem(Cookies.get("JSESSIONID")) != null) {
             var uid = JSON.parse(localStorage.getItem(Cookies.get("JSESSIONID"))).uid
@@ -89,6 +100,26 @@ class HomeContainer extends Component {
 
     searchChange = (e) =>
         this.setState({search: e.target.value})
+
+
+    getEditorComp = () => {
+        if (this.state.editorPickProducts.length > 0 && this.type != "Editor") {
+            return (
+                <Container maxWidth="md">
+                    <h3 style={{marginBottom: 30}}>EDITORS' PICKS</h3>
+                    <EditorProductComponent editorProducts={this.state.editorPickProducts} login={false}/>
+                </Container>
+            )
+        } else if (this.state.editorPickByEditor.length > 0 && this.type == "Editor") {
+            return (
+                <Container maxWidth="md">
+                    <h3 style={{marginBottom: 30}}>EDITOR'S PICKS</h3>
+                    <EditorProductComponent editorProducts={this.state.editorPickByEditor} login={true}/>
+                </Container>
+            )
+        }
+
+    }
 
     render() {
         console.log(this.state.editorPickProducts)
@@ -124,11 +155,8 @@ class HomeContainer extends Component {
                     </div>
 
 
-                    {this.state.editorPickProducts.length > 0 && <Container maxWidth="md">
-                        <h3 style={{marginBottom: 30}}>EDITORS' PICKS</h3>
-                        <EditorProductComponent editorProducts={this.state.editorPickProducts}/>
-                    </Container>}
 
+                    {this.getEditorComp()}
 
                     {Cookies.get("JSESSIONID") != undefined && this.state.userProducts.length > 0 &&
                     <Container maxWidth="md">

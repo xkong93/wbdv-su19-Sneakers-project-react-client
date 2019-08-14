@@ -70,7 +70,6 @@ class EditorCollectionComponent extends Component {
                                 <TableCell align="center">BRAND</TableCell>
                                 <TableCell align="center">RETAIL PRICE</TableCell>
                                 <TableCell align="center">MARKET PRICE</TableCell>
-                                <TableCell align="center">GAIN/LOSS</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
@@ -90,7 +89,6 @@ class EditorCollectionComponent extends Component {
                                     <TableCell align="center">{row.brand}</TableCell>
                                     <TableCell align="center">${row.retailPrice}</TableCell>
                                     <TableCell align="center">${row.marketPrice}</TableCell>
-                                    <TableCell align="center">${row.gainLoss}</TableCell>
                                 </TableRow>
                             ))}
 

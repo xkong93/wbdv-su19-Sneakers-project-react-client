@@ -54,14 +54,18 @@ function UserProductComponent({userProducts}) {
             {userProducts.map(card => (
                 <Grid item key={card} xs={12} sm={6} md={4}>
                     <Card className={classes.card}>
-                        <CardMedia
-                            className={classes.cardMedia}
-                            image={card.imageUrl}
-                        />
+                        <Link target="_blank" to={"/detail/" + card.featuredProduct.urlKey}>
+
+                            <CardMedia
+                                className={classes.cardMedia}
+                                image={card.imageUrl}
+                            />
+                        </Link>
                         <CardContent className={classes.cardContent}>
-                            <Link href={`/detail/${card.urlKey}`}><Typography gutterBottom variant="h5" component="h2">
+                            <Typography gutterBottom variant="h5"
+                                        component="h2">
                                 {card.title}
-                            </Typography></Link>
+                            </Typography>
                             <Typography>
                                 ${card.marketPrice}
                             </Typography>

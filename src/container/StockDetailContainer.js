@@ -176,14 +176,14 @@ class StockDetailContainer extends Component {
                 <StockDetailComponent detail={this.state.detail}/>
                 <ProductReviewContainer params={this.props.match.params}/>
                 <br/>
-                <Link href={Cookies.get("JSESSIONID") != undefined ? `${url}` : "/login"} color="inherit">
+                {this.type != "Editor" && <Link href={Cookies.get("JSESSIONID") != undefined ? `${url}` : "/login"} color="inherit">
                     <Button fullWidth
                             size={"large"}
                             variant="outlined"
                             onClick={(Cookies.get("JSESSIONID") != undefined) ?
                                 () => this.addProduct(this.state.urlKey, this.state.uid) : ""}
                             color="inherit">Add
-                        Review</Button></Link>
+                        Review</Button></Link>}
                 {this.renderRedirectLogin()}
 
             </Container>
