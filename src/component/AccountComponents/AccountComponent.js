@@ -25,6 +25,10 @@ import ProfileEditCotainer from "../../container/AccountContainer/ProfileEditCot
 import Cookies from "js-cookie"
 import ReviewEditorContainer from "../../container/AccountContainer/ReviewEditorContainer"
 import EditorCollectionContainer from "../../container/AccountContainer/EditorCollectionContainer";
+import AccountCircle from "@material-ui/icons/AccountCircle";
+import Book from "@material-ui/icons/Book";
+import RateReview from "@material-ui/icons/RateReview";
+import Edit from "@material-ui/icons/BorderColor";
 
 const drawerWidth = 240;
 
@@ -81,7 +85,7 @@ function AccountComponent(props) {
                 {['Profile', 'Portfolio', 'Reviews'].map((text, index) => (
                     <Link to={`/user/${props.match.params.uid}/${text.toLowerCase()}`}>
                         <ListItem button key={text}>
-                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon/> : <MailIcon/>}</ListItemIcon>
+                            <ListItemIcon>{index ===0 && <AccountCircle/>}{index ===1 && <Book/>}{index ===2 && <RateReview/>}</ListItemIcon>
                             <ListItemText primary={text}/>
                         </ListItem>
                     </Link>
@@ -93,7 +97,7 @@ function AccountComponent(props) {
                 {['Profile', 'Collection'].map((text, index) => (
                     <Link to={`/user/${props.match.params.uid}/${text.toLowerCase()}`}>
                         <ListItem button key={text}>
-                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon/> : <MailIcon/>}</ListItemIcon>
+                            <ListItemIcon>{index % 2 === 0 ? <AccountCircle/> : <Book/>}</ListItemIcon>
                             <ListItemText primary={text}/>
                         </ListItem>
                     </Link>
@@ -105,7 +109,7 @@ function AccountComponent(props) {
                 {['Setting'].map((text, index) => (
                     <Link to={`/user/${props.match.params.uid}/${text.toLowerCase()}`}>
                         <ListItem button key={text}>
-                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon/> : <MailIcon/>}</ListItemIcon>
+                            <ListItemIcon>{index === 0 && <Edit/> }</ListItemIcon>
                             <ListItemText primary={text}/>
                         </ListItem>
                     </Link>

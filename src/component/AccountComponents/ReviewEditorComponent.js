@@ -13,7 +13,7 @@ export default function ReviewEditorComponent({reviews, deleteR}) {
                 </div>
                 <p className="mb-1">{review.description}</p>
                 <small>size:{review.size}, width: {review.width}, comfort: {review.comfort}, quality: {review.quality}</small>
-               <button onClick={()=>deleteR(review.id)} className="d-flex w-100 justify-content-between">Delete</button>
+               <button onClick={()=>deleteR(review.id)} className=" btn btn-secondary d-flex w-100 justify-content-between">Delete</button>
             </div>)}
         </div>
     );

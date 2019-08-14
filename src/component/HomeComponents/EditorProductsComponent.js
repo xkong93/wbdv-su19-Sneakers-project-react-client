@@ -319,7 +319,7 @@ const EditorProductsComponent = ({editorProducts, login}) => {
 
                                 <CardContent className={classes.cardContent}>
                                     <Typography gutterBottom variant="h5" component="h2">
-                                        {card.title}
+                                        <Link to={`/detail/${card.urlKey}`}>{card.title}</Link>
                                     </Typography>
                                     <Typography variant="h4">
                                         ${card.marketPrice}
