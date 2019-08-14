@@ -28,52 +28,32 @@ const styles = theme => ({
 });
 
 
-class PortfolioComponent extends Component {
+class EditorCollectionComponent extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
             portfolioItems: this.props.portfolio.portfolioItems,
-            totalItem: this.props.portfolio.totalItem,
-            retailSum: this.props.portfolio.retailSum,
-            marketSum: this.props.portfolio.marketSum,
-            gainLossSum: this.props.portfolio.gainLossSum
+            totalItem:this.props.portfolio.portfolioItems.length
         }
         this.userService = UserService.getInstance();
     }
 
     deleteItem = (i) => {
         const items = this.state.portfolioItems;
-        const itemCount = 1;
-        const itemRetail = this.state.portfolioItems[i].retailPrice;
-        const itemMarket = this.state.portfolioItems[i].marketPrice;
-        const itemGainLoss = this.state.portfolioItems[i].gainLoss;
-        const totalCount = this.state.totalItem - itemCount;
-        const retailSum = this.state.retailSum - itemRetail;
-        const marketSum = this.state.marketSum - itemMarket;
-        const gainLossSum = this.state.gainLossSum - itemGainLoss;
-        const productUrlKey =  this.state.portfolioItems[i].productUrlKey
+        const productUrlKey =  this.state.portfolioItems[i].urlKey
         items.splice(i, 1);
         this.setState({
             portfolioItems: items,
-            totalItem: totalCount,
-            retailSum: retailSum,
-            marketSum: marketSum,
-            gainLossSum: gainLossSum
+            totalItem: this.state.totalItem - 1
         });
 
         this.DeleteProductFromUser(this.props.uid,productUrlKey)
     }
 
     DeleteProductFromUser = (uid,pid) =>{
-        this.userService.DeleteProductFromUserById(uid,pid)
+        this.userService.removeProductFromEditorCollection(uid,pid)
     }
-
-    // componentDidMount() {
-    //     this.setState({
-    //         portfolio: this.props.portfolio
-    //     })
-    // }
 
     render() {
         const {classes} = this.props;
@@ -119,9 +99,6 @@ class PortfolioComponent extends Component {
                                 <TableCell
                                     align="center">Totals:&nbsp;{this.state.totalItem} Items </TableCell>
                                 <TableCell colSpan={2}/>
-                                <TableCell align="center">${this.state.retailSum} </TableCell>
-                                <TableCell align="center">${this.state.marketSum} </TableCell>
-                                <TableCell align="center">${this.state.gainLossSum} </TableCell>
 
                             </TableRow>
                         </TableBody>
@@ -132,4 +109,4 @@ class PortfolioComponent extends Component {
     }
 }
 
-export default withStyles(styles)(PortfolioComponent)
+export default withStyles(styles)(EditorCollectionComponent)

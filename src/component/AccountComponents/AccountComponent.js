@@ -14,16 +14,17 @@ import MailIcon from '@material-ui/icons/Mail';
 import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import {makeStyles, useTheme} from '@material-ui/core/styles';
 import {Switch, Route, Link} from "react-router-dom";
 import ProfileContainer from "../../container/AccountContainer/ProfileContainer";
-import PortfolioContainer from "../../container/AccountContainer/PortfolioContainer";
+import UserPortfolioContainer from "../../container/AccountContainer/UserPortfolioContainer";
 import {Container} from "@material-ui/core";
 import ProductReviewContainer from "../../container/ProductReviewContainer";
 import Box from '@material-ui/core/Box';
 import ProfileEditCotainer from "../../container/AccountContainer/ProfileEditCotainer";
 import Cookies from "js-cookie"
 import ReviewEditorContainer from "../../container/AccountContainer/ReviewEditorContainer"
+import EditorCollectionContainer from "../../container/AccountContainer/EditorCollectionContainer";
 
 const drawerWidth = 240;
 
@@ -60,12 +61,12 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function AccountComponent(props) {
-    const { container } = props;
+    const {container} = props;
     const classes = useStyles();
     const theme = useTheme();
     const [mobileOpen, setMobileOpen] = React.useState(false);
-    const id= Cookies.get("JSESSIONID") !=null? (JSON.parse(localStorage.getItem(Cookies.get("JSESSIONID")))).uid : -1
-    const type = Cookies.get("JSESSIONID") !=null? (JSON.parse(localStorage.getItem(Cookies.get("JSESSIONID")))).dtype : -1
+    const id = Cookies.get("JSESSIONID") != null ? (JSON.parse(localStorage.getItem(Cookies.get("JSESSIONID")))).uid : -1
+    const type = Cookies.get("JSESSIONID") != null ? (JSON.parse(localStorage.getItem(Cookies.get("JSESSIONID")))).dtype : -1
 
     function handleDrawerToggle() {
         setMobileOpen(!mobileOpen);
@@ -73,36 +74,50 @@ function AccountComponent(props) {
 
     const drawer = (
         <div>
-            <div className={classes.toolbar} />
+            <div className={classes.toolbar}/>
             <Divider/>
-            <List>
+
+            {type != "Editor" && <List>
                 {['Profile', 'Portfolio', 'Reviews'].map((text, index) => (
                     <Link to={`/user/${props.match.params.uid}/${text.toLowerCase()}`}>
                         <ListItem button key={text}>
-                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                            <ListItemText primary={text} />
+                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon/> : <MailIcon/>}</ListItemIcon>
+                            <ListItemText primary={text}/>
                         </ListItem>
                     </Link>
                 ))}
-            </List>
-            <Divider />
-            {id == props.match.params.uid &&<List>
+            </List>}
+
+
+           {type == "Editor" && id == props.match.params.uid && <List>
+                {['Profile', 'Collection'].map((text, index) => (
+                    <Link to={`/user/${props.match.params.uid}/${text.toLowerCase()}`}>
+                        <ListItem button key={text}>
+                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon/> : <MailIcon/>}</ListItemIcon>
+                            <ListItemText primary={text}/>
+                        </ListItem>
+                    </Link>
+                ))}
+            </List>}
+
+            <Divider/>
+            {id == props.match.params.uid && <List>
                 {['Setting'].map((text, index) => (
                     <Link to={`/user/${props.match.params.uid}/${text.toLowerCase()}`}>
                         <ListItem button key={text}>
-                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                            <ListItemText primary={text} />
+                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon/> : <MailIcon/>}</ListItemIcon>
+                            <ListItemText primary={text}/>
                         </ListItem>
                     </Link>
                 ))} </List>}
 
-            <Divider />
-            {type=="Editor" && id == props.match.params.uid &&<List>
+            <Divider/>
+            {type == "Editor" && id == props.match.params.uid && <List>
                 {['Review'].map((text, index) => (
                     <Link to={`/user/${props.match.params.uid}/${text.toLowerCase()}`}>
                         <ListItem button key={`${text}(EditorOnly)`}>
-                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                            <ListItemText primary={`${text}(EditorOnly)`} />
+                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon/> : <MailIcon/>}</ListItemIcon>
+                            <ListItemText primary={`${text}(EditorOnly)`}/>
                         </ListItem>
                     </Link>
                 ))}
@@ -121,7 +136,7 @@ function AccountComponent(props) {
 
     return (
         <div className={classes.root}>
-            <CssBaseline />
+            <CssBaseline/>
             <AppBar position="fixed" className={classes.appBar}>
                 <Toolbar>
                     <IconButton
@@ -131,7 +146,7 @@ function AccountComponent(props) {
                         onClick={handleDrawerToggle}
                         className={classes.menuButton}
                     >
-                        <MenuIcon />
+                        <MenuIcon/>
                     </IconButton>
                     <Typography variant="h6" noWrap>
                         {props.user.firstName.toUpperCase()} {props.user.lastName.toUpperCase()}
@@ -175,7 +190,8 @@ function AccountComponent(props) {
                 <Switch>
                     //key point
                     <Route path="/user/:uid/profile" component={ProfileContainer}/>
-                    <Route path="/user/:uid/portfolio" component={PortfolioContainer}/>
+                    <Route path="/user/:uid/portfolio" component={UserPortfolioContainer}/>
+                    <Route path="/user/:uid/collection" component={EditorCollectionContainer}/>
                     <Route path="/user/:uid/reviews" component={ProductReviewContainer}/>
                     <Route path="/user/:uid/setting" component={ProfileEditCotainer}/>
                     <Route Path="user/:uid/review" component={ReviewEditorContainer}/>

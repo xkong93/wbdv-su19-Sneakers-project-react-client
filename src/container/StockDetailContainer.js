@@ -18,7 +18,8 @@ class StockDetailContainer extends Component {
         super(props)
         this.stockService = StockService.getInstance()
         this.productService = ProductService.getInstance()
-
+        this.id = Cookies.get("JSESSIONID") != null ? (JSON.parse(localStorage.getItem(Cookies.get("JSESSIONID")))).uid : -1
+        this.type = Cookies.get("JSESSIONID") != null ? (JSON.parse(localStorage.getItem(Cookies.get("JSESSIONID")))).dtype : -1
         this.state = {
             detail: {},
             response: {},
@@ -51,9 +52,31 @@ class StockDetailContainer extends Component {
         this.productService.findProductByUrlKey(url).then(response => this.setState({response: response}))
 
 
-    addProduct = (urlKey, uid) => {
+    addProductForUser = (urlKey, uid) => {
         if (Cookies.get("JSESSIONID") != undefined) {
             return this.productService.addProduct(urlKey, uid)
+                .then(response => {
+                    if (response.status != 200) {
+                        this.setState({
+                            openFailure: true,
+                        })
+                    } else {
+                        this.setState({
+                            openSuccess: true
+                        })
+                    }
+                })
+        } else {
+            this.setState({
+                redirect: true
+            })
+        }
+
+    }
+
+    addProductForEditor = (urlKey, uid) => {
+        if (Cookies.get("JSESSIONID") != undefined) {
+            return this.productService.addProductForEditor(urlKey, uid)
                 .then(response => {
                     if (response.status != 200) {
                         this.setState({
@@ -84,14 +107,29 @@ class StockDetailContainer extends Component {
     }
 
     render() {
-        const url = "/add/"+ this.state.urlKey + "/" + this.state.response.id + "/" + this.state.uid
+        const url = "/add/" + this.state.urlKey + "/" + this.state.response.id + "/" + this.state.uid
         return (
             <Container maxWidth="lg">
+                {this.type != "Editor" ? <Snackbar
+                    anchorOrigin={{vertical: "top", horizontal: "left"}}
+                    open={this.state.openSuccess}
+                    autoHideDuration={3000}
+                    message={<span id="message-id">Added to your portfolio!</span>}
+                    ContentProps={{
+                        "aria-describedby": "message-id"
+                    }}
+                    onClose={this.closeSnackbar}
+                    action={[
+                        <IconButton onClick={this.closeSnackbar} color='inherit' key='close' aria-label='close'>
+                            <CloseIcon/>
+                        </IconButton>
+                    ]}
+                /> :
                 <Snackbar
                     anchorOrigin={{vertical: "top", horizontal: "left"}}
                     open={this.state.openSuccess}
                     autoHideDuration={3000}
-                    message={<span id="message-id">Added to your portfolio! Please refresh!</span>}
+                    message={<span id="message-id">Added to your collection!</span>}
                     ContentProps={{
                         "aria-describedby": "message-id"
                     }}
@@ -102,6 +140,7 @@ class StockDetailContainer extends Component {
                         </IconButton>
                     ]}
                 />
+                }
 
                 <Snackbar
                     anchorOrigin={{vertical: "top", horizontal: "left"}}
@@ -120,11 +159,20 @@ class StockDetailContainer extends Component {
                 />
 
 
-                <div className="float-right">
-                    <button type="button" className="btn btn-info"
-                            onClick={() => this.addProduct(this.state.urlKey, this.state.uid)}>Add to Collection
-                    </button>
-                </div>
+                {this.type != "Editor" ?
+                    <div className="float-right">
+                        <button type="button" className="btn btn-info"
+                                onClick={() => this.addProductForUser(this.state.urlKey, this.state.uid)}>Add to
+                            Portfolio
+                        </button>
+                    </div>
+                    :
+                    <div className="float-right">
+                        <button type="button" className="btn btn-info"
+                                onClick={() => this.addProductForEditor(this.state.urlKey, this.state.uid)}>Add to Collection
+                        </button>
+                    </div>
+                }
                 <StockDetailComponent detail={this.state.detail}/>
                 <ProductReviewContainer params={this.props.match.params}/>
                 <br/>
@@ -132,8 +180,8 @@ class StockDetailContainer extends Component {
                     <Button fullWidth
                             size={"large"}
                             variant="outlined"
-                            onClick={(Cookies.get("JSESSIONID") != undefined)?
-                                ()=>this.addProduct(this.state.urlKey, this.state.uid): ""}
+                            onClick={(Cookies.get("JSESSIONID") != undefined) ?
+                                () => this.addProduct(this.state.urlKey, this.state.uid) : ""}
                             color="inherit">Add
                         Review</Button></Link>
                 {this.renderRedirectLogin()}

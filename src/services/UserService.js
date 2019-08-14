@@ -49,6 +49,10 @@ export default class UserService {
             .then(response => response.json())
     }
 
+    getPortfolioForEditorByEditorId = (eid) => {
+        return fetch(this.url + `user/${eid}/collection`)
+            .then(response => response.json())
+    }
     getPublicProfileForUserByUserId = (uid) => {
         return fetch(this.url + `user/${uid}/publicProfile`)
             .then(response => response.json())
@@ -72,9 +76,14 @@ export default class UserService {
             }
         })
 
-    DeleteProductFromUserById = (uid,productUrlKey) =>
-         fetch(this.url + `user/${uid}/product/${productUrlKey}` ,{
+    DeleteProductFromUserById = (uid, productUrlKey) =>
+        fetch(this.url + `user/${uid}/product/${productUrlKey}`, {
             method: 'DELETE',
 
+        })
+
+    removeProductFromEditorCollection = (eid, productUrlKey) =>
+        fetch(this.url + `editor/${eid}/product/${productUrlKey}`, {
+            method: 'DELETE',
         })
 }

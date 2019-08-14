@@ -25,4 +25,5 @@ export default class EditorService {
         fetch(this.url + "editor/product")
             .then(res => res.json());
 
+
 }

@@ -125,7 +125,7 @@ class HomeContainer extends Component {
 
 
                     {this.state.editorPickProducts.length > 0 && <Container maxWidth="md">
-                        <h3 style={{marginBottom: 60}}>EDITORS' PICKS</h3>
+                        <h3 style={{marginBottom: 30}}>EDITORS' PICKS</h3>
                         <EditorProductComponent editorProducts={this.state.editorPickProducts}/>
                     </Container>}
 

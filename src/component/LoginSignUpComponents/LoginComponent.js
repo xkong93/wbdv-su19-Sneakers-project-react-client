@@ -5,7 +5,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
+import {Link} from "react-router-dom";
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
@@ -38,7 +38,7 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-export default function SignIn({isFailed,handleSubmit, handleUserName, handlePassword}) {
+export default function SignIn({isFailed, handleSubmit, handleUserName, handlePassword}) {
 
 
     const classes = useStyles();
@@ -53,9 +53,9 @@ export default function SignIn({isFailed,handleSubmit, handleUserName, handlePas
                     Sign in
                 </Typography>
                 {isFailed && <div>The User ID or Password is incorrect. Please try again.</div>}
-                <form className={classes.form} >
+                <form className={classes.form}>
                     <TextField
-                            onChange={(event) => handleUserName(event)}
+                        onChange={(event) => handleUserName(event)}
                         variant="outlined"
                         margin="normal"
                         required
@@ -93,8 +93,8 @@ export default function SignIn({isFailed,handleSubmit, handleUserName, handlePas
                     </Button>
                     <Grid container>
                         <Grid item>
-                            <Link href="/signup" variant="body2">
-                                {"Don't have an account? Sign Up"}
+                            <Link to="/register" variant="body2">
+                                <a>Don't have an account? Sign Up</a>
                             </Link>
                         </Grid>
                     </Grid>
