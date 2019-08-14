@@ -28,38 +28,76 @@ import ReviewEditorContainer from "../../container/AccountContainer/ReviewEditor
 const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    display: 'flex',
-  },
-  drawer: {
-    [theme.breakpoints.up('sm')]: {
-      width: drawerWidth,
-      flexShrink: 0,
+    root: {
+        display: 'flex',
     },
-  },
-  appBar: {
-    marginLeft: drawerWidth,
-    [theme.breakpoints.up('sm')]: {
-      width: `calc(100% - ${drawerWidth}px)`,
+    drawer: {
+        [theme.breakpoints.up('sm')]: {
+            width: drawerWidth,
+            flexShrink: 0,
+        },
     },
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-    [theme.breakpoints.up('sm')]: {
-      display: 'none',
+    appBar: {
+        marginLeft: drawerWidth,
+        [theme.breakpoints.up('sm')]: {
+            width: `calc(100% - ${drawerWidth}px)`,
+        },
     },
-  },
-  toolbar: theme.mixins.toolbar,
-  drawerPaper: {
-    width: drawerWidth,
-  },
-  content: {
-    flexGrow: 1,
-    padding: theme.spacing(3),
-  },
+    menuButton: {
+        marginRight: theme.spacing(2),
+        [theme.breakpoints.up('sm')]: {
+            display: 'none',
+        },
+    },
+    toolbar: theme.mixins.toolbar,
+    drawerPaper: {
+        width: drawerWidth,
+    },
+    content: {
+        flexGrow: 1,
+        padding: theme.spacing(3),
+    },
 }));
 
 function AccountComponent(props) {
+<<<<<<< HEAD
+    const {container} = props;
+    const classes = useStyles();
+    const theme = useTheme();
+    const [mobileOpen, setMobileOpen] = React.useState(false);
+    const id = (JSON.parse(localStorage.getItem(Cookies.get("JSESSIONID")))).uid
+
+
+    function handleDrawerToggle() {
+        setMobileOpen(!mobileOpen);
+    }
+
+    const drawer = (
+        <div>
+            <div className={classes.toolbar}/>
+            <Divider/>
+            <List>
+                {['Profile', 'Portfolio', 'Reviews'].map((text, index) => (
+                    <Link to={`/user/${props.match.params.uid}/${text.toLowerCase()}`}>
+                        <ListItem button key={text}>
+                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon/> : <MailIcon/>}</ListItemIcon>
+                            <ListItemText primary={text}/>
+                        </ListItem>
+                    </Link>
+                ))}
+            </List>
+            <Divider/>
+            {id == props.match.params.uid && <List>
+                {['Setting'].map((text, index) => (
+                    <Link to={`/user/${props.match.params.uid}/${text.toLowerCase()}`}>
+                        <ListItem button key={text}>
+                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon/> : <MailIcon/>}</ListItemIcon>
+                            <ListItemText primary={text}/>
+                        </ListItem>
+                    </Link>
+                ))}
+            </List>}
+=======
   const { container } = props;
   const classes = useStyles();
   const theme = useTheme();
@@ -107,70 +145,71 @@ function AccountComponent(props) {
                 </Link>
             ))}
       </List>}
+>>>>>>> 71a832cf3df33cc627ea9c26e926dbb0aff95571
 
-        <Box bgcolor="grey.300"
-             color="white"
-             p={2}
-             position="absolute"
-             bottom="5%"
-        >
-            <Link to="/" color="inherit">Back to Home Page</Link>
-        </Box>
-    </div>
-  );
+            <Box bgcolor="grey.300"
+                 color="white"
+                 p={2}
+                 position="absolute"
+                 bottom="5%"
+            >
+                <Link to="/" color="inherit">Back to Home Page</Link>
+            </Box>
+        </div>
+    );
 
-  return (
-    <div className={classes.root}>
-      <CssBaseline />
-      <AppBar position="fixed" className={classes.appBar}>
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            onClick={handleDrawerToggle}
-            className={classes.menuButton}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap>
-            {props.user.firstName.toUpperCase()} {props.user.lastName.toUpperCase()}
-          </Typography>
-        </Toolbar>
-      </AppBar>
-      <nav className={classes.drawer} aria-label="mailbox folders">
-        {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
-        <Hidden smUp implementation="css">
-          <Drawer
-            container={container}
-            variant="temporary"
-            anchor={theme.direction === 'rtl' ? 'right' : 'left'}
-            open={mobileOpen}
-            onClose={handleDrawerToggle}
-            classes={{
-              paper: classes.drawerPaper,
-            }}
-            ModalProps={{
-              keepMounted: true, // Better open performance on mobile.
-            }}
-          >
-            {drawer}
-          </Drawer>
-        </Hidden>
-        <Hidden xsDown implementation="css">
-          <Drawer
-            classes={{
-              paper: classes.drawerPaper,
-            }}
-            variant="permanent"
-            open
-          >
-            {drawer}
-          </Drawer>
-        </Hidden>
-      </nav>
+    return (
+        <div className={classes.root}>
+            <CssBaseline/>
+            <AppBar position="fixed" className={classes.appBar}>
+                <Toolbar>
+                    <IconButton
+                        color="inherit"
+                        aria-label="open drawer"
+                        edge="start"
+                        onClick={handleDrawerToggle}
+                        className={classes.menuButton}
+                    >
+                        <MenuIcon/>
+                    </IconButton>
+                    <Typography variant="h6" noWrap>
+                        {props.user.firstName.toUpperCase()} {props.user.lastName.toUpperCase()}
+                    </Typography>
+                </Toolbar>
+            </AppBar>
+            <nav className={classes.drawer} aria-label="mailbox folders">
+                {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
+                <Hidden smUp implementation="css">
+                    <Drawer
+                        container={container}
+                        variant="temporary"
+                        anchor={theme.direction === 'rtl' ? 'right' : 'left'}
+                        open={mobileOpen}
+                        onClose={handleDrawerToggle}
+                        classes={{
+                            paper: classes.drawerPaper,
+                        }}
+                        ModalProps={{
+                            keepMounted: true, // Better open performance on mobile.
+                        }}
+                    >
+                        {drawer}
+                    </Drawer>
+                </Hidden>
+                <Hidden xsDown implementation="css">
+                    <Drawer
+                        classes={{
+                            paper: classes.drawerPaper,
+                        }}
+                        variant="permanent"
+                        open
+                    >
+                        {drawer}
+                    </Drawer>
+                </Hidden>
+            </nav>
 
-        <Container className={classes.content}>
+            <Container className={classes.content}>
 
                 <Switch>
                     //key point
@@ -180,9 +219,9 @@ function AccountComponent(props) {
                     <Route path="/user/:uid/setting" component={ProfileEditCotainer}/>
                     <Route Path="user/:uid/review" component={ReviewEditorContainer}/>
                 </Switch>
-      </Container>
-    </div>
-  );
+            </Container>
+        </div>
+    );
 }
 
 export default AccountComponent;

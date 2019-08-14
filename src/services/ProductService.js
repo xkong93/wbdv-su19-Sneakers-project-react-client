@@ -37,4 +37,6 @@ export default class ProductService {
 
     findProductByUrlKey=(urlKey)=>
         fetch(this.url + 'product/getId/' + urlKey).then(response => response.json())
+
+
 }

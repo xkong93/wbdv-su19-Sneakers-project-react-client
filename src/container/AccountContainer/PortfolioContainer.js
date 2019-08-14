@@ -33,7 +33,8 @@ class PortfolioContainer extends Component {
     render() {
         return (
             <div>
-                <PortfolioComponent portfolio={this.state}/>
+                {console.log(this.state)}
+                {this.state.portfolioItems.length > 0 && <PortfolioComponent uid={this.props.match.params.uid} portfolio={this.state}/>}
             </div>
         );
     }
