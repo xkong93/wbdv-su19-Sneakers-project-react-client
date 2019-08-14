@@ -53,7 +53,7 @@ export default function SignUp({isFailed, createU,noEditor,createE}) {
         password: "",
         username: "",
         role:"User",
-        code: " "
+        code: ""
     })
 
 
