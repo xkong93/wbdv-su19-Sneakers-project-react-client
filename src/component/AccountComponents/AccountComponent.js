@@ -60,13 +60,12 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function AccountComponent(props) {
-<<<<<<< HEAD
-    const {container} = props;
+    const { container } = props;
     const classes = useStyles();
     const theme = useTheme();
     const [mobileOpen, setMobileOpen] = React.useState(false);
-    const id = (JSON.parse(localStorage.getItem(Cookies.get("JSESSIONID")))).uid
-
+    const id= Cookies.get("JSESSIONID") !=null? (JSON.parse(localStorage.getItem(Cookies.get("JSESSIONID")))).uid : -1
+    const type = Cookies.get("JSESSIONID") !=null? (JSON.parse(localStorage.getItem(Cookies.get("JSESSIONID")))).dtype : -1
 
     function handleDrawerToggle() {
         setMobileOpen(!mobileOpen);
@@ -74,78 +73,40 @@ function AccountComponent(props) {
 
     const drawer = (
         <div>
-            <div className={classes.toolbar}/>
+            <div className={classes.toolbar} />
             <Divider/>
             <List>
                 {['Profile', 'Portfolio', 'Reviews'].map((text, index) => (
                     <Link to={`/user/${props.match.params.uid}/${text.toLowerCase()}`}>
                         <ListItem button key={text}>
-                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon/> : <MailIcon/>}</ListItemIcon>
-                            <ListItemText primary={text}/>
+                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                            <ListItemText primary={text} />
                         </ListItem>
                     </Link>
                 ))}
             </List>
-            <Divider/>
-            {id == props.match.params.uid && <List>
+            <Divider />
+            {id == props.match.params.uid &&<List>
                 {['Setting'].map((text, index) => (
                     <Link to={`/user/${props.match.params.uid}/${text.toLowerCase()}`}>
                         <ListItem button key={text}>
-                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon/> : <MailIcon/>}</ListItemIcon>
-                            <ListItemText primary={text}/>
+                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                            <ListItemText primary={text} />
+                        </ListItem>
+                    </Link>
+                ))} </List>}
+
+            <Divider />
+            {type=="Editor" && id == props.match.params.uid &&<List>
+                {['Review'].map((text, index) => (
+                    <Link to={`/user/${props.match.params.uid}/${text.toLowerCase()}`}>
+                        <ListItem button key={`${text}(EditorOnly)`}>
+                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                            <ListItemText primary={`${text}(EditorOnly)`} />
                         </ListItem>
                     </Link>
                 ))}
             </List>}
-=======
-  const { container } = props;
-  const classes = useStyles();
-  const theme = useTheme();
-  const [mobileOpen, setMobileOpen] = React.useState(false);
-  const id= Cookies.get("JSESSIONID") !=null? (JSON.parse(localStorage.getItem(Cookies.get("JSESSIONID")))).uid : -1
-  const type = Cookies.get("JSESSIONID") !=null? (JSON.parse(localStorage.getItem(Cookies.get("JSESSIONID")))).dtype : -1
-  function handleDrawerToggle() {
-    setMobileOpen(!mobileOpen);
-  }
-
-  const drawer = (
-    <div>
-      <div className={classes.toolbar} />
-      <Divider/>
-      <List>
-        {['Profile', 'Portfolio', 'Reviews'].map((text, index) => (
-            <Link to={`/user/${props.match.params.uid}/${text.toLowerCase()}`}>
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-            </Link>
-        ))}
-      </List>
-      <Divider />
-        {id == props.match.params.uid &&<List>
-        {['Setting'].map((text, index) => (
-            <Link to={`/user/${props.match.params.uid}/${text.toLowerCase()}`}>
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-            </Link>
-        ))} </List>}
-
-        <Divider />
-
-        {type=="Editor" && id == props.match.params.uid &&<List>
-            {['Review'].map((text, index) => (
-                <Link to={`/user/${props.match.params.uid}/${text.toLowerCase()}`}>
-                    <ListItem button key={`${text}(EditorOnly)`}>
-                        <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                        <ListItemText primary={`${text}(EditorOnly)`} />
-                    </ListItem>
-                </Link>
-            ))}
-      </List>}
->>>>>>> 71a832cf3df33cc627ea9c26e926dbb0aff95571
 
             <Box bgcolor="grey.300"
                  color="white"
@@ -160,7 +121,7 @@ function AccountComponent(props) {
 
     return (
         <div className={classes.root}>
-            <CssBaseline/>
+            <CssBaseline />
             <AppBar position="fixed" className={classes.appBar}>
                 <Toolbar>
                     <IconButton
@@ -170,7 +131,7 @@ function AccountComponent(props) {
                         onClick={handleDrawerToggle}
                         className={classes.menuButton}
                     >
-                        <MenuIcon/>
+                        <MenuIcon />
                     </IconButton>
                     <Typography variant="h6" noWrap>
                         {props.user.firstName.toUpperCase()} {props.user.lastName.toUpperCase()}
