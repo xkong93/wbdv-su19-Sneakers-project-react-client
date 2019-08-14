@@ -14,7 +14,9 @@ import PortfolioContainer from "./AccountContainer/PortfolioContainer";
 import AccountContainer from "./AccountContainer/AccountContainer";
 import AddingRContainer from "./AddingRContainer";
 
+
 class Main extends Component {
+
     render() {
         return (
             <div >

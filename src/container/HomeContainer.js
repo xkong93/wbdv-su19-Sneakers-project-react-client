@@ -69,7 +69,9 @@ class HomeContainer extends Component {
 
     componentDidMount() {
         this.editorService.getAllEditor()
-            .then(response => this.setState({editorPickProducts: response}))
+            .then(response => {if(response.status!=200){this.setState({editorPickProducts: 0})
+            }else{this.setState({editorPickProducts: response})}
+            })
         // this.getProductsForUser(this.state.uid)
         //     .then(response => this.setState({
         //         userService: response
@@ -125,6 +127,11 @@ class HomeContainer extends Component {
                         </Container>
                     </div>
 
+                    {console.log(this.state.editorPickProducts)}
+
+                    {this.state.editorPickProducts==0 && <Container maxWidth="md" align="center">
+                        <h2>Feature Product Coming Soon!</h2>
+                    </Container>}
 
                     {this.state.editorPickProducts.length > 0 && <Container maxWidth="md">
                         <h3>EDITORS' PICKS</h3>
@@ -143,12 +150,14 @@ class HomeContainer extends Component {
                 </main>
 
                 {/* Footer */}
-                <footer>
+                <footer className={"card text-white bg-dark mb-3"}>
                     <Typography variant="h6" align="center" gutterBottom>
-                        Footer
+                        Creators
                     </Typography>
-                    <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-                        Something here to give the footer a purpose!
+                    <Typography variant="subtitle1" align="center" component="p">
+                        Xuan Kong,
+                        Hao Qin,
+                        Qi Zhou
                     </Typography>
                 </footer>
                 {/* End footer */}

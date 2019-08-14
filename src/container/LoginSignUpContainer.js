@@ -62,7 +62,7 @@ class LoginSignUpContainer extends Component {
 
     render() {
         if (this.state.isLoggedIn === true) {
-            return (<Redirect to="/profile"/>);
+            return (<Redirect to="/"/>);
         } else {
             return (<LoginComponent isFailed={this.state.isFailed} handleSubmit={this.handleSubmit}
                                     handlePassword={this.handlePassword}
