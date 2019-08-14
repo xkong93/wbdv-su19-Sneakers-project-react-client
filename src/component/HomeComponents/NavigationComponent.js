@@ -1,13 +1,10 @@
 import React from 'react';
-import clsx from 'clsx';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import {Link} from "react-router-dom";
-import SearchIcon from '@material-ui/icons/Search';
-import InputBase from '@material-ui/core/InputBase';
 import Cookies from 'js-cookie'
 
 
@@ -85,7 +82,7 @@ export default function NavigationComponent() {
 
                     <Link to='/'><Button  className={classes.button}>Home</Button></Link>
                 {Cookies.get("JSESSIONID") ==null && <Link to='/login'><Button>Login</Button></Link>}
-                {Cookies.get("JSESSIONID") ==null &&<Link to='/signup'><Button>Sign Up</Button></Link>}
+                {Cookies.get("JSESSIONID") ==null &&<Link to='/register'><Button>Sign Up</Button></Link>}
                 {Cookies.get("JSESSIONID") !=null && <Link to="/home"><Button  onClick={()=>logout()} >Sign Out</Button></Link>}
                     <Link to='/search/keywords'><Button>Search</Button></Link>
                 {loginJson != null && <Link to={`/user/${loginJson.uid}/profile`}><Button >My Account</Button></Link>}

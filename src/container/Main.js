@@ -22,7 +22,7 @@ class Main extends Component {
                         <Route exact path="/" component={HomeContainer}/>
                         <Route path="/home" component={HomeContainer}/>
                         <Route path="/login" component={LoginSignUpContainer}/>
-                        <Route path="/signup" component={SignUpComponent}/>
+                        <Route path="/register" component={SignUpComponent}/>
                         <Route path="/search/:keywords" component={SearchStockContainer}/>
                         <Route path="/detail/:urlKey" component={StockDetailContainer}/>
                         <Route path="/add/:urlKey/:pid/:uid" component={AddingRContainer}/>

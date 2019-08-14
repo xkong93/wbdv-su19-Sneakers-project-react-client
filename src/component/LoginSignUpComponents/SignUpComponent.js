@@ -3,7 +3,7 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import Link from '@material-ui/core/Link';
+import {Link} from "react-router-dom";
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
@@ -59,7 +59,7 @@ export default function SignUp() {
     })
 
     const createUser = (User) =>{
-        userService.createUser(User).then(res => {if(res.status==304){setValues({...User, success: true})}
+        userService.createUser(User).then(res => {if(res.status==304 || res.status==200){setValues({...User, success: true})}
         else{alert("signpUp fail")}})
 
 
@@ -67,7 +67,7 @@ export default function SignUp() {
     }
 
     const createEditor=(Editor, code)=>
-         editorService.createEditor(Editor, code).then(res => {if(res.status==304){setValues({...User, success: true})}
+         editorService.createEditor(Editor, code).then(res => {if(res.status==304 || res.status==200){setValues({...User, success: true})}
          else{alert("signpUp fail")}})
 
 
@@ -185,7 +185,7 @@ export default function SignUp() {
                             />
                         </Grid>}
                     </Grid>
-                    {User.role=="User" && <Link href={User.success ? '/login': ''} ><Button
+                    {User.role=="User" && <Link {...User.success? {to: '/login'}: {} }><Button
                         fullWidth
                         variant="contained"
                         color="primary"
@@ -194,7 +194,7 @@ export default function SignUp() {
                     >
                         Sign Up
                     </Button></Link>}
-                    {User.role=="Editor" && <Link href={User.success ? '/login': ''} ><Button
+                    {User.role=="Editor" && <Link to={User.success ? '/login': ''} ><Button
                         fullWidth
                         variant="contained"
                         color="primary"
