@@ -59,7 +59,7 @@ export default function SignUp() {
     })
 
     const createUser = (User) =>{
-        userService.createUser(User).then(status => {if(status==200){setValues({...User, success: true})}
+        userService.createUser(User).then(res => {if(res.status==304){setValues({...User, success: true})}
         else{alert("signpUp fail")}})
 
 
@@ -67,7 +67,7 @@ export default function SignUp() {
     }
 
     const createEditor=(Editor, code)=>
-         editorService.createEditor(Editor, code).then(status => {if(status==200){setValues({...User, success: true})}
+         editorService.createEditor(Editor, code).then(res => {if(res.status==304){setValues({...User, success: true})}
          else{alert("signpUp fail")}})
 
 
@@ -78,6 +78,7 @@ export default function SignUp() {
 
     return (
         <Container component="main" maxWidth="xs">
+            {console.log(User.success)}
             <CssBaseline/>
             <div className={classes.paper}>
                 <Avatar className={classes.avatar}>
@@ -188,7 +189,6 @@ export default function SignUp() {
                         fullWidth
                         variant="contained"
                         color="primary"
-                        type="submit"
                         className={classes.submit}
                         onClick={() => createUser(User)}
                     >
