@@ -142,12 +142,7 @@ class HomeContainer extends Component {
                 {/* Footer */}
                 <footer className={"card text-white bg-dark mb-3"}>
                     <Typography variant="h6" align="center" gutterBottom>
-                        Creators
-                    </Typography>
-                    <Typography variant="subtitle1" align="center" component="p">
-                        Xuan Kong,
-                        Hao Qin,
-                        Qi Zhou
+                        SneakerStock 2019
                     </Typography>
                 </footer>
                 {/* End footer */}

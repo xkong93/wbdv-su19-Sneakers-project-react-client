@@ -78,24 +78,10 @@ export default function NavigationComponent() {
 
             <Toolbar>
 
-                    <Typography variant="h6" className={window.location.pathname ==='/' &&  (classes.title)
-                        || window.location.pathname ==='/search' &&  (classes.title)}
+                    <Typography variant="h6" className={classes.title}
                     > SneakerStock</Typography>
 
-                {window.location.pathname!=='/' && window.location.pathname!=='/search' && <div className={clsx(classes.search, classes.title)}>
-                    <div className={classes.searchIcon}>
-                        <Link href='/search'><SearchIcon/></Link>
-                    </div>
-                    <InputBase
-                        placeholder="Search…"
-                        classes={{
-                            root: classes.inputRoot,
-                            input: classes.inputInput,
-                        }}
-                        inputProps={{'aria-label': 'search'}}
-                    />
-                </div>
-                }
+
 
                     <Link to='/'><Button  className={classes.button}>Home</Button></Link>
                 {Cookies.get("JSESSIONID") ==null && <Link to='/login'><Button>Login</Button></Link>}
