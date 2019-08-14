@@ -26,7 +26,7 @@ const ReviewComponent = ({review}) => {
             {review != undefined && <p>{review.description} </p>}
         </Typography>
         <Typography variant="h6" component="h1">
-            <Link href={`/user/${review.uid}`}>Author-{review.username}</Link>
+            <Link href={`/user/${review.uid}`}>{review.username?`Author-${review.username}`: ` `}</Link>
         </Typography>
         </Paper>
         </div>
