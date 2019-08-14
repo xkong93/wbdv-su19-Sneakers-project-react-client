@@ -3,12 +3,12 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import Link from '@material-ui/core/Link';
+import {Link} from "react-router-dom";
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
-import {makeStyles} from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import UserService from "../../services/UserService";
 import Input from '@material-ui/core/Input';
@@ -42,10 +42,9 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-export default function SignUp() {
+export default function SignUp({isFailed, createU,noEditor,createE}) {
     const classes = useStyles();
-    const userService = UserService.getInstance()
-    const editorService = EditorService.getInstance()
+
 
     const [User, setValues] = React.useState({
         firstName: "",
@@ -53,31 +52,9 @@ export default function SignUp() {
         email: "",
         password: "",
         username: "",
-        role: "User",
-        code: "",
-        success: false
+        role:"User",
+        code: ""
     })
-
-    const createUser = (User) => {
-        userService.createUser(User).then(status => {
-            if (status == 200) {
-                setValues({...User, success: true})
-            } else {
-                alert("signpUp fail")
-            }
-        })
-
-
-    }
-
-    const createEditor = (Editor, code) =>
-        editorService.createEditor(Editor, code).then(status => {
-            if (status == 200) {
-                setValues({...User, success: true})
-            } else {
-                alert("signpUp fail")
-            }
-        })
 
 
     const handleChange = prop => event => {
@@ -94,6 +71,8 @@ export default function SignUp() {
                 <Typography component="h1" variant="h5">
                     Sign up
                 </Typography>
+                {isFailed==true && <div>Fail to Register! Please check if you already registered.</div>}
+                {noEditor==true && <div>Check your Code, or if you already registered.</div>}
                 <form className={classes.form} noValidate>
                     <Grid container spacing={2}>
                         <Grid item xs={12} sm={6}>
@@ -170,9 +149,9 @@ export default function SignUp() {
                             </InputLabel>
                             <NativeSelect
                                 fullWidth
-                                value={User.role}
+                               value={User.role}
                                 onChange={handleChange('role')}
-                                input={<Input name="age" id="age-native-label-placeholder"/>}
+                                input={<Input name="age" id="age-native-label-placeholder" />}
                             >
                                 <option value="User">User</option>
                                 <option value="Editor">Editor</option>
@@ -192,28 +171,28 @@ export default function SignUp() {
                             />
                         </Grid>}
                     </Grid>
-                    {User.role == "User" && <Link to={User.success ? '/login' : ''}><Button
+                    {User.role=="User" && <Button
                         fullWidth
                         variant="contained"
                         color="primary"
-                        type="submit"
                         className={classes.submit}
-                        onClick={() => createUser(User)}
+                        onClick={(e) => createU(User, e)}
                     >
                         Sign Up
-                    </Button></Link>}
-                    {User.role == "Editor" && <Link to={User.success ? '/login' : ''}><Button
+                    </Button>}
+
+                    {User.role=="Editor" &&<Button
                         fullWidth
                         variant="contained"
                         color="primary"
                         className={classes.submit}
-                        onClick={() => createEditor(User, User.code)}
+                        onClick={(e) => createE(User, User.code, e)}
                     >
                         Sign Up for Editor
-                    </Button></Link>}
+                    </Button>}
                     <Grid container justify="flex-end">
                         <Grid item>
-                            <Link to='/login' variant="body2">
+                            <Link  to='/login' variant="body2">
                                 <a>Already have an account? Sign in</a>
                             </Link>
                         </Grid>
