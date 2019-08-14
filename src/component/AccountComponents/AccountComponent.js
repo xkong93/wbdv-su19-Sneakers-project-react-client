@@ -23,7 +23,7 @@ import ProductReviewContainer from "../../container/ProductReviewContainer";
 import Box from '@material-ui/core/Box';
 import ProfileEditCotainer from "../../container/AccountContainer/ProfileEditCotainer";
 import Cookies from "js-cookie"
-
+import ReviewEditorContainer from "../../container/AccountContainer/ReviewEditorContainer"
 
 const drawerWidth = 240;
 
@@ -92,7 +92,18 @@ function AccountComponent(props) {
             <ListItemText primary={text} />
           </ListItem>
             </Link>
-        ))}
+        ))} </List>}
+
+        <Divider />
+        {id == props.match.params.uid &&<List>
+            {['Review'].map((text, index) => (
+                <Link to={`/user/${props.match.params.uid}/${text.toLowerCase()}`}>
+                    <ListItem button key={`${text}(EditorOnly)`}>
+                        <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                        <ListItemText primary={`${text}(EditorOnly)`} />
+                    </ListItem>
+                </Link>
+            ))}
       </List>}
 
         <Box bgcolor="grey.300"
@@ -165,6 +176,7 @@ function AccountComponent(props) {
                     <Route path="/user/:uid/portfolio" component={PortfolioContainer}/>
                     <Route path="/user/:uid/reviews" component={ProductReviewContainer}/>
                     <Route path="/user/:uid/setting" component={ProfileEditCotainer}/>
+                    <Route Path="user/:uid/review" component={ReviewEditorContainer}/>
                 </Switch>
       </Container>
     </div>

@@ -98,6 +98,7 @@ class ProductReviewContainer extends Component {
         return (
 
             <Container className={this.props.classes.root} maxWidth="lg">
+
                 <div>
                     {
                         this.state.ratings.length != 0 ? <RatingComponent ratings={this.state.ratings}/>

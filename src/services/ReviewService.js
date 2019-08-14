@@ -11,6 +11,9 @@ export default class ReviewService {
         return this.myInstance;
     }
 
+    findAllReview=()=>
+        fetch(this.url + "review").then(response => response.json())
+
     createReview = (review, uid, pid)=>
         fetch(this.url+`user/${uid}/product/${pid}/review`, {
             method: 'POST',
@@ -19,6 +22,12 @@ export default class ReviewService {
                 'content-type': 'application/json'
             }
         }).then(res => res)
+
+    deleteReview =(rid) =>
+        fetch(this.url + "review/" + rid, {
+            method: 'DELETE'
+        })
+
 
     getReviewsForProduct = (urlKey) =>
         fetch(this.url + `product/${urlKey}/review`)
