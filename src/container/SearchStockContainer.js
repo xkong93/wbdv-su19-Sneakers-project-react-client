@@ -7,8 +7,15 @@ class SearchStockContainer extends Component {
         super(props);
         this.stockService = StockService.getInstance()
         this.state = {
-            keywords: '',
+            keywords: this.props.match.params.keywords,
             stocks: []
+        }
+    }
+
+
+    componentDidMount() {
+        if(this.state.keywords!==null){
+            this.searchStock()
         }
     }
 

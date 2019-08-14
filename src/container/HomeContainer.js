@@ -62,7 +62,8 @@ class HomeContainer extends Component {
         this.state = {
             editorPickProducts: [],
             userProducts: [],
-            uid: ''
+            uid: '',
+            search:""
         }
     }
 
@@ -89,6 +90,8 @@ class HomeContainer extends Component {
                 userProducts: products
             }))
 
+    searchChange=(e)=>
+        this.setState({search: e.target.value})
 
     render() {
         const {classes} = this.props;
@@ -96,7 +99,6 @@ class HomeContainer extends Component {
             <React.Fragment>
                 <CssBaseline/>
                 <main>
-
                     <div className={classes.heroContent}>
                         <Container maxWidth="md">
                             <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
@@ -105,9 +107,11 @@ class HomeContainer extends Component {
                             <div className="row">
                                 <div className='input-group mb-3'>
                                     <input className="form-control"
+                                           value={this.state.search}
+                                           onChange={(e)=>this.searchChange(e)}
                                            placeholder="Seach for Sneakers"/>
                                     <div className="input-group-append">
-                                        <Link to='/search/keywords'>
+                                        <Link to={`/search/${this.state.search}`}>
                                             <button
                                                 className="btn btn-primary">
                                                 Search
