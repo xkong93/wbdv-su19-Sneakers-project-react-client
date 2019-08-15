@@ -1,6 +1,7 @@
 export default class StockService {
     static myInstance = null;
-    corsUrl = 'https://wbdv-su19-project-cors-server.herokuapp.com/?q=';
+
+
     static getInstance() {
         if (StockService.myInstance == null) {
             StockService.myInstance =
