@@ -38,12 +38,18 @@ const styles = theme => ({
         flexGrow: 1,
     },
     footer: {
-        backgroundColor: theme.palette.background.paper,
+        backgroundColor: "theme.palette.background.paper",
         padding: theme.spacing(6),
+        position: "fixed",
+        height: "100px",
+        bottom: '0',
+        width: "100%",
+
     },
     editorComp: {
         marginTop: "100px"
     }
+
 });
 
 
@@ -73,9 +79,9 @@ class HomeContainer extends Component {
                 })
             })
 
-        if (Cookies.get("JSESSIONID") != null && this.type == "Editor"){
+        if (Cookies.get("JSESSIONID") != null && this.type == "Editor") {
             this.userService.getPortfolioForEditorByEditorId(this.id)
-                .then(response =>{
+                .then(response => {
                     this.setState({
                         editorPickByEditor: response
                     })
@@ -155,7 +161,6 @@ class HomeContainer extends Component {
                     </div>
 
 
-
                     {this.getEditorComp()}
 
                     {Cookies.get("JSESSIONID") != undefined && this.state.userProducts.length > 0 &&
@@ -168,11 +173,11 @@ class HomeContainer extends Component {
                 </main>
 
                 {/* Footer */}
-                <footer className={"card text-white bg-dark mb-3"}>
-                    <Typography variant="h6" align="center" gutterBottom>
-                        SneakerStock 2019
-                    </Typography>
-                </footer>
+                {/*<footer className={classes.footer}>*/}
+                {/*    <Typography variant="h6" align="center" gutterBottom>*/}
+                {/*        SneakerStock 2019*/}
+                {/*    </Typography>*/}
+                {/*</footer>*/}
                 {/* End footer */}
             </React.Fragment>
 
