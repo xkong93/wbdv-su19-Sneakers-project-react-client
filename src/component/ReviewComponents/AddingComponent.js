@@ -86,8 +86,8 @@ export default function AddingComponent({uid, pid, url}) {
 
 
 
-    function createReview (review, pid, uid) {
-        reviewService.createReview(review, pid, uid).then(response => {
+    function createReview (review, uid, pid) {
+        reviewService.createReview(review, uid, pid).then(response => {
             if (response.status != 200) {
                 setValues({...values, openFailure: true})
             } else {

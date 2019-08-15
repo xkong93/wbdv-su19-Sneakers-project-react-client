@@ -33,7 +33,7 @@ class StockDetailContainer extends Component {
     }
 
     componentDidMount() {
-        this.getProductByUrl(this.state.urlKey)
+      //  this.getProductByUrl(this.state.urlKey)
         // const urlKey = this.props.match.params.urlKey
         this.stockService.obtainDetailInfo(this.state.urlKey)
             .then(responseJSON => this.setState({
@@ -48,21 +48,20 @@ class StockDetailContainer extends Component {
         }
     }
 
-    getProductByUrl = (url) =>
-        this.productService.findProductByUrlKey(url)
-            .then(response => {
-                console.log(response)
-                if (response.status == 200){
-                    this.productService.createProduct(url)
-                        .then(response => this.setState({
-                            response: response
-                        }))
-                }else{
-                    this.setState({
-                        response:response
-                    })
-                }
-            })
+    // getProductByUrl = (url) =>
+    //     this.productService.findProductByUrlKey(url)
+    //         .then(response => {
+    //             if (response.status != 200){
+    //                 this.productService.createProduct(url)
+    //                     .then(response => this.setState({
+    //                         response: response
+    //                     }))
+    //             }else{
+    //                 this.setState({
+    //                     response:response
+    //                 })
+    //             }
+    //         })
 
 
     addProductForUser = (urlKey, uid) => {
@@ -120,9 +119,10 @@ class StockDetailContainer extends Component {
     }
 
     render() {
-        const url = "/add/" + this.state.urlKey + "/" + this.state.response.id + "/" + this.state.uid
+        const url = "/add/" + this.state.urlKey + "/" + "0" + "/" + this.state.uid
         return (
             <Container maxWidth="lg">
+                {console.log(this.state.response)}
                 {this.type != "Editor" ? <Snackbar
                     anchorOrigin={{vertical: "top", horizontal: "left"}}
                     open={this.state.openSuccess}
