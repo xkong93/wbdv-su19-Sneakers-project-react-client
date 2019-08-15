@@ -4,13 +4,12 @@ import StockService from "../services/StockService"
 import Container from '@material-ui/core/Container'
 import ProductReviewContainer from "./ProductReviewContainer";
 import Button from '@material-ui/core/Button';
-import Link from '@material-ui/core/Link';
 import ProductService from "../services/ProductService";
 import {Snackbar} from "@material-ui/core";
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Cookies from "js-cookie"
-import {Redirect} from "react-router-dom";
+import {Redirect, Link} from "react-router-dom";
 
 class StockDetailContainer extends Component {
 
@@ -33,8 +32,11 @@ class StockDetailContainer extends Component {
     }
 
     componentDidMount() {
-      //  this.getProductByUrl(this.state.urlKey)
+        //this.getProductByUrl(this.state.urlKey)
         // const urlKey = this.props.match.params.urlKey
+        this.productService.createProduct(this.state.urlKey)
+
+
         this.stockService.obtainDetailInfo(this.state.urlKey)
             .then(responseJSON => this.setState({
                 detail: responseJSON.Product
@@ -46,6 +48,9 @@ class StockDetailContainer extends Component {
                 uid: loginJson.uid
             })
         }
+
+
+
     }
 
     // getProductByUrl = (url) =>
@@ -189,12 +194,10 @@ class StockDetailContainer extends Component {
                 <StockDetailComponent detail={this.state.detail}/>
                 <ProductReviewContainer params={this.props.match.params}/>
                 <br/>
-                {this.type != "Editor" && <Link href={Cookies.get("JSESSIONID") != undefined ? `${url}` : "/login"} color="inherit">
+                {this.type != "Editor" && <Link to={Cookies.get("JSESSIONID") != undefined ? `${url}` : "/login"} color="inherit">
                     <Button fullWidth
                             size={"large"}
                             variant="outlined"
-                            onClick={(Cookies.get("JSESSIONID") != undefined) ?
-                                () => this.addProductForUser(this.state.urlKey, this.state.uid) : ""}
                             color="inherit">Add
                         Review</Button></Link>}
                 {this.renderRedirectLogin()}

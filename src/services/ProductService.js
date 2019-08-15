@@ -15,7 +15,7 @@ export default class ProductService {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
-            }}).then( res => res.json())
+            }})
         }
 
 
