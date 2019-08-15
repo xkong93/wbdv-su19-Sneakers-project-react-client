@@ -52,7 +52,7 @@ class StockDetailContainer extends Component {
         this.productService.findProductByUrlKey(url)
             .then(response => {
                 console.log(response)
-                if (response.status != 200){
+                if (response.status == 200){
                     this.productService.createProduct(url)
                         .then(response => this.setState({
                             response: response
