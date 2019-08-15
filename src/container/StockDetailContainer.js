@@ -49,20 +49,7 @@ class StockDetailContainer extends Component {
     }
 
     getProductByUrl = (url) =>
-        this.productService.findProductByUrlKey(url)
-            .then(response => {
-                console.log(response)
-                if (response.status != 200){
-                    this.productService.createProduct(url)
-                        .then(response => this.setState({
-                            response: response
-                        }))
-                }else{
-                    this.setState({
-                        response:response
-                    })
-                }
-            })
+        this.productService.findProductByUrlKey(url).then(response => this.setState({response: response}))
 
 
     addProductForUser = (urlKey, uid) => {
@@ -194,7 +181,7 @@ class StockDetailContainer extends Component {
                             size={"large"}
                             variant="outlined"
                             onClick={(Cookies.get("JSESSIONID") != undefined) ?
-                                () => this.addProductForUser(this.state.urlKey, this.state.uid) : ""}
+                                () => this.addProduct(this.state.urlKey, this.state.uid) : ""}
                             color="inherit">Add
                         Review</Button></Link>}
                 {this.renderRedirectLogin()}
