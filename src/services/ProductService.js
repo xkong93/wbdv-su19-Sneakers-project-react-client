@@ -1,5 +1,5 @@
 export default class ProductService {
-    url = "http://localhost:8080/api/";
+    url = "https://wbdev-su19-project-server.herokuapp.com/api";
     static myInstance = null;
 
 
