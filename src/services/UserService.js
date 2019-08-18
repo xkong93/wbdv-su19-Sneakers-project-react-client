@@ -1,5 +1,5 @@
 export default class UserService {
-    url = "https://wbdev-su19-project-server.herokuapp.com/api/";
+    url = "http://www.webdev5610.site/api/";
     urlHeroku = 'https://peaceful-savannah-55840.herokuapp.com/api/'
     static myInstance = null;
 
@@ -12,7 +12,7 @@ export default class UserService {
     }
 
     createUser = (User) =>
-        fetch(this.urlHeroku + 'user', {
+        fetch(this.url + 'user', {
             method: 'POST',
             body: JSON.stringify(User),
             headers: {
@@ -23,7 +23,7 @@ export default class UserService {
         }).then(res => res)
 
     login = (user) =>
-        fetch(this.urlHeroku + "login", {
+        fetch(this.url + "login", {
             method: "POST",
             body: JSON.stringify(user),
             headers: {
