@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import StockComponent from "../component/ProductComponents/StockComponent";
 import StockService from "../services/StockService"
+import {Link} from "react-router-dom";
 
 class SearchStockContainer extends Component {
     constructor(props) {
@@ -42,7 +43,7 @@ class SearchStockContainer extends Component {
 
             <div className="container">
                 <div className="row">
-
+                    {console.log(this.state.keywords)}
                     <h1>Search Sneaker</h1>
                     <div className='input-group mb-3'>
                         <input className="form-control"
@@ -50,11 +51,11 @@ class SearchStockContainer extends Component {
                                onChange={this.keywordChange}
                                placeholder="keyword"/>
                         <div className="input-group-append">
-                            <button
+                            <Link to={`/search/${this.state.keywords}`}><button
                                 onClick={this.searchStock}
                                 className="btn btn-primary">
                                 Search
-                            </button>
+                            </button></Link>
                         </div>
                     </div>
                 </div>
