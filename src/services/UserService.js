@@ -17,7 +17,9 @@ export default class UserService {
             body: JSON.stringify(User),
             headers: {
                 'content-type': 'application/json'
-            }
+            },
+            credentials: 'include'//required
+
         }).then(res => res)
 
     login = (user) =>
@@ -72,7 +74,9 @@ export default class UserService {
             body: JSON.stringify(user),
             headers: {
                 'content-type': 'application/json'
-            }
+            },
+                        credentials: 'include'//required
+
         })
 
     DeleteProductFromUserById = (uid, productUrlKey) =>
