@@ -1,5 +1,6 @@
 export default class ReviewService {
     url = "http://localhost:8080/api/";
+    urlHeroku = 'https://peaceful-savannah-55840.herokuapp.com/api/'
 
     static myInstance = null;
 
@@ -12,10 +13,10 @@ export default class ReviewService {
     }
 
     findAllReview=()=>
-        fetch(this.url + "review").then(response => response.json())
+        fetch(this.urlHeroku + "review").then(response => response.json())
 
     createReview = (review, uid, pid)=>
-        fetch(this.url+`user/${uid}/product/${pid}/review`, {
+        fetch(this.urlHeroku+`user/${uid}/product/${pid}/review`, {
             method: 'POST',
             body: JSON.stringify(review),
             headers: {
@@ -24,26 +25,26 @@ export default class ReviewService {
         }).then(res => res)
 
     deleteReview =(rid) =>
-        fetch(this.url + "review/" + rid, {
+        fetch(this.urlHeroku + "review/" + rid, {
             method: 'DELETE'
         })
 
 
     getReviewsForProduct = (urlKey) =>
-        fetch(this.url + `product/${urlKey}/review`)
+        fetch(this.urlHeroku + `product/${urlKey}/review`)
             .then(res =>
                      res.json()
             )
 
 
     getRatingForPorduct = (urlKey) =>
-        fetch(this.url + `product/${urlKey}/rating`)
+        fetch(this.urlHeroku + `product/${urlKey}/rating`)
             .then(res =>
                      res.json()
             )
 
     getReviewsByUser = (uid) =>
-        fetch(this.url + `user/${uid}/review`)
+        fetch(this.urlHeroku + `user/${uid}/review`)
             .then( res =>{
                 if(res.status == 200){
                     return res.json();
