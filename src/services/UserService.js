@@ -12,7 +12,7 @@ export default class UserService {
     }
 
     createUser = (User) =>
-        fetch(this.urlHeroku + 'user', {
+        fetch(this.url + 'user', {
             method: 'POST',
             body: JSON.stringify(User),
             headers: {
@@ -21,7 +21,7 @@ export default class UserService {
         }).then(res => res)
 
     login = (user) =>
-        fetch(this.urlHeroku + "login", {
+        fetch(this.url + "login", {
             method: "POST",
             body: JSON.stringify(user),
             headers: {
@@ -36,38 +36,38 @@ export default class UserService {
         })
 
     findUserByUsername = (uname) =>
-        fetch(this.urlHeroku + "username/" + uname).then(response => response.json())
+        fetch(this.url + "username/" + uname).then(response => response.json())
 
     findUserById = (uid) =>
-        fetch(this.urlHeroku + "user/" + uid).then(response => response.json())
+        fetch(this.url + "user/" + uid).then(response => response.json())
 
     getProductsForUser = (uid) =>
-        fetch(this.urlHeroku + "user/" + uid + "/product").then(response => response.json())
+        fetch(this.url + "user/" + uid + "/product").then(response => response.json())
 
     getPortfolioForUserByUserId = (uid) => {
-        return fetch(this.urlHeroku + `user/${uid}/portfolio`)
+        return fetch(this.url + `user/${uid}/portfolio`)
             .then(response => response.json())
     }
 
     getPortfolioForEditorByEditorId = (eid) => {
-        return fetch(this.urlHeroku + `user/${eid}/collection`)
+        return fetch(this.url + `user/${eid}/collection`)
             .then(response => response.json())
     }
     getPublicProfileForUserByUserId = (uid) => {
-        return fetch(this.urlHeroku + `user/${uid}/publicProfile`)
+        return fetch(this.url + `user/${uid}/publicProfile`)
             .then(response => response.json())
     }
 
 
     getPrivateProfileForUserByUserId = (uid) => {
-        return fetch(this.urlHeroku + `user/${uid}/privateProfile`, {
+        return fetch(this.url + `user/${uid}/privateProfile`, {
             credentials: 'include'//required
 
         }).then(response => response.json())
     }
 
     updateUser = (user, uid) =>
-        fetch(this.urlHeroku + "user/" + uid, {
+        fetch(this.url + "user/" + uid, {
             method: 'PUT',
             body: JSON.stringify(user),
             headers: {
@@ -76,13 +76,13 @@ export default class UserService {
         })
 
     DeleteProductFromUserById = (uid, productUrlKey) =>
-        fetch(this.urlHeroku + `user/${uid}/product/${productUrlKey}`, {
+        fetch(this.url + `user/${uid}/product/${productUrlKey}`, {
             method: 'DELETE',
 
         })
 
     removeProductFromEditorCollection = (eid, productUrlKey) =>
-        fetch(this.urlHeroku + `editor/${eid}/product/${productUrlKey}`, {
+        fetch(this.url + `editor/${eid}/product/${productUrlKey}`, {
             method: 'DELETE',
         })
 }

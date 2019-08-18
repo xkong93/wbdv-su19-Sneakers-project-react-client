@@ -71,8 +71,8 @@ function AccountComponent(props) {
     const [mobileOpen, setMobileOpen] = React.useState(false);
     // const id = Cookies.get("JSESSIONID") != null ? (JSON.parse(localStorage.getItem(Cookies.get("JSESSIONID")))).uid : -1
     // const type = Cookies.get("JSESSIONID") != null ? (JSON.parse(localStorage.getItem(Cookies.get("JSESSIONID")))).dtype : -1
-    const id = JSON.parse(localStorage.getItem(Cookies.get("JSESSIONID")))? JSON.parse(localStorage.getItem(Cookies.get("JSESSIONID"))).id :0
-    const type = JSON.parse(localStorage.getItem(Cookies.get("JSESSIONID")))? JSON.parse(localStorage.getItem(Cookies.get("JSESSIONID"))).type :0
+    const id = JSON.parse(localStorage.getItem(Cookies.get("JSESSIONID")))? JSON.parse(localStorage.getItem(Cookies.get("JSESSIONID"))).uid :0
+    const type = JSON.parse(localStorage.getItem(Cookies.get("JSESSIONID")))? JSON.parse(localStorage.getItem(Cookies.get("JSESSIONID"))).dtype :0
 
 
     function handleDrawerToggle() {
@@ -83,7 +83,7 @@ function AccountComponent(props) {
         <div>
             <div className={classes.toolbar}/>
             <Divider/>
-
+            {console.log(id)}
             {type != "Editor" && <List>
                 {['Profile', 'Portfolio', 'Reviews'].map((text, index) => (
                     <Link to={`/user/${props.match.params.uid}/${text.toLowerCase()}`}>

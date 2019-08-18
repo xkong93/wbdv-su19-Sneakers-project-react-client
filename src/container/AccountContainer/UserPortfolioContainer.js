@@ -49,7 +49,7 @@ class UserPortfolioContainer extends Component {
     render() {
         return (
             <div>
-                {this.state.portfolioItems.length > 0 &&
+                {this.state.portfolioItems != null &&
                 <PortfolioComponent uid={this.props.match.params.uid} portfolio={this.state}/>}
             </div>
         );
