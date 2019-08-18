@@ -17,12 +17,15 @@ class StockDetailContainer extends Component {
         super(props)
         this.stockService = StockService.getInstance()
         this.productService = ProductService.getInstance()
-        this.id = Cookies.get("JSESSIONID") != null ? (JSON.parse(localStorage.getItem(Cookies.get("JSESSIONID")))).uid : -1
-        this.type = Cookies.get("JSESSIONID") != null ? (JSON.parse(localStorage.getItem(Cookies.get("JSESSIONID")))).dtype : -1
+        // this.id = Cookies.get("JSESSIONID") != null ? (JSON.parse(localStorage.getItem(Cookies.get("JSESSIONID")))).uid : -1
+        // this.type = Cookies.get("JSESSIONID") != null ? (JSON.parse(localStorage.getItem(Cookies.get("JSESSIONID")))).dtype : -1
+       // this.id = JSON.parse(localStorage.getItem(Cookies.get("JSESSIONID")))? JSON.parse(localStorage.getItem(Cookies.get("JSESSIONID"))).id :0
+        this.type = JSON.parse(localStorage.getItem(Cookies.get("JSESSIONID")))? JSON.parse(localStorage.getItem(Cookies.get("JSESSIONID"))).type :0
+
         this.state = {
             detail: {},
             response: {},
-            uid: localStorage.getItem(Cookies.get("JSESSIONID")),
+            uid: JSON.parse(localStorage.getItem(Cookies.get("JSESSIONID")))? localStorage.getItem(Cookies.get("JSESSIONID")).uid : "0",
             urlKey: this.props.match.params.urlKey,
             openSuccess: false,
             openFailure: false,
@@ -70,7 +73,7 @@ class StockDetailContainer extends Component {
 
 
     addProductForUser = (urlKey, uid) => {
-        if (Cookies.get("JSESSIONID") != undefined) {
+        if (JSON.parse(localStorage.getItem(Cookies.get("JSESSIONID"))) != null) {
             return this.productService.addProduct(urlKey, uid)
                 .then(response => {
                     if (response.status != 200) {
@@ -92,7 +95,7 @@ class StockDetailContainer extends Component {
     }
 
     addProductForEditor = (urlKey, uid) => {
-        if (Cookies.get("JSESSIONID") != undefined) {
+        if (JSON.parse(localStorage.getItem(Cookies.get("JSESSIONID"))) != null) {
             return this.productService.addProductForEditor(urlKey, uid)
                 .then(response => {
                     if (response.status != 200) {
@@ -194,7 +197,7 @@ class StockDetailContainer extends Component {
                 <StockDetailComponent detail={this.state.detail}/>
                 <ProductReviewContainer params={this.props.match.params}/>
                 <br/>
-                {this.type != "Editor" && <Link to={Cookies.get("JSESSIONID") != undefined ? `${url}` : "/login"} color="inherit">
+                {this.type != "Editor" && <Link to={JSON.parse(localStorage.getItem(Cookies.get("JSESSIONID"))) != null ? `${url}` : "/login"} color="inherit">
                     <Button fullWidth
                             size={"large"}
                             variant="outlined"

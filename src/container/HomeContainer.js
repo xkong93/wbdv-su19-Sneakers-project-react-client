@@ -60,8 +60,11 @@ class HomeContainer extends Component {
         super(props);
         this.userService = UserService.getInstance()
         this.editorService = EditorService.getInstance();
-        this.id = Cookies.get("JSESSIONID") != null ? (JSON.parse(localStorage.getItem(Cookies.get("JSESSIONID")))).uid : -1
-        this.type = Cookies.get("JSESSIONID") != null ? (JSON.parse(localStorage.getItem(Cookies.get("JSESSIONID")))).dtype : -1
+        // this.id = Cookies.get("JSESSIONID") != null ? (JSON.parse(localStorage.getItem(Cookies.get("JSESSIONID")))).uid : -1
+        // this.type = Cookies.get("JSESSIONID") != null ? (JSON.parse(localStorage.getItem(Cookies.get("JSESSIONID")))).dtype : -1
+        this.id = JSON.parse(localStorage.getItem(Cookies.get("JSESSIONID")))? JSON.parse(localStorage.getItem(Cookies.get("JSESSIONID"))).id :0
+        this.type = JSON.parse(localStorage.getItem(Cookies.get("JSESSIONID")))? JSON.parse(localStorage.getItem(Cookies.get("JSESSIONID"))).type :0
+
         this.state = {
             editorPickProducts: [],
             editorPickByEditor: [],
@@ -79,7 +82,7 @@ class HomeContainer extends Component {
                 })
             })
 
-        if (Cookies.get("JSESSIONID") != null && this.type == "Editor") {
+        if (localStorage.getItem(Cookies.get("JSESSIONID")) != null && this.type == "Editor") {
             this.userService.getPortfolioForEditorByEditorId(this.id)
                 .then(response => {
                     this.setState({
@@ -128,7 +131,6 @@ class HomeContainer extends Component {
     }
 
     render() {
-        console.log(this.state.editorPickProducts)
         const {classes} = this.props;
         return (
             <React.Fragment>

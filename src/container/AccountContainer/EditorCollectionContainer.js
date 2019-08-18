@@ -26,10 +26,9 @@ class EditorCollectionContainer extends Component {
     }
 
     render() {
-        console.log(this.state.portfolioItems)
         return (
             <div>
-                {console.log(this.state)}
+
                 {this.state.portfolioItems.length > 0 &&
                 <EditorCollectionComponent uid={this.props.match.params.uid} portfolio={this.state}/>}
             </div>

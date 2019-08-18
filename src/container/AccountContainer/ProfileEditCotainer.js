@@ -40,7 +40,7 @@ class ProfileEditCotainer extends Component {
 
             <Container maxWidth="md">
                 <div>
-                    {Cookies.get("JSESSIONID") != undefined && <ProfileEditorComponent
+                    {JSON.parse(localStorage.getItem(Cookies.get("JSESSIONID")))!=null && <ProfileEditorComponent
                         user={this.state.user} first={this.firstNameChange} last={this.lastNameChange} pass={this.passwordChange}/>
 
                     }
