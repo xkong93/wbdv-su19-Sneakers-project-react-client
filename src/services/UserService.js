@@ -24,7 +24,7 @@ export default class UserService {
         }).then(res => res)
 
     login = (user) =>
-        fetch(this.urlHeroku + "login", {
+        fetch(this.url + "login", {
             method: "POST",
             body: JSON.stringify(user),
             headers: {
