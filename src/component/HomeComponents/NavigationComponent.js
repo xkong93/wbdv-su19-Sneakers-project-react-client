@@ -64,7 +64,8 @@ export default function NavigationComponent() {
     const classes = useStyles();
 
     const logout =()=>{
-        Cookies.remove("JSESSIONID")
+        // Cookies.remove("JSESSIONID")
+        localStorage.clear()
     }
 
     var loginJson = JSON.parse(localStorage.getItem(Cookies.get("JSESSIONID")))
@@ -79,11 +80,14 @@ export default function NavigationComponent() {
                     > SneakerStock</Typography>
 
 
-
+                {console.log(loginJson)}
                     <Link to='/'><Button  className={classes.button}>Home</Button></Link>
-                {Cookies.get("JSESSIONID") ==null && <Link to='/login'><Button>Login</Button></Link>}
-                {Cookies.get("JSESSIONID") ==null &&<Link to='/register'><Button>Sign Up</Button></Link>}
-                {Cookies.get("JSESSIONID") !=null && <Link to="/home"><Button  onClick={()=>logout()} >Sign Out</Button></Link>}
+                {/*{Cookies.get("JSESSIONID") ==null && <Link to='/login'><Button>Login</Button></Link>}*/}
+                {/*{Cookies.get("JSESSIONID") ==null &&<Link to='/register'><Button>Sign Up</Button></Link>}*/}
+                {/*{Cookies.get("JSESSIONID") ==null && <Link to="/home"><Button  onClick={()=>logout()} >Sign Out</Button></Link>}*/}
+                {loginJson ==null && <Link to='/login'><Button>Login</Button></Link>}
+                {loginJson ==null &&<Link to='/register'><Button>Sign Up</Button></Link>}
+                {loginJson !=null && <Link to="/home"><Button  onClick={()=>logout()} >Sign Out</Button></Link>}
                     <Link to='/search/ '><Button>Search</Button></Link>
                 {loginJson != null && <Link to={`/user/${loginJson.uid}/profile`}><Button >My Account</Button></Link>}
             </Toolbar>

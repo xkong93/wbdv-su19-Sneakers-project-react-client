@@ -12,7 +12,7 @@ export default class EditorService {
     }
 
     createEditor = (editor, code) =>
-        fetch(this.urlHeroku + "editor/" + code, {
+        fetch(this.url + "editor/" + code, {
             method: 'POST',
             body: JSON.stringify(editor),
             headers: {
@@ -22,7 +22,7 @@ export default class EditorService {
 
 
     getAllEditor = () =>
-        fetch(this.urlHeroku + "editor/product")
+        fetch(this.url + "editor/product")
             .then(res => res.json());
 
 
