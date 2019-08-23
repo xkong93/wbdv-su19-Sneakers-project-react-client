@@ -2,7 +2,7 @@ export default class UserService {
     // url = "http://www.webdev5610.site/api/";
     url2 = "http://localhost:8080/api/";
     // url = 'https://peaceful-savannah-55840.herokuapp.com/api/'
-    url = 'http://server.sneakerjunkies.life/api/'
+    // url = 'http://server.sneakerjunkies.life/api/'
     static myInstance = null;
 
 
@@ -25,7 +25,7 @@ export default class UserService {
         }).then(res => res)
 
     login = (user) =>
-        fetch(this.url + "login", {
+        fetch(this.url2 + "login", {
             method: "POST",
             body: JSON.stringify(user),
             headers: {
