@@ -1,7 +1,8 @@
 export default class UserService {
     // url = "http://www.webdev5610.site/api/";
     url2 = "http://localhost:8080/api/";
-    url = 'https://peaceful-savannah-55840.herokuapp.com/api/'
+    // url = 'https://peaceful-savannah-55840.herokuapp.com/api/'
+    url = 'http://api.sneakerjunkies.life/api/'
     static myInstance = null;
 
 
