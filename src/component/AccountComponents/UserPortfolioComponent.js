@@ -85,8 +85,7 @@ class UserPortfolioComponent extends Component {
                     <Table className={classes.table}>
                         <TableHead>
                             <TableRow>
-                                <TableCell align="center">ACTION</TableCell>
-
+                                {this.id == this.props.uid && <TableCell align="center">ACTION</TableCell>}
                                 <TableCell>NAME</TableCell>
                                 <TableCell align="center">RELEASE DATE</TableCell>
                                 <TableCell align="center">BRAND</TableCell>
@@ -98,7 +97,7 @@ class UserPortfolioComponent extends Component {
                         <TableBody>
                             {this.state.portfolioItems.map((row, i) => (
                                 <TableRow key={`row-${i}`}>
-                                    {this.id == this.props.uid && <TableCell align="center"> <Button
+                                    {this.id == this.props.uid &&<TableCell align="center"> <Button
                                         onClick={() => this.deleteItem(i)}
                                         color="secondary"
                                     >
@@ -117,7 +116,7 @@ class UserPortfolioComponent extends Component {
                             ))}
 
                             <TableRow>
-                                <TableCell colSpan={1}/>
+                                {this.id == this.props.uid && <TableCell colSpan={1}/>}
                                 <TableCell
                                     align="center">Totals:&nbsp;{this.state.totalItem} Items </TableCell>
                                 <TableCell colSpan={2}/>

@@ -25,8 +25,6 @@ class LoginContainer extends Component {
             .then(res => {
                 if (res != undefined) {
                     var sessionId = Cookies.get().JSESSIONID;
-                    console.log(Cookies.get().JSESSIONID)
-                    console.log(Cookies.get("JSESSIONID"))
                     localStorage.setItem(sessionId, JSON.stringify(res)); //json to string
                     this.setState({
                         register: true,

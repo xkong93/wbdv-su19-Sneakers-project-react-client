@@ -296,12 +296,12 @@ const output = (edidtors) => {
 
 const EditorProductsComponent = ({editorProducts, login}) => {
     var products
-    if (!login) {
+    // if (!login) {
         products = output(editorProducts)
-    } else {
-        products = editorProducts
-        console.log(products)
-    }
+    // } else {
+    //     products = editorProducts
+    //     console.log(products)
+    // }
     const classes = useStyles()
 
     return (
