@@ -9,7 +9,9 @@ import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import UserService from "../../services/UserService"
 import Cookies from "js-cookie";
-import PieChartComponent from "./pieChartComponent";
+import PieBrandCountChartComponent from "./pieBrandCountChartComponent";
+import PieBrandValueChartComponent from "./pieBrandValueChartComponent";
+
 import {Container} from "@material-ui/core";
 
 const styles = theme => ({
@@ -29,7 +31,7 @@ const styles = theme => ({
     pie: {
         display: "flex",
         flexDirection:"row",
-        justifyContent:"space-between"
+        justifyContent:"space-around"
     }
 });
 
@@ -48,6 +50,7 @@ class UserPortfolioComponent extends Component {
             gainLossSum: this.props.portfolio.gainLossSum,
             brand: [],
             brandCount: [],
+            brandValue:[],
         }
         this.userService = UserService.getInstance();
     }
@@ -88,26 +91,47 @@ class UserPortfolioComponent extends Component {
 
     calculateBrandCount() {
         // eslint-disable-next-line no-unused-vars
-        const brand = this.state.portfolioItems.map(item => item.brand);
+        const brand = this.state.portfolioItems.map(item => {
+            return {brand: item.brand,
+                    marketPrice:item.marketPrice}
+        });
+        console.log(brand)
 
         let map = new Map();
         for (let i = 0; i < brand.length; i++) {
-            if (map.has(brand[i])) {
-                map.set(brand[i], map.get(brand[i]) + 1);
+            if (map.has(brand[i].brand)) {
+                map.set(brand[i].brand,
+                    {
+                        brand: map.get(brand[i].brand).brand + 1,
+                        totalValue: map.get(brand[i].brand).totalValue + brand[i].marketPrice
+                    });
             } else {
-                map.set(brand[i], 1);
+                map.set(brand[i].brand, {
+                    brand:1,
+                    totalValue:brand[i].marketPrice
+                });
             }
         }
+        console.log(map)
+
         var newBrandArr = [];
         var newBrandCountArr = []
+        var newBrandValueArr = []
+
         for (let entry of map) {
             newBrandArr.push(entry[0])
-            newBrandCountArr.push(entry[1])
+            newBrandCountArr.push(entry[1].brand)
+            newBrandValueArr.push(entry[1].totalValue)
         }
+        console.log(newBrandArr)
+        console.log(newBrandCountArr)
+        console.log(newBrandValueArr)
 
         this.setState({
             brand: newBrandArr,
-            brandCount: newBrandCountArr
+            brandCount: newBrandCountArr,
+            brandValue: newBrandValueArr
+
         })
     }
 
@@ -116,17 +140,15 @@ class UserPortfolioComponent extends Component {
         return (
             <div>
                 <Container className={classes.pie}>
-                    {this.state.brand.length > 0 && <PieChartComponent
-
+                    {this.state.brand.length > 0 && <PieBrandCountChartComponent
                         brand={this.state.brand}
                         brandCount={this.state.brandCount}
 
                     />}
 
-                    {this.state.brand.length > 0 && <PieChartComponent
+                    {this.state.brand.length > 0 && <PieBrandValueChartComponent
                         brand={this.state.brand}
-                        brandCount={this.state.brandCount}
-
+                        brandValue={this.state.brandValue}
                     />}
                 </Container>
                 <Paper className={classes.root}>

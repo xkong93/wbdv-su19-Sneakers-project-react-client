@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
 import {Pie} from "react-chartjs-2";
 
-class PieChartComponent extends Component {
+class PieBrandCountChartComponent extends Component {
     constructor(props){
         super(props);
         this.state = {
+            brandPie: false,
+            valuePie:false,
             chartData:{
                 labels: this.props.brand,
                 datasets:[
@@ -51,15 +53,15 @@ class PieChartComponent extends Component {
     render() {
         return (
             <div className="chart">
+                <h4>Total Count by Brand</h4>
                 <Pie
                     data={this.state.chartData}
                     width={250}
                     height={250}
-                    options={true}
                 />
             </div>
         );
     }
 }
 
-export default PieChartComponent;
+export default PieBrandCountChartComponent;
