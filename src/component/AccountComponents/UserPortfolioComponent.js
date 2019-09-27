@@ -6,15 +6,15 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import {Container} from "@material-ui/core";
 import Button from '@material-ui/core/Button';
 import UserService from "../../services/UserService"
 import Cookies from "js-cookie";
-
-
+import PieChartComponent from "./pieChartComponent";
+import {Container} from "@material-ui/core";
 
 const styles = theme => ({
     root: {
+
         width: '100%',
         marginTop: theme.spacing(3),
         overflowX: 'auto',
@@ -26,25 +26,34 @@ const styles = theme => ({
     table: {
         minWidth: 650,
     },
+    pie: {
+        display: "flex",
+        flexDirection:"row",
+        justifyContent:"space-between"
+    }
 });
-
 
 class UserPortfolioComponent extends Component {
 
     constructor(props) {
         super(props);
-        this.id = JSON.parse(localStorage.getItem(Cookies.get("JSESSIONID")))? JSON.parse(localStorage.getItem(Cookies.get("JSESSIONID"))).uid :0
+        this.id =
+            JSON.parse(localStorage.getItem(Cookies.get("JSESSIONID"))) ? JSON.parse(
+                localStorage.getItem(Cookies.get("JSESSIONID"))).uid : 0
         this.state = {
             portfolioItems: this.props.portfolio.portfolioItems,
             totalItem: this.props.portfolio.totalItem,
             retailSum: this.props.portfolio.retailSum,
             marketSum: this.props.portfolio.marketSum,
-            gainLossSum: this.props.portfolio.gainLossSum
+            gainLossSum: this.props.portfolio.gainLossSum,
+            brand: [],
+            brandCount: [],
         }
         this.userService = UserService.getInstance();
     }
 
     deleteItem = (i) => {
+
         const items = this.state.portfolioItems;
         const itemCount = 1;
         const itemRetail = this.state.portfolioItems[i].retailPrice;
@@ -54,7 +63,7 @@ class UserPortfolioComponent extends Component {
         const retailSum = this.state.retailSum - itemRetail;
         const marketSum = this.state.marketSum - itemMarket;
         const gainLossSum = this.state.gainLossSum - itemGainLoss;
-        const productUrlKey =  this.state.portfolioItems[i].productUrlKey
+        const productUrlKey = this.state.portfolioItems[i].productUrlKey
         items.splice(i, 1);
         this.setState({
             portfolioItems: items,
@@ -62,30 +71,77 @@ class UserPortfolioComponent extends Component {
             retailSum: retailSum,
             marketSum: marketSum,
             gainLossSum: gainLossSum
-        });
+        }
+    );
 
-        this.DeleteProductFromUser(this.props.uid,productUrlKey)
+        this.DeleteProductFromUser(this.props.uid, productUrlKey)
+        this.calculateBrandCount()
     }
 
-    DeleteProductFromUser = (uid,pid) =>{
-        this.userService.DeleteProductFromUserById(uid,pid)
+    DeleteProductFromUser = (uid, pid) => {
+        this.userService.DeleteProductFromUserById(uid, pid)
     }
 
-    // componentDidMount() {
-    //     this.setState({
-    //         portfolio: this.props.portfolio
-    //     })
-    // }
+    componentDidMount() {
+        this.calculateBrandCount();
+    }
+
+    calculateBrandCount() {
+        // eslint-disable-next-line no-unused-vars
+        const brand = this.state.portfolioItems.map(item => item.brand);
+
+        let map = new Map();
+        for (let i = 0; i < brand.length; i++) {
+            if (map.has(brand[i])) {
+                map.set(brand[i], map.get(brand[i]) + 1);
+            } else {
+                map.set(brand[i], 1);
+            }
+        }
+        var newBrandArr = [];
+        var newBrandCountArr = []
+        for (let entry of map) {
+            newBrandArr.push(entry[0])
+            newBrandCountArr.push(entry[1])
+        }
+
+        this.setState({
+            brand: newBrandArr,
+            brandCount: newBrandCountArr
+        })
+    }
 
     render() {
         const {classes} = this.props;
         return (
             <div>
+                <Container className={classes.pie}>
+                    {this.state.brand.length > 0 && <PieChartComponent
+
+                        brand={this.state.brand}
+                        brandCount={this.state.brandCount}
+
+                    />}
+
+                    {this.state.brand.length > 0 && <PieChartComponent
+                        brand={this.state.brand}
+                        brandCount={this.state.brandCount}
+
+                    />}
+                </Container>
                 <Paper className={classes.root}>
+
+
+                    {/*{this.state.brand.length > 0 && <PieChartComponent*/}
+                    {/*    brand={this.state.brand}*/}
+                    {/*    brandCount={this.state.brandCount}*/}
+
+                    {/*/>}*/}
                     <Table className={classes.table}>
                         <TableHead>
                             <TableRow>
-                                {this.id == this.props.uid && <TableCell align="center">ACTION</TableCell>}
+                                {this.id == this.props.uid && <TableCell
+                                    align="center">ACTION</TableCell>}
                                 <TableCell>NAME</TableCell>
                                 <TableCell align="center">RELEASE DATE</TableCell>
                                 <TableCell align="center">BRAND</TableCell>
@@ -97,14 +153,15 @@ class UserPortfolioComponent extends Component {
                         <TableBody>
                             {this.state.portfolioItems.map((row, i) => (
                                 <TableRow key={`row-${i}`}>
-                                    {this.id == this.props.uid &&<TableCell align="center"> <Button
+                                    {this.id == this.props.uid && <TableCell align="center"> <Button
                                         onClick={() => this.deleteItem(i)}
                                         color="secondary"
                                     >
                                         Delete
                                     </Button></TableCell>}
                                     <TableCell component="th" scope="row">
-                                        <img className={classes.image} src={row.imageUrl} alt="Logo"/>
+                                        <img className={classes.image} src={row.imageUrl}
+                                             alt="Logo"/>
                                         <span>{row.name}</span>
                                     </TableCell>
                                     <TableCell align="center">{row.releaseDate}</TableCell>
