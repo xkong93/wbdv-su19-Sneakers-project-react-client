@@ -8,11 +8,16 @@ import LoginContainer from "./LoginContainer";
 import AccountContainer from "./AccountContainer/AccountContainer";
 import AddingRContainer from "./AddingRContainer";
 import RegisterContainer from "./RegisterContainer";
+import {withStyles} from '@material-ui/core/styles';
+// import bg from "../bg.svg";
+
+
 
 
 class Main extends Component {
 
     render() {
+        // const {classes} = this.props;
         return (
             <div >
                 <Router>

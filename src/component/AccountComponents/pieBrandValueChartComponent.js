@@ -38,6 +38,8 @@ class PieBrandValueChartComponent extends Component {
             }
         })
     }
+
+
     random_rgbaArray() {
         var o = Math.round, r = Math.random, s = 255;
         let backgroundArr = [];
@@ -57,7 +59,7 @@ class PieBrandValueChartComponent extends Component {
                     data={this.state.chartData}
                     width={251}
                     height={251}
-                    // options={true}
+
                 />
             </div>
         );

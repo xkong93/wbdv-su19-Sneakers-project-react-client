@@ -112,7 +112,6 @@ class UserPortfolioComponent extends Component {
                 });
             }
         }
-        console.log(map)
 
         var newBrandArr = [];
         var newBrandCountArr = []
